@@ -79,7 +79,7 @@ const ProductDetailsCard = () => {
   };
 
   return (
-    <div className="mb-24 lg:mb-32 mx-5 lg:mx-10">
+    <div className="mb-24 lg:mb-32 container mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <div className="">
           <img src={product?.image} alt={product?.name} className="h-[660px] w-[660px]" />

@@ -5,7 +5,7 @@ import image4 from "../../../../assets/HowItWorks/4.png";
 
 const HowItWorks = () => {
   return (
-    <div className="py-24 lg:py-32 mx-5 lg:mx-10 border-t border-b border-slate-200 dark:border-slate-700">
+    <div className="py-24 lg:py-32 container mx-auto border-t border-b border-slate-200 dark:border-slate-700">
       <div className="nc-SectionHowItWork">
         <div className="relative grid sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-16 xl:gap-20">
           {/* Step 1 */}

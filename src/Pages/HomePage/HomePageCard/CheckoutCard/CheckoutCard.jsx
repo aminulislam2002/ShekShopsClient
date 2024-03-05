@@ -91,7 +91,7 @@ const CheckoutCard = () => {
   };
 
   return (
-    <div className="mb-24 lg:mb-32 mx-5 lg:mx-10">
+    <div className="mb-24 lg:mb-32 container mx-auto">
       <div className="mb-16">
         <h2 className="block text-2xl sm:text-3xl lg:text-4xl font-semibold ">Checkout</h2>
         <div className="block mt-3 sm:mt-5 text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-400">

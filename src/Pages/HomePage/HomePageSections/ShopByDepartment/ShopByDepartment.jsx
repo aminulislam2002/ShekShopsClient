@@ -41,7 +41,7 @@ const ShopByDepartment = () => {
   };
 
   return (
-    <div className="my-24 lg:my-32 mx-5 lg:mx-10">
+    <div className="my-24 lg:my-32 container mx-auto">
       {/* Title of this section */}
 
       <div className="relative flex flex-col sm:flex-row sm:items-end md:items-start justify-between mb-12 lg:mb-14 text-neutral-900 dark:text-neutral-50">

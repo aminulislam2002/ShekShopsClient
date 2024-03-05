@@ -5,7 +5,7 @@ import logo from "../../../assets/Logo/Logo Black Bg.png";
 
 const PromoSectionOne = () => {
   return (
-    <div className="my-24 lg:my-32 mx-5 lg:mx-10 relative flex flex-col lg:flex-row items-center">
+    <div className="my-24 lg:my-32 container mx-auto relative flex flex-col lg:flex-row items-center">
       <div className="relative flex-shrink-0 mb-16 lg:mb-0 lg:mr-10 lg:w-2/5">
         {/* Logo */}
         <Link
