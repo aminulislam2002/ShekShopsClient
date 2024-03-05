@@ -107,70 +107,42 @@ const TrendingNow = () => {
                 <button
                   className={`block !leading-none font-medium whitespace-nowrap px-5 py-2.5 text-sm sm:text-base sm:px-6 sm:py-3 capitalize rounded-full
                 ${
-                  selectedCategory === "Kids"
+                  selectedCategory === "Kitchen"
                     ? "bg-slate-900 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
                     : "text-slate-800 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800"
                 }
                  focus:outline-none`}
-                  onClick={() => setSelectedCategory("Kids")}
+                  onClick={() => setSelectedCategory("Kitchen")}
                 >
-                  Kids
+                  Kitchen
                 </button>
               </li>
               <li>
                 <button
                   className={`block !leading-none font-medium whitespace-nowrap px-5 py-2.5 text-sm sm:text-base sm:px-6 sm:py-3 capitalize rounded-full
                 ${
-                  selectedCategory === "Sports"
+                  selectedCategory === "Travel"
                     ? "bg-slate-900 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
                     : "text-slate-800 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800"
                 }
                  focus:outline-none`}
-                  onClick={() => setSelectedCategory("Sports")}
+                  onClick={() => setSelectedCategory("Travel")}
                 >
-                  Sports
+                  Travel
                 </button>
               </li>
               <li>
                 <button
                   className={`block !leading-none font-medium whitespace-nowrap px-5 py-2.5 text-sm sm:text-base sm:px-6 sm:py-3 capitalize rounded-full
                 ${
-                  selectedCategory === "Beauty"
+                  selectedCategory === "Gadget"
                     ? "bg-slate-900 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
                     : "text-slate-800 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800"
                 }
                  focus:outline-none`}
-                  onClick={() => setSelectedCategory("Beauty")}
+                  onClick={() => setSelectedCategory("Gadget")}
                 >
-                  Beauty
-                </button>
-              </li>
-              <li>
-                <button
-                  className={`block !leading-none font-medium whitespace-nowrap px-5 py-2.5 text-sm sm:text-base sm:px-6 sm:py-3 capitalize rounded-full
-                ${
-                  selectedCategory === "Jewelry"
-                    ? "bg-slate-900 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
-                    : "text-slate-800 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800"
-                }
-                 focus:outline-none`}
-                  onClick={() => setSelectedCategory("Jewelry")}
-                >
-                  Jewelry
-                </button>
-              </li>
-              <li>
-                <button
-                  className={`block !leading-none font-medium whitespace-nowrap px-5 py-2.5 text-sm sm:text-base sm:px-6 sm:py-3 capitalize rounded-full
-                ${
-                  selectedCategory === "Electronics"
-                    ? "bg-slate-900 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
-                    : "text-slate-800 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800"
-                }
-                 focus:outline-none`}
-                  onClick={() => setSelectedCategory("Electronics")}
-                >
-                  Electronics
+                  Gadget
                 </button>
               </li>
             </ul>
