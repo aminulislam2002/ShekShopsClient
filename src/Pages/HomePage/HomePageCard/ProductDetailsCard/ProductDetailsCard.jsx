@@ -37,6 +37,11 @@ const ProductDetailsCard = () => {
   const [product, setProduct] = useState(null);
   const [buyingProductInfo, setBuyingProductInfo] = useState({});
 
+  useEffect(() => {
+    // Scroll to the top of the page when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
+
   // Get the product id from the URL
   const { id } = useParams();
 
@@ -80,9 +85,13 @@ const ProductDetailsCard = () => {
 
   return (
     <div className="mb-24 lg:mb-32 container mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 px-5 md:px-10 lg:px-0">
         <div className="">
-          <img src={product?.image} alt={product?.name} className="h-[660px] w-[660px]" />
+          <img
+            src={product?.image}
+            alt={product?.name}
+            className="h-[350px] w-full md:h-[500px] lg:h-[660px] lg:w-[660px]"
+          />
         </div>
         <div className="">
           <div>
@@ -134,7 +143,7 @@ const ProductDetailsCard = () => {
                     </div>
 
                     <div className="col-span-10">
-                      <div className="grid grid-cols-8 mb-3">
+                      <div className="grid grid-cols-5 md:grid-cols-8 mb-3">
                         {product?.size.map((size) => (
                           <button
                             key={size}
@@ -164,7 +173,7 @@ const ProductDetailsCard = () => {
                     </div>
 
                     <div className="col-span-10">
-                      <div className="grid grid-cols-8 mb-3">
+                      <div className="grid grid-cols-5 md:grid-cols-8 mb-3">
                         {product?.colors.map((color) => (
                           <button
                             key={color}

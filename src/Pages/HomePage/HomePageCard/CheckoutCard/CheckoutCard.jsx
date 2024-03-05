@@ -2,10 +2,15 @@
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { FaTruckArrowRight } from "react-icons/fa6";
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 const CheckoutCard = () => {
+  useEffect(() => {
+    // Scroll to the top of the page when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
+
   const location = useLocation();
   const productData = location?.state?.data;
 
@@ -24,13 +29,6 @@ const CheckoutCard = () => {
     setCustomerData((prevData) => ({
       ...prevData,
       [name]: value,
-    }));
-  };
-
-  const handleAddressTypeChange = (value) => {
-    setCustomerData((prevData) => ({
-      ...prevData,
-      addressType: value,
     }));
   };
 
@@ -92,7 +90,7 @@ const CheckoutCard = () => {
 
   return (
     <div className="mb-24 lg:mb-32 container mx-auto">
-      <div className="mb-16">
+      <div className="mb-16 px-5 md:px-10 lg:px-0">
         <h2 className="block text-2xl sm:text-3xl lg:text-4xl font-semibold ">Checkout</h2>
         <div className="block mt-3 sm:mt-5 text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-400">
           <Link className="hover:underline" to="/">
@@ -107,8 +105,8 @@ const CheckoutCard = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-12 gap-20">
-        <div className="col-span-7 border border-slate-200">
+      <div className="grid grid-cols-12 px-5 md:px-10 lg:px-0">
+        <div className="col-span-12 lg:col-span-7 order-2 lg:order-1 border border-slate-200 mt-5 md:mt-7 lg:mt-0 lg:me-10 rounded-xl overflow-hidden">
           <div className="scroll-mt-24">
             <div className=" dark:border-slate-700 rounded-xl ">
               <div className="p-6 flex flex-col sm:flex-row items-start">
@@ -129,28 +127,24 @@ const CheckoutCard = () => {
               <div className="border-t border-slate-200 dark:border-slate-700 px-6 py-7 space-y-4 sm:space-y-6 block">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-3">
                   <div>
-                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm" data-nc-id="Label">
-                      Name
-                    </label>
+                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">Name</label>
                     <input
                       name="name"
                       value={customerData.name}
                       onChange={handleChange}
-                      className="block w-full border border-slate-200 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white dark:border-slate-700 dark:focus:ring-primary-6000 dark:focus:ring-opacity-25 dark:bg-slate-900 disabled:bg-slate-200 dark:disabled:bg-slate-800 rounded-2xl text-sm font-normal h-11 px-4 py-3 mt-1.5"
+                      className="block w-full border border-slate-200 mb-2 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white dark:border-slate-700 dark:focus:ring-primary-6000 dark:focus:ring-opacity-25 dark:bg-slate-900 disabled:bg-slate-200 dark:disabled:bg-slate-800 rounded-2xl text-sm font-normal h-11 px-4 py-3 mt-2"
                       type="text"
                       placeholder="Enter your name"
                     />
                   </div>
                   <div>
-                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm" data-nc-id="Label">
-                      Mobile Number
-                    </label>
+                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">Mobile Number</label>
                     <input
                       name="mobileNumber"
                       value={customerData.mobileNumber}
                       onChange={handleChange}
-                      className="block w-full border border-slate-200 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white dark:border-slate-700 dark:focus:ring-primary-6000 dark:focus:ring-opacity-25 dark:bg-slate-900 disabled:bg-slate-200 dark:disabled:bg-slate-800 rounded-2xl text-sm font-normal h-11 px-4 py-3 mt-1.5"
-                      type="text"
+                      className="block w-full border border-slate-200 mb-2 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white dark:border-slate-700 dark:focus:ring-primary-6000 dark:focus:ring-opacity-25 dark:bg-slate-900 disabled:bg-slate-200 dark:disabled:bg-slate-800 rounded-2xl text-sm font-normal h-11 px-4 py-3 mt-2"
+                      type="number"
                       placeholder="Enter your name"
                     />
                   </div>
@@ -158,27 +152,23 @@ const CheckoutCard = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-3">
                   <div>
-                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm" data-nc-id="Label">
-                      City
-                    </label>
+                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">City</label>
                     <input
                       name="city"
                       value={customerData.city}
                       onChange={handleChange}
-                      className="block w-full border border-slate-200 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white dark:border-slate-700 dark:focus:ring-primary-6000 dark:focus:ring-opacity-25 dark:bg-slate-900 disabled:bg-slate-200 dark:disabled:bg-slate-800 rounded-2xl text-sm font-normal h-11 px-4 py-3 mt-1.5"
+                      className="block w-full border border-slate-200 mb-2 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white dark:border-slate-700 dark:focus:ring-primary-6000 dark:focus:ring-opacity-25 dark:bg-slate-900 disabled:bg-slate-200 dark:disabled:bg-slate-800 rounded-2xl text-sm font-normal h-11 px-4 py-3 mt-2"
                       type="text"
                       placeholder="Enter your name"
                     />
                   </div>
                   <div className="">
-                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm" data-nc-id="Label">
-                      Address
-                    </label>
+                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">Address</label>
                     <input
                       name="address"
                       value={customerData.address}
                       onChange={handleChange}
-                      className="block w-full border border-slate-200 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white dark:border-slate-700 dark:focus:ring-primary-6000 dark:focus:ring-opacity-25 dark:bg-slate-900 disabled:bg-slate-200 dark:disabled:bg-slate-800 rounded-2xl text-sm font-normal h-11 px-4 py-3 mt-1.5"
+                      className="block w-full border border-slate-200 mb-2 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white dark:border-slate-700 dark:focus:ring-primary-6000 dark:focus:ring-opacity-25 dark:bg-slate-900 disabled:bg-slate-200 dark:disabled:bg-slate-800 rounded-2xl text-sm font-normal h-11 px-4 py-3 mt-2"
                       type="text"
                       placeholder="Enter your name"
                     />
@@ -186,53 +176,10 @@ const CheckoutCard = () => {
                 </div>
 
                 <div>
-                  <label className="font-medium text-slate-900 dark:text-slate-200 text-sm" data-nc-id="Label">
-                    Address type
-                  </label>
-                  <div className="mt-1.5 grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                  <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">Delivery area</label>
+                  <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3">
                     <div className="flex items-center text-sm sm ">
                       <input
-                        id="Address-type-home"
-                        className="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
-                        type="radio"
-                        value="Home"
-                        name="addressType"
-                        checked={customerData.addressType === "Home"}
-                        onChange={() => handleAddressTypeChange("Home")}
-                      />
-                      <label className="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none">
-                        <span className="text-sm font-medium">
-                          Home <span className="font-light">(All Day Delivery)</span>
-                        </span>
-                      </label>
-                    </div>
-                    <div className="flex items-center text-sm sm ">
-                      <input
-                        id="Address-type-home"
-                        className="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
-                        type="radio"
-                        value="Office"
-                        name="addressType"
-                        checked={customerData.addressType === "Office"}
-                        onChange={() => handleAddressTypeChange("Office")}
-                      />
-                      <label className="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none">
-                        <span className="text-sm font-medium">
-                          Office <span className="font-light">(Delivery 9 AM - 5 PM)</span>
-                        </span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="font-medium text-slate-900 dark:text-slate-200 text-sm" data-nc-id="Label">
-                    Delivery area
-                  </label>
-                  <div className="mt-1.5 grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                    <div className="flex items-center text-sm sm ">
-                      <input
-                        id="Address-type-home"
                         className="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
                         type="radio"
                         value="Dhaka"
@@ -249,7 +196,6 @@ const CheckoutCard = () => {
 
                     <div className="flex items-center text-sm sm ">
                       <input
-                        id="Address-type-home"
                         className="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
                         type="radio"
                         value="Outside of Dhaka"
@@ -267,13 +213,10 @@ const CheckoutCard = () => {
                 </div>
 
                 <div>
-                  <label className="font-medium text-slate-900 dark:text-slate-200 text-sm" data-nc-id="Label">
-                    Payment system
-                  </label>
-                  <div className="mt-1.5 grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                  <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">Payment system</label>
+                  <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                     <div className="flex items-center text-sm sm ">
                       <input
-                        id="Address-type-home"
                         className="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
                         type="radio"
                         value="Cash On Delivery"
@@ -304,7 +247,7 @@ const CheckoutCard = () => {
           </div>
         </div>
 
-        <div className="col-span-5 border border-slate-200 rounded-xl overflow-hidden">
+        <div className="col-span-12 lg:col-span-5 order-1 lg:order-2 border border-slate-200 mb-5 md:mb-7 lg:mb-0 lg:ms-10 rounded-xl overflow-hidden">
           <div className="border-b">
             <h3 className="text-lg font-semibold p-6">Order summary</h3>
           </div>
