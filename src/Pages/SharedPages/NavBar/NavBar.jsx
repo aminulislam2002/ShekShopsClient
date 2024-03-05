@@ -8,38 +8,53 @@ import swift_mart_logo from "../../../assets/Logo/Logo Black Bg.png";
 const NavBar = () => {
   const navItems = [
     {
-      label: "Women",
-      to: "/category/women",
+      label: "Home",
+      to: "/",
     },
     {
-      label: "Mens",
-      to: "/category/mens",
+      label: "About us",
+      to: "/about-us",
     },
     {
-      label: "Kids",
-      to: "/category/kids",
-    },
-    {
-      label: "Sports",
-      to: "/category/sports",
-    },
-    {
-      label: "Beauty",
-      to: "/category/beauty",
-    },
-    {
-      label: "Jewelry",
-      to: "/category/jewelry",
-    },
-    {
-      label: "Electronics",
-      to: "/category/electronics",
-    },
-    {
-      label: "Order",
-      to: "/order",
+      label: "Contact us",
+      to: "/contact-us",
     },
   ];
+
+  // const navItems = [
+  //   {
+  //     label: "Women",
+  //     to: "/category/women",
+  //   },
+  //   {
+  //     label: "Mens",
+  //     to: "/category/mens",
+  //   },
+  //   {
+  //     label: "Kids",
+  //     to: "/category/kids",
+  //   },
+  //   {
+  //     label: "Sports",
+  //     to: "/category/sports",
+  //   },
+  //   {
+  //     label: "Beauty",
+  //     to: "/category/beauty",
+  //   },
+  //   {
+  //     label: "Jewelry",
+  //     to: "/category/jewelry",
+  //   },
+  //   {
+  //     label: "Electronics",
+  //     to: "/category/electronics",
+  //   },
+  //   {
+  //     label: "Order",
+  //     to: "/order",
+  //   },
+  // ];
 
   return (
     <div className="sticky top-0 w-full z-[1000]">
