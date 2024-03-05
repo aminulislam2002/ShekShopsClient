@@ -6,7 +6,7 @@ import logo from "../../../assets/Logo/Logo Black Bg.png";
 
 const Footer = () => {
   return (
-    <div className="bg-[#00cc99]">
+    <div className="bg-[#00cc99] text-slate-900 dark:text-slate-900">
       <div className="relative pb-20 pt-5 px-5 md:px-10 lg:px-0 lg:py-28 container mx-auto">
         <div className="container grid grid-cols-2 gap-y-10 gap-x-5 sm:gap-x-8 md:grid-cols-4 lg:grid-cols-5 lg:gap-x-10">
           <div className="grid grid-cols-4 gap-5 col-span-2 md:col-span-4 lg:md:col-span-1 lg:flex lg:flex-col">
@@ -69,7 +69,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="text-sm">
-            <h2 className="font-semibold dark:text-neutral-200 text-lg lg:text-xl font-primary">Getting started</h2>
+            <h2 className="font-semibold text-lg lg:text-xl font-primary">Getting started</h2>
             <ul className="mt-5 space-y-4">
               <li>
                 <Link
@@ -110,7 +110,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="text-sm">
-            <h2 className="font-semibold dark:text-neutral-200 text-lg lg:text-xl font-primary">Explore</h2>
+            <h2 className="font-semibold text-lg lg:text-xl font-primary">Explore</h2>
             <ul className="mt-5 space-y-4">
               <li>
                 <Link
@@ -151,7 +151,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="text-sm">
-            <h2 className="font-semibold dark:text-neutral-200 text-lg lg:text-xl font-primary">Resources</h2>
+            <h2 className="font-semibold text-lg lg:text-xl font-primary">Resources</h2>
             <ul className="mt-5 space-y-4">
               <li>
                 <Link
@@ -192,7 +192,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="text-sm">
-            <h2 className="font-semibold dark:text-neutral-200 text-lg lg:text-xl font-primary">Community</h2>
+            <h2 className="font-semibold text-lg lg:text-xl font-primary">Community</h2>
             <ul className="mt-5 space-y-4">
               <li>
                 <Link

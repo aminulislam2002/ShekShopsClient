@@ -24,6 +24,7 @@ const TopBanner = () => {
       setLoaded(true);
     },
   });
+
   return (
     <div className="container mx-auto">
       <div className="grid grid-cols-12 gap-5">
@@ -32,42 +33,42 @@ const TopBanner = () => {
           <div className="border p-4">
             <ul className="list-none pl-0">
               <li className="mb-2">
-                <Link to="" className="text-blue-500 hover:underline">
+                <Link to="/category" state={{ category: "all" }} className="text-blue-500 hover:underline">
                   All Categories
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to="" className="text-blue-500 hover:underline">
+                <Link to="/category" state={{ category: "bag" }} className="text-blue-500 hover:underline">
                   Bag Items
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to="" className="text-blue-500 hover:underline">
+                <Link to="/category" state={{ category: "women" }} className="text-blue-500 hover:underline">
                   Woman Items
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to="" className="text-blue-500 hover:underline">
+                <Link to="/category" state={{ category: "mens" }} className="text-blue-500 hover:underline">
                   Man Items
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to="" className="text-blue-500 hover:underline">
+                <Link to="/category" state={{ category: "kitchen" }} className="text-blue-500 hover:underline">
                   Kitchen Items
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to="" className="text-blue-500 hover:underline">
+                <Link to="/category" state={{ category: "gadget" }} className="text-blue-500 hover:underline">
                   Gadget Items
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to="" className="text-blue-500 hover:underline">
+                <Link to="/category" state={{ category: "travel" }} className="text-blue-500 hover:underline">
                   Travel Items
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to="" className="text-blue-500 hover:underline">
+                <Link to="/category" state={{ category: "home-improvement" }} className="text-blue-500 hover:underline">
                   Home Improvement
                 </Link>
               </li>
