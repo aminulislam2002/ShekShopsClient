@@ -24,7 +24,7 @@ const NavBar = () => {
   // const navItems = [
   //   {
   //     label: "Women",
-  //     to: "/category/women",
+  //     to: "/category/Women",
   //   },
   //   {
   //     label: "Mens",

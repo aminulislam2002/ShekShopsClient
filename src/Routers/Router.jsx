@@ -42,7 +42,7 @@ const router = createBrowserRouter([
     element: <CategoryLayout></CategoryLayout>,
     children: [
       {
-        path: "women",
+        path: "Women",
         element: <Women></Women>,
       },
       {
