@@ -46,40 +46,40 @@ const TopBanner = () => {
 
         {/* Left side category part */}
         <div className="col-span-12 md:col-span-3 lg:col-span-2">
-          <div className="border py-1">
+          <div className="border dark:border-slate-700 py-1">
             <ul className="list-none pl-0">
               <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
-                <Link to="/category" state={{ category: "all" }} className="text-slate-900 group-hover:text-[#0099ff]">
+                <Link to="/category" state={{ category: "all" }} className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]">
                   All Categories
                 </Link>
               </li>
               <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
-                <Link to="/category" state={{ category: "bag" }} className="text-slate-900 group-hover:text-[#0099ff]">
+                <Link to="/category" state={{ category: "bag" }} className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]">
                   Bag Items
                 </Link>
               </li>
               <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
-                <Link to="/category" state={{ category: "women" }} className="text-slate-900 group-hover:text-[#0099ff]">
+                <Link to="/category" state={{ category: "women" }} className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]">
                   Woman Items
                 </Link>
               </li>
               <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
-                <Link to="/category" state={{ category: "mens" }} className="text-slate-900 group-hover:text-[#0099ff]">
+                <Link to="/category" state={{ category: "mens" }} className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]">
                   Man Items
                 </Link>
               </li>
               <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
-                <Link to="/category" state={{ category: "kitchen" }} className="text-slate-900 group-hover:text-[#0099ff]">
+                <Link to="/category" state={{ category: "kitchen" }} className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]">
                   Kitchen Items
                 </Link>
               </li>
               <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
-                <Link to="/category" state={{ category: "gadget" }} className="text-slate-900 group-hover:text-[#0099ff]">
+                <Link to="/category" state={{ category: "gadget" }} className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]">
                   Gadget Items
                 </Link>
               </li>
               <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
-                <Link to="/category" state={{ category: "travel" }} className="text-slate-900 group-hover:text-[#0099ff]">
+                <Link to="/category" state={{ category: "travel" }} className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]">
                   Travel Items
                 </Link>
               </li>
@@ -87,7 +87,7 @@ const TopBanner = () => {
                 <Link
                   to="/category"
                   state={{ category: "home-improvement" }}
-                  className="text-slate-900 group-hover:text-[#0099ff]"
+                  className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]"
                 >
                   Home Improvement
                 </Link>

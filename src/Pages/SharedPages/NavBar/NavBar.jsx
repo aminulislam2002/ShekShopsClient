@@ -27,7 +27,7 @@ const NavBar = () => {
 
   return (
     <div className="sticky top-0 w-full z-[1000]">
-      <div className="relative z-10 bg-slate-50 dark:bg-slate-900">
+      <div className="relative z-10 bg-[#00cc99] dark:bg-slate-900">
         <div className="container mx-auto">
           <div className="grid grid-cols-12 h-20">
             <div className="lg:hidden col-span-2 flex lg:justify-start items-center">
