@@ -27,48 +27,56 @@ const TopBanner = () => {
 
   return (
     <div className="container mx-auto">
+      {/* Notice section */}
+      <div></div>
+
+      {/* Category, slider and image section */}
       <div className="grid grid-cols-12 gap-5">
         {/* Left side category part */}
         <div className="col-span-12 md:col-span-3 lg:col-span-2">
-          <div className="border p-4">
+          <div className="border-r border-l border-b py-1">
             <ul className="list-none pl-0">
-              <li className="mb-2">
-                <Link to="/category" state={{ category: "all" }} className="text-blue-500 hover:underline">
+              <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
+                <Link to="/category" state={{ category: "all" }} className="text-slate-900 group-hover:text-[#0099ff]">
                   All Categories
                 </Link>
               </li>
-              <li className="mb-2">
-                <Link to="/category" state={{ category: "bag" }} className="text-blue-500 hover:underline">
+              <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
+                <Link to="/category" state={{ category: "bag" }} className="text-slate-900 group-hover:text-[#0099ff]">
                   Bag Items
                 </Link>
               </li>
-              <li className="mb-2">
-                <Link to="/category" state={{ category: "women" }} className="text-blue-500 hover:underline">
+              <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
+                <Link to="/category" state={{ category: "women" }} className="text-slate-900 group-hover:text-[#0099ff]">
                   Woman Items
                 </Link>
               </li>
-              <li className="mb-2">
-                <Link to="/category" state={{ category: "mens" }} className="text-blue-500 hover:underline">
+              <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
+                <Link to="/category" state={{ category: "mens" }} className="text-slate-900 group-hover:text-[#0099ff]">
                   Man Items
                 </Link>
               </li>
-              <li className="mb-2">
-                <Link to="/category" state={{ category: "kitchen" }} className="text-blue-500 hover:underline">
+              <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
+                <Link to="/category" state={{ category: "kitchen" }} className="text-slate-900 group-hover:text-[#0099ff]">
                   Kitchen Items
                 </Link>
               </li>
-              <li className="mb-2">
-                <Link to="/category" state={{ category: "gadget" }} className="text-blue-500 hover:underline">
+              <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
+                <Link to="/category" state={{ category: "gadget" }} className="text-slate-900 group-hover:text-[#0099ff]">
                   Gadget Items
                 </Link>
               </li>
-              <li className="mb-2">
-                <Link to="/category" state={{ category: "travel" }} className="text-blue-500 hover:underline">
+              <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
+                <Link to="/category" state={{ category: "travel" }} className="text-slate-900 group-hover:text-[#0099ff]">
                   Travel Items
                 </Link>
               </li>
-              <li className="mb-2">
-                <Link to="/category" state={{ category: "home-improvement" }} className="text-blue-500 hover:underline">
+              <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
+                <Link
+                  to="/category"
+                  state={{ category: "home-improvement" }}
+                  className="text-slate-900 group-hover:text-[#0099ff]"
+                >
                   Home Improvement
                 </Link>
               </li>
@@ -83,10 +91,10 @@ const TopBanner = () => {
               <div className="navigation-wrapper">
                 <div ref={sliderRef} className="keen-slider">
                   <div className="keen-slider__slide number-slide1">
-                    <img src={slider_image_1} className="w-full h-[300px] md:h-[300px] lg:h-[430px]" alt="Slider image 1" />
+                    <img src={slider_image_1} className="w-full h-[300px] md:h-[300px] lg:h-[425px]" alt="Slider image 1" />
                   </div>
                   <div className="keen-slider__slide number-slide2">
-                    <img src={slider_image_2} className="w-full h-[300px] md:h-[300px] lg:h-[430px]" alt="Slider image 2" />
+                    <img src={slider_image_2} className="w-full h-[300px] md:h-[300px] lg:h-[425px]" alt="Slider image 2" />
                   </div>
                 </div>
                 {loaded && instanceRef.current && (
@@ -129,17 +137,17 @@ const TopBanner = () => {
             <img
               src={right_image_1}
               alt="right_image_1"
-              className="col-span-12 md:col-span-4 lg:col-span-12 lg:h-[130px] w-full"
+              className="col-span-12 md:col-span-4 lg:col-span-12 lg:h-[128px] w-full"
             />
             <img
               src={right_image_2}
               alt="right_image_2"
-              className="col-span-12 md:col-span-4 lg:col-span-12 lg:h-[130px] w-full"
+              className="col-span-12 md:col-span-4 lg:col-span-12 lg:h-[128px] w-full"
             />
             <img
               src={right_image_3}
               alt="right_image_3"
-              className="col-span-12 md:col-span-4 lg:col-span-12 lg:h-[130px] w-full"
+              className="col-span-12 md:col-span-4 lg:col-span-12 lg:h-[128px] w-full"
             />
           </div>
         </div>
