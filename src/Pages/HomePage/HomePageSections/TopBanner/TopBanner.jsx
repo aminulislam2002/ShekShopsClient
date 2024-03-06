@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -27,14 +28,25 @@ const TopBanner = () => {
 
   return (
     <div className="container mx-auto">
-      {/* Notice section */}
-      <div></div>
-
       {/* Category, slider and image section */}
       <div className="grid grid-cols-12 gap-5">
+        {/* Notice section */}
+        <div className="col-span-12">
+          <div className="text-slate-800 dark:text-slate-50 py-2 px-4 rounded-md">
+            <marquee direction="left" behavior="scroll" scrollamount="5">
+              {/* Adjust the content and styling as needed */}
+              <p className="mb-0 text-lg font-semibold">
+                বাংলাদেশের অন্যতম বৃহত্তম শপিং প্লাটফর্ম ShekShops এ আপনাকে স্বাগতম!!! কেনাকাটায় থাকছে বিশেষ
+                মূল্যছাড়!!! সারাদেশের সকল জেলা,উপজেলা এবং ইউনিয়ন পর্যায়ে থাকছে হোম ডেলিভারি সুবিধা। প্রয়োজনীয় প্রোডাক্ট
+                পেতে আমাদের সাথেই থাকুন। হেল্পলাইন ☎ 01634385096
+              </p>
+            </marquee>
+          </div>
+        </div>
+
         {/* Left side category part */}
         <div className="col-span-12 md:col-span-3 lg:col-span-2">
-          <div className="border-r border-l border-b py-1">
+          <div className="border py-1">
             <ul className="list-none pl-0">
               <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
                 <Link to="/category" state={{ category: "all" }} className="text-slate-900 group-hover:text-[#0099ff]">
