@@ -19,6 +19,10 @@ const NavBar = () => {
       label: "Contact us",
       to: "/contact-us",
     },
+    {
+      label: "Admin Dashboard",
+      to: "/dashboard/admin",
+    },
   ];
 
   return (
