@@ -21,41 +21,6 @@ const NavBar = () => {
     },
   ];
 
-  // const navItems = [
-  //   {
-  //     label: "Women",
-  //     to: "/category/Women",
-  //   },
-  //   {
-  //     label: "Mens",
-  //     to: "/category/mens",
-  //   },
-  //   {
-  //     label: "Kids",
-  //     to: "/category/kids",
-  //   },
-  //   {
-  //     label: "Sports",
-  //     to: "/category/sports",
-  //   },
-  //   {
-  //     label: "Beauty",
-  //     to: "/category/beauty",
-  //   },
-  //   {
-  //     label: "Jewelry",
-  //     to: "/category/jewelry",
-  //   },
-  //   {
-  //     label: "Electronics",
-  //     to: "/category/electronics",
-  //   },
-  //   {
-  //     label: "Order",
-  //     to: "/order",
-  //   },
-  // ];
-
   return (
     <div className="sticky top-0 w-full z-[1000]">
       <div className="relative z-10 bg-slate-50 dark:bg-slate-900">
@@ -80,12 +45,14 @@ const NavBar = () => {
                 </ul>
               </div>
             </div>
+
             <div className="lg:col-span-3 col-span-8 order-1 lg:order-1 flex justify-center lg:justify-start items-center">
               <Link to="/" className="flex justify-start items-center gap-2 text-xl lg:text-3xl font-bold text-slate-800">
                 <img src={swift_mart_logo} className="h-8 lg:h-12 w-8 lg:w-12 rounded-full" alt="" />{" "}
-                <span className="dark:text-slate-50">SwiftMart</span>
+                <span className="dark:text-slate-50">ShekShops</span>
               </Link>
             </div>
+
             <div className="lg:col-span-6 order-2 hidden lg:flex justify-center items-center mx-4">
               <ul className="flex items-center">
                 {navItems.map((item, index) => (
@@ -102,10 +69,12 @@ const NavBar = () => {
                 ))}
               </ul>
             </div>
+
             <div className="lg:col-span-3 col-span-2 order-3 flex-1 flex items-center justify-end text-slate-700 dark:text-slate-50">
               <button className="hidden lg:flex w-10 h-10 sm:w-12 sm:h-12 rounded-full text-slate-700 dark:text-slate-50 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-slate-200 focus:outline-none items-center justify-center">
                 <LuSearch className="w-6 h-5" />
               </button>
+
               <div className="AvatarDropdown ">
                 <Link to="Authentication/Register">
                   <div className="relative">
