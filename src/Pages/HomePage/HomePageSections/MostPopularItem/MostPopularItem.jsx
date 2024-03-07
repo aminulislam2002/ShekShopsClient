@@ -47,7 +47,7 @@ const MostPopularItem = () => {
       <div className="relative mb-12 lg:mb-14 text-neutral-900 dark:text-neutral-50">
         <div>
           <h2 className="font-primary text-3xl md:text-4xl font-semibold">
-            Most popular item<span>! </span>
+            Most Popular Item<span>! </span>
           </h2>
         </div>
       </div>

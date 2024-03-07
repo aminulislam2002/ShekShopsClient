@@ -55,7 +55,7 @@ const BestSellingProducts = () => {
       <div className="relative flex flex-col sm:flex-row sm:items-end md:items-start justify-between mb-12 lg:mb-14 text-neutral-900 dark:text-neutral-50">
         <div>
           <h2 className="font-primary text-3xl md:text-4xl font-semibold">
-            Best selling products<span>! </span>
+            Best Selling Products<span>! </span>
           </h2>
         </div>
         <div className="mt-4 flex justify-end sm:ml-2 sm:mt-0 flex-shrink-0">
