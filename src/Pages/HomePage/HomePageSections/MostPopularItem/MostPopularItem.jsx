@@ -45,7 +45,7 @@ const MostPopularItem = () => {
       {/* Title of this section */}
 
       <div className="relative mb-12 lg:mb-14 text-neutral-900 dark:text-neutral-50">
-        <div>
+        <div className="px-5 md:px-10 lg:px-0">
           <h2 className="font-primary text-3xl md:text-4xl font-semibold">
             Most Popular Item<span>! </span>
           </h2>

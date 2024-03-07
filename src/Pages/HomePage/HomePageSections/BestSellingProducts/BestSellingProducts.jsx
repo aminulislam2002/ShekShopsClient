@@ -53,7 +53,7 @@ const BestSellingProducts = () => {
       {/* Title of this section */}
 
       <div className="relative flex flex-col sm:flex-row sm:items-end md:items-start justify-between mb-12 lg:mb-14 text-neutral-900 dark:text-neutral-50">
-        <div>
+        <div className="px-5 md:px-10 lg:px-0">
           <h2 className="font-primary text-3xl md:text-4xl font-semibold">
             Best Selling Products<span>! </span>
           </h2>
@@ -90,7 +90,7 @@ const BestSellingProducts = () => {
         <Swiper
           // slidesPerView={4}
           breakpoints={{
-            400: {
+            380: {
               slidesPerView: 2,
               spaceBetween: 12,
             },

@@ -14,6 +14,8 @@ import slider_image_1 from "../../../../assets/Banner/slider-image-1.png";
 import slider_image_2 from "../../../../assets/Banner/slider-image-2.png";
 import slider_image_3 from "../../../../assets/Banner/slider-image-3.png";
 import slider_image_4 from "../../../../assets/Banner/slider-image-4.png";
+import { FaFilter } from "react-icons/fa";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
 const TopBanner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -28,10 +30,28 @@ const TopBanner = () => {
     },
   });
 
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const toggleDropdown = () => {
+    setShowDropdown((prevShowDropdown) => !prevShowDropdown);
+  };
+
+  // Define your category options array
+  const categoryOptions = [
+    { category: "all", label: "All Categories" },
+    { category: "bag", label: "Bag Items" },
+    { category: "women", label: "Woman Items" },
+    { category: "mens", label: "Man Items" },
+    { category: "kitchen", label: "Kitchen Items" },
+    { category: "gadget", label: "Gadget Items" },
+    { category: "travel", label: "Travel Items" },
+    { category: "home-improvement", label: "Home Improvement" },
+  ];
+
   return (
     <div className="container mx-auto">
       {/* Category, slider and image section */}
-      <div className="grid grid-cols-12 gap-5">
+      <div className="grid grid-cols-12 md:gap-5">
         {/* Notice section */}
         <div className="col-span-12">
           <div className="text-slate-800 dark:text-slate-50 py-2 px-4 rounded-md">
@@ -48,81 +68,58 @@ const TopBanner = () => {
 
         {/* Left side category part */}
         <div className="col-span-12 md:col-span-3 lg:col-span-2">
-          <div className="border dark:border-slate-700 py-1">
-            <ul className="list-none pl-0">
-              <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
-                <Link
-                  to="/category"
-                  state={{ category: "all" }}
-                  className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]"
+          <div className="border-0 md:border dark:border-slate-700 py-1">
+            <ul className="list-none pl-0 hidden md:block">
+              {/* Map through the categoryOptions array to generate dynamic options */}
+              {categoryOptions.map((option) => (
+                <li
+                  key={option?.category}
+                  className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group"
                 >
-                  All Categories
-                </Link>
-              </li>
-              <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
-                <Link
-                  to="/category"
-                  state={{ category: "bag" }}
-                  className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]"
-                >
-                  Bag Items
-                </Link>
-              </li>
-              <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
-                <Link
-                  to="/category"
-                  state={{ category: "women" }}
-                  className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]"
-                >
-                  Woman Items
-                </Link>
-              </li>
-              <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
-                <Link
-                  to="/category"
-                  state={{ category: "mens" }}
-                  className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]"
-                >
-                  Man Items
-                </Link>
-              </li>
-              <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
-                <Link
-                  to="/category"
-                  state={{ category: "kitchen" }}
-                  className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]"
-                >
-                  Kitchen Items
-                </Link>
-              </li>
-              <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
-                <Link
-                  to="/category"
-                  state={{ category: "gadget" }}
-                  className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]"
-                >
-                  Gadget Items
-                </Link>
-              </li>
-              <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
-                <Link
-                  to="/category"
-                  state={{ category: "travel" }}
-                  className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]"
-                >
-                  Travel Items
-                </Link>
-              </li>
-              <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
-                <Link
-                  to="/category"
-                  state={{ category: "home-improvement" }}
-                  className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]"
-                >
-                  Home Improvement
-                </Link>
-              </li>
+                  <Link
+                    to="/category"
+                    state={{ category: option?.category }}
+                    className={`text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]`}
+                  >
+                    {option?.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
+
+            <div className="flex-shrink-0 relative block md:hidden mb-5">
+              <button
+                onClick={toggleDropdown}
+                className="relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium pl-4 py-2.5 sm:pl-6 disabled:bg-opacity-90 bg-slate-900 dark:bg-slate-800 dark:text-slate-50 hover:bg-slate-800 text-slate-50 shadow-xl w-full !pr-16 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
+              >
+                <FaFilter className="w-6 h-6" />
+                <span className="block truncate ml-2.5">Show All Category</span>
+                <span className="absolute top-1/2 -translate-y-1/2 right-5">
+                  {showDropdown ? <FiChevronUp className="w-6 h-6" /> : <FiChevronDown className="w-6 h-6" />}
+                </span>
+              </button>
+
+              {showDropdown && (
+                <div className="absolute w-1/2 z-10 mt-2 bg-white border rounded-md shadow-lg dark:bg-slate-800">
+                  <ul className="py-1">
+                    {categoryOptions.map((option) => (
+                      <li
+                        key={option?.category}
+                        className="py-2 ps-5 transition-transform transform duration-300 hover:translate-x-2 group"
+                      >
+                        <Link
+                          to="/category"
+                          state={{ category: option?.category }}
+                          className={`text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]`}
+                        >
+                          {option?.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
@@ -133,19 +130,19 @@ const TopBanner = () => {
               <div className="navigation-wrapper">
                 <div ref={sliderRef} className="keen-slider">
                   <div className="keen-slider__slide number-slide1">
-                    <img src={slider_image_1} className="w-full h-[300px] md:h-[300px] lg:h-[425px]" alt="Slider image 1" />
+                    <img src={slider_image_1} className="w-full h-[250px] md:h-[350px] lg:h-[425px]" alt="Slider image 1" />
                   </div>
 
                   <div className="keen-slider__slide number-slide2">
-                    <img src={slider_image_2} className="w-full h-[300px] md:h-[300px] lg:h-[425px]" alt="Slider image 2" />
+                    <img src={slider_image_2} className="w-full h-[250px] md:h-[350px] lg:h-[425px]" alt="Slider image 2" />
                   </div>
 
                   <div className="keen-slider__slide number-slide3">
-                    <img src={slider_image_3} className="w-full h-[300px] md:h-[300px] lg:h-[425px]" alt="Slider image 3" />
+                    <img src={slider_image_3} className="w-full h-[250px] md:h-[350px] lg:h-[425px]" alt="Slider image 3" />
                   </div>
 
                   <div className="keen-slider__slide number-slide4">
-                    <img src={slider_image_4} className="w-full h-[300px] md:h-[300px] lg:h-[425px]" alt="Slider image 4" />
+                    <img src={slider_image_4} className="w-full h-[250px] md:h-[350px] lg:h-[425px]" alt="Slider image 4" />
                   </div>
                 </div>
                 {loaded && instanceRef.current && (
