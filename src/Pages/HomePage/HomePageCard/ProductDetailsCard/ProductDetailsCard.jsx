@@ -61,6 +61,7 @@ const ProductDetailsCard = () => {
 
         // Set buyingProductInfo when product data is available
         const productInfo = {
+          id: id,
           name: selectedProduct?.name,
           imageUrl: selectedProduct?.images[0],
           color: selectedColor,

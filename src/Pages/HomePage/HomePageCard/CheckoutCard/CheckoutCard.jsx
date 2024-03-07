@@ -17,7 +17,7 @@ const CheckoutCard = () => {
   const [customerData, setCustomerData] = useState({
     name: "",
     mobileNumber: "",
-    city: "",
+    district: "",
     address: "",
     comment: "",
     addressType: "Home",
@@ -25,6 +25,14 @@ const CheckoutCard = () => {
     paymentSystem: "Cash On Delivery",
     deliveryCharge: 60.0,
   });
+
+  const [disableConfirmButton, setDisableConfirmButton] = useState(true);
+
+  useEffect(() => {
+    // Check if any required field is empty
+    const isAnyFieldEmpty = Object.values(customerData).some((value) => value === "" || value === null);
+    setDisableConfirmButton(isAnyFieldEmpty);
+  }, [customerData]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -115,7 +123,7 @@ const CheckoutCard = () => {
             Homepage
           </Link>
           <span className="text-xs mx-1 sm:mx-1.5">/</span>
-          <Link className="hover:underline" to="">
+          <Link className="hover:underline" to={`/product-details/${productData?.productInfo?.id}`}>
             Product Details
           </Link>
           <span className="text-xs mx-1 sm:mx-1.5">/</span>
@@ -328,13 +336,22 @@ const CheckoutCard = () => {
             <div className="flex flex-col sm:flex-row pt-6 gap-3">
               <button
                 onClick={handleSaveAndConfirmOrder}
-                className="relative h-auto w-full inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 disabled:bg-opacity-90 bg-green-700 text-slate-50 hover:bg-slate-100 hover:text-slate-800 dark:bg-slate-800 dark:text-slate-50 dark:hover:text-slate-800 shadow-xl flex-1 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
+                disabled={disableConfirmButton}
+                className={`relative h-auto w-full inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 ${
+                  disableConfirmButton
+                    ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                    : "bg-green-700 text-slate-50 hover:bg-slate-100 hover:text-slate-800 dark:bg-slate-800 dark:text-slate-50 dark:hover:text-slate-800 shadow-xl"
+                } flex-1 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0`}
               >
-               Confirm Order
+                Confirm Order
               </button>
-              <button className="relative h-auto w-full inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 disabled:bg-opacity-90 bg-red-700 text-slate-50 hover:bg-slate-100 hover:text-slate-800 dark:bg-slate-800 dark:text-slate-50 dark:hover:text-slate-800 shadow-xl flex-1 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0">
+
+              <Link
+                to={`/product-details/${productData?.productInfo?.id}`}
+                className="relative h-auto w-full inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 disabled:bg-opacity-90 bg-red-700 text-slate-50 hover:bg-slate-100 hover:text-slate-800 dark:bg-slate-800 dark:text-slate-50 dark:hover:text-slate-800 shadow-xl flex-1 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
+              >
                 Cancel Order
-              </button>
+              </Link>
             </div>
           </div>
         </div>
