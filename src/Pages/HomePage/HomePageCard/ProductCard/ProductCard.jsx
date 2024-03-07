@@ -65,7 +65,7 @@ const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
                 <div className="flex justify-center items-center aspect-w-11 aspect-h-12 w-full w-w-full h-full">
                   <img
                     alt="product"
-                    src={product?.image}
+                    src={product?.images[0]}
                     className="w-[194px] h-[150px] md:w-[245.328px] md:h-[194px] lg:w-[240px] lg:h-[200px] object-cover"
                   />
                 </div>

@@ -13,9 +13,9 @@ const calculateDiscountedPrice = (originalPrice, offerPrice) => {
     const price = parseFloat(originalPrice);
     const offer = parseFloat(offerPrice);
     const discountedPrice = price - offer;
-    return `$${discountedPrice.toFixed(2)}`;
+    return `${discountedPrice.toFixed(2)}`;
   } else {
-    return `$${parseFloat(originalPrice).toFixed(2)}`;
+    return `${parseFloat(originalPrice).toFixed(2)}`;
   }
 };
 // Add this function outside the component to calculate discounted percentage
@@ -36,6 +36,11 @@ const ProductDetailsCard = () => {
   const [selectedSize, setSelectedSize] = useState("N/A");
   const [product, setProduct] = useState(null);
   const [buyingProductInfo, setBuyingProductInfo] = useState({});
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const handleImageClick = (index) => {
+    setSelectedImageIndex(index);
+  };
 
   useEffect(() => {
     // Scroll to the top of the page when the component mounts
@@ -57,7 +62,7 @@ const ProductDetailsCard = () => {
         // Set buyingProductInfo when product data is available
         const productInfo = {
           name: selectedProduct?.name,
-          imageUrl: selectedProduct?.image,
+          imageUrl: selectedProduct?.images[0],
           color: selectedColor,
           size: selectedSize,
           quantity: selectedQuantity,
@@ -84,16 +89,46 @@ const ProductDetailsCard = () => {
   };
 
   return (
-    <div className="mb-24 lg:mb-32 container mx-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 px-5 md:px-10 lg:px-0">
-        <div className="">
-          <img
-            src={product?.image}
-            alt={product?.name}
-            className="h-[350px] w-full md:h-[500px] lg:h-[660px] lg:w-[660px]"
-          />
+    <div className="mb-10 md:mb-16 lg:mb-20 container mx-auto">
+      <div className="grid grid-cols-12 gap-3 md:gap-5 lg:gap-10 px-5 md:px-10 lg:px-0">
+        <div className="col-span-12 md:col-span-5 mb-">
+          <div className="flex justify-center items-center mb-3 lg:mb-5">
+            <img
+              src={product?.images[selectedImageIndex]}
+              alt={product?.name}
+              className="h-[250px] w-full md:h-[250px] lg:h-[450px] "
+            />
+          </div>
+
+          <div className="grid grid-cols-4 gap-2 md:gap-3 mb-3 lg:mb-5">
+            {product?.images.map((image, index) => (
+              <img
+                key={index}
+                src={image}
+                className={`w-full h-[50px] md:h-[50px] lg:h-[80px] cursor-pointer ${
+                  index === selectedImageIndex ? "border-b-4 border-red-500" : ""
+                }`}
+                alt={`Image ${index + 1}`}
+                onClick={() => handleImageClick(index)}
+              />
+            ))}
+          </div>
+
+          <div className="">
+            <div className="mb-5 p-4 rounded-lg bg-gray-100 dark:bg-gray-800 shadow-md">
+              <div className="mb-2">
+                <span className="text-red-500 font-semibold">বিদ্র:---</span>
+                <p>
+                  ছবি এবং বর্ণনার সাথে পণ্যর সম্পূর্ণ মিল থাকা সত্ত্বেও আপনি পণ্য গ্রহণ করতে না চাইলে কুরিয়ার চার্জ ঢাকার
+                  মধ্যে ৬০ টাকা এবং ঢাকার বাহিরে হলে ১২০ টাকা ডেলিভারি ম্যানকে প্রদান করে পণ্য সাথে সাথে রিটার্ন করবেন। পরে
+                  কোন কমপ্লেইন বা রিটার্ন গ্রহণযোগ্য নয়!
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="">
+
+        <div className="col-span-12 md:col-span-7">
           <div>
             <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-slate-950 dark:text-slate-50 font-primary mb-5">
               {product.name}
@@ -102,7 +137,7 @@ const ProductDetailsCard = () => {
             {/* Display original price with discounted price */}
             <div className="flex items-center text-xl md:text-2xl lg:text-3xl font-medium font-primary mb-5">
               <span className="text-orange-500 font-semibold !leading-none">
-                {calculateDiscountedPrice(product?.price, product?.offer)}
+                ${calculateDiscountedPrice(product?.price, product?.offer)}
               </span>
             </div>
 
@@ -143,7 +178,7 @@ const ProductDetailsCard = () => {
                     </div>
 
                     <div className="col-span-10">
-                      <div className="grid grid-cols-5 md:grid-cols-8 mb-3">
+                      <div className="grid grid-cols-5 lg:grid-cols-8 mb-3">
                         {product?.size.map((size) => (
                           <button
                             key={size}
@@ -173,7 +208,7 @@ const ProductDetailsCard = () => {
                     </div>
 
                     <div className="col-span-10">
-                      <div className="grid grid-cols-5 md:grid-cols-8 mb-3">
+                      <div className="grid grid-cols-5 lg:grid-cols-8 mb-3">
                         {product?.colors.map((color) => (
                           <button
                             key={color}
@@ -221,11 +256,20 @@ const ProductDetailsCard = () => {
                 <Link
                   to="/product-checkout"
                   state={{ data: buyingProductInfo }}
-                  className="relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 disabled:bg-opacity-90 bg-slate-900 text-slate-50 hover:bg-slate-100 hover:text-slate-800 dark:bg-slate-800  dark:text-slate-50 dark:hover:text-slate-800 shadow-xl flex-1 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
+                  className="relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 disabled:bg-opacity-90 bg-green-700 text-slate-50 hover:bg-slate-100 hover:text-slate-800 dark:bg-slate-800  dark:text-slate-50 dark:hover:text-slate-800 shadow-xl flex-1 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
                 >
                   <IoBagCheckOutline className="w-6 h-6"></IoBagCheckOutline>
                   <span className="ml-3">Buy Now</span>
                 </Link>
+              </div>
+
+              {/* Contact Information */}
+              <div className="my-5">
+                <div className="">
+                  <p className="text-base font-semibold text-slate-800 dark:text-slate-50">
+                    যেকোনো প্রয়োজনে Whatsapp: +880 1704-268005
+                  </p>
+                </div>
               </div>
             </div>
 

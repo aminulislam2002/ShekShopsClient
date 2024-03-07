@@ -46,7 +46,7 @@ const DashboardLayout = () => {
       <div className="drawer">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content lg:flex gap-1">
-          <div className="w-full lg:w-2/12 bg-[#00cc99] overflow-y-auto max-h-[100vh] lg:h-screen">
+          <div className="w-full lg:w-2/12 bg-green-700 overflow-y-auto max-h-[100vh] lg:h-screen">
             <div className="flex justify-start">
               <div className="flex-none lg:hidden">
                 <label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">
@@ -78,7 +78,7 @@ const DashboardLayout = () => {
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-3" className="drawer-overlay overflow-x-auto max-h-[100vh]"></label>
-          <ul className="p-4 w-1/2 min-h-screen bg-[#00cc99] overflow-y-auto">
+          <ul className="p-4 w-1/2 min-h-screen bg-green-700 overflow-y-auto">
             {/* <Link to="/dashboard/profile">
                   <li className="my-1 py-1 ps-5 rounded text-slate-800 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
                     Profile

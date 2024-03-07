@@ -19,9 +19,11 @@ const CheckoutCard = () => {
     mobileNumber: "",
     city: "",
     address: "",
+    comment: "",
     addressType: "Home",
-    deliveryArea: "Dhaka",
+    deliveryArea: "Inside of Dhaka",
     paymentSystem: "Cash On Delivery",
+    deliveryCharge: 60.0,
   });
 
   const handleChange = (e) => {
@@ -33,9 +35,25 @@ const CheckoutCard = () => {
   };
 
   const handleDeliveryAreaChange = (value) => {
+    let deliveryCharge = 0;
+
+    // Update deliveryArea based on the selected value
     setCustomerData((prevData) => ({
       ...prevData,
       deliveryArea: value,
+    }));
+
+    // Set delivery charge based on the selected delivery area
+    if (value === "Inside of Dhaka") {
+      deliveryCharge = 60.0;
+    } else if (value === "Outside of Dhaka") {
+      deliveryCharge = 120.0;
+    }
+
+    // Update delivery charge in customerData with 2 decimal places
+    setCustomerData((prevData) => ({
+      ...prevData,
+      deliveryCharge: parseFloat(deliveryCharge.toFixed(2)),
     }));
   };
 
@@ -127,52 +145,65 @@ const CheckoutCard = () => {
               <div className="border-t border-slate-200 dark:border-slate-700 px-6 py-7 space-y-4 sm:space-y-6 block">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-3">
                   <div>
-                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">Name</label>
+                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">নাম</label>
                     <input
                       name="name"
                       value={customerData.name}
                       onChange={handleChange}
                       className="block w-full border border-slate-200 mb-2 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white dark:border-slate-700 dark:focus:ring-primary-6000 dark:focus:ring-opacity-25 dark:bg-slate-900 disabled:bg-slate-200 dark:disabled:bg-slate-800 rounded-2xl text-sm font-normal h-11 px-4 py-3 mt-2"
                       type="text"
-                      placeholder="Enter your name"
+                      placeholder="আপনার নাম লিখুন"
                     />
                   </div>
                   <div>
-                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">Mobile Number</label>
+                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">নাম্বার</label>
                     <input
                       name="mobileNumber"
                       value={customerData.mobileNumber}
                       onChange={handleChange}
                       className="block w-full border border-slate-200 mb-2 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white dark:border-slate-700 dark:focus:ring-primary-6000 dark:focus:ring-opacity-25 dark:bg-slate-900 disabled:bg-slate-200 dark:disabled:bg-slate-800 rounded-2xl text-sm font-normal h-11 px-4 py-3 mt-2"
                       type="number"
-                      placeholder="Enter your name"
+                      placeholder="আপনার মোবাইল নাম্বার লিখুন"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-3">
                   <div>
-                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">City</label>
+                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">জেলা</label>
                     <input
-                      name="city"
-                      value={customerData.city}
+                      name="district"
+                      value={customerData.district}
                       onChange={handleChange}
                       className="block w-full border border-slate-200 mb-2 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white dark:border-slate-700 dark:focus:ring-primary-6000 dark:focus:ring-opacity-25 dark:bg-slate-900 disabled:bg-slate-200 dark:disabled:bg-slate-800 rounded-2xl text-sm font-normal h-11 px-4 py-3 mt-2"
                       type="text"
-                      placeholder="Enter your name"
+                      placeholder="আপনার জেলা লিখুন"
                     />
                   </div>
                   <div className="">
-                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">Address</label>
+                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">ঠিকানা</label>
                     <input
                       name="address"
                       value={customerData.address}
                       onChange={handleChange}
                       className="block w-full border border-slate-200 mb-2 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white dark:border-slate-700 dark:focus:ring-primary-6000 dark:focus:ring-opacity-25 dark:bg-slate-900 disabled:bg-slate-200 dark:disabled:bg-slate-800 rounded-2xl text-sm font-normal h-11 px-4 py-3 mt-2"
                       type="text"
-                      placeholder="Enter your name"
+                      placeholder="আপনার পূর্ণাঙ্গ ঠিকানা লিখুন"
                     />
                   </div>
+                </div>
+
+                <div className="">
+                  <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">মন্তব্য</label>
+                  <input
+                    name="comment"
+                    value={customerData.comment}
+                    onChange={handleChange}
+                    className="block w-full border border-slate-200 mb-2 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white dark:border-slate-700 dark:focus:ring-primary-6000 dark:focus:ring-opacity-25 dark:bg-slate-900 disabled:bg-slate-200 dark:disabled:bg-slate-800 rounded-2xl text-sm font-normal h-11 px-4 py-3 mt-2"
+                    type="textarea"
+                    placeholder="আপনার কোনো মন্তব্য থাকলে লিখুন
+                    "
+                  />
                 </div>
 
                 <div>
@@ -182,14 +213,14 @@ const CheckoutCard = () => {
                       <input
                         className="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
                         type="radio"
-                        value="Dhaka"
+                        value="60.00"
                         name="deliveryArea"
-                        checked={customerData.deliveryArea === "Dhaka"}
-                        onChange={() => handleDeliveryAreaChange("Dhaka")}
+                        checked={customerData.deliveryArea === "Inside of Dhaka"}
+                        onChange={() => handleDeliveryAreaChange("Inside of Dhaka")}
                       />
                       <label className="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none">
                         <span className="text-sm font-medium">
-                          Dhaka <span className="font-light">($50)</span>
+                          Inside of Dhaka <span className="font-light">($60)</span>
                         </span>
                       </label>
                     </div>
@@ -198,14 +229,14 @@ const CheckoutCard = () => {
                       <input
                         className="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
                         type="radio"
-                        value="Outside of Dhaka"
+                        value="120.00"
                         name="deliveryArea"
                         checked={customerData.deliveryArea === "Outside of Dhaka"}
                         onChange={() => handleDeliveryAreaChange("Outside of Dhaka")}
                       />
                       <label className="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none">
                         <span className="text-sm font-medium">
-                          Outside of Dhaka <span className="font-light">($100)</span>
+                          Outside of Dhaka <span className="font-light">($120)</span>
                         </span>
                       </label>
                     </div>
@@ -229,18 +260,6 @@ const CheckoutCard = () => {
                       </label>
                     </div>
                   </div>
-                </div>
-
-                <div className="flex flex-col sm:flex-row pt-6">
-                  <button
-                    onClick={handleSaveAndConfirmOrder}
-                    className="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm font-medium py-3 px-4 sm:py-3.5 sm:px-6 disabled:bg-opacity-90 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 text-slate-50 dark:text-slate-800 shadow-xl  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
-                  >
-                    Save and Confirm Order
-                  </button>
-                  <button className="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm font-medium py-3 px-4 sm:py-3.5 sm:px-6 text-slate-700 dark:bg-slate-900 dark:text-slate-300 bg-gray-100 dark:hover:bg-slate-800 mt-3 sm:mt-0 sm:ml-3 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0">
-                    Cancel
-                  </button>
                 </div>
               </div>
             </div>
@@ -278,12 +297,44 @@ const CheckoutCard = () => {
               </div>
 
               <div className="col-span-12 flex items-center text-xl font-medium font-primary mb-3">
-                <span className="text-orange-500 font-semibold !leading-none">{productData?.productInfo?.price}</span>
+                <span className="text-orange-500 font-semibold !leading-none">${productData?.productInfo?.price}</span>
               </div>
 
               <div className="flex justify-end items-center">
                 <button className="text-base text-blue-600 font-semibold">Remove</button>
               </div>
+            </div>
+          </div>
+
+          {/* Pricing count part */}
+          <div className="py-7 px-3 border-b">
+            <div className="flex justify-between items-center mb-4">
+              <span className="text-purple-600 text-base font-bold">Sub-Total:</span>
+              <span className="text-lg font-bold text-purple-600">${productData?.productInfo?.price}</span>
+            </div>
+            <div className="flex justify-between items-center mb-4">
+              <span className="text-blue-600 text-base font-bold">{customerData?.deliveryArea}:</span>
+              <span className="text-lg font-bold text-blue-600">${customerData?.deliveryCharge.toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-green-600 text-base font-bold">Total:</span>
+              <span className="text-lg font-bold text-green-600">
+                ${(parseFloat(productData?.productInfo?.price) + parseFloat(customerData?.deliveryCharge)).toFixed(2)}
+              </span>
+            </div>
+          </div>
+
+          <div className="py-7 px-3">
+            <div className="flex flex-col sm:flex-row pt-6 gap-3">
+              <button
+                onClick={handleSaveAndConfirmOrder}
+                className="relative h-auto w-full inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 disabled:bg-opacity-90 bg-green-700 text-slate-50 hover:bg-slate-100 hover:text-slate-800 dark:bg-slate-800 dark:text-slate-50 dark:hover:text-slate-800 shadow-xl flex-1 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
+              >
+               Confirm Order
+              </button>
+              <button className="relative h-auto w-full inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 disabled:bg-opacity-90 bg-red-700 text-slate-50 hover:bg-slate-100 hover:text-slate-800 dark:bg-slate-800 dark:text-slate-50 dark:hover:text-slate-800 shadow-xl flex-1 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0">
+                Cancel Order
+              </button>
             </div>
           </div>
         </div>
