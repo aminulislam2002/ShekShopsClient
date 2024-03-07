@@ -10,8 +10,10 @@ import right_image_1 from "../../../../assets/Banner/right-image-1.gif";
 import right_image_2 from "../../../../assets/Banner/right-image-2.gif";
 import right_image_3 from "../../../../assets/Banner/right-image-3.gif";
 
-import slider_image_1 from "../../../../assets/Banner/slider-image-1.jpg";
-import slider_image_2 from "../../../../assets/Banner/slider-image-2.jpg";
+import slider_image_1 from "../../../../assets/Banner/slider-image-1.png";
+import slider_image_2 from "../../../../assets/Banner/slider-image-2.png";
+import slider_image_3 from "../../../../assets/Banner/slider-image-3.png";
+import slider_image_4 from "../../../../assets/Banner/slider-image-4.png";
 
 const TopBanner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -36,9 +38,9 @@ const TopBanner = () => {
             <marquee direction="left" behavior="scroll" scrollamount="5">
               {/* Adjust the content and styling as needed */}
               <p className="mb-0 text-lg font-semibold">
-                বাংলাদেশের অন্যতম বৃহত্তম শপিং প্লাটফর্ম ShekShops এ আপনাকে স্বাগতম!!! কেনাকাটায় থাকছে বিশেষ
-                মূল্যছাড়!!! সারাদেশের সকল জেলা,উপজেলা এবং ইউনিয়ন পর্যায়ে থাকছে হোম ডেলিভারি সুবিধা। প্রয়োজনীয় প্রোডাক্ট
-                পেতে আমাদের সাথেই থাকুন। হেল্পলাইন ☎ 01634385096
+                বাংলাদেশের অন্যতম বৃহত্তম শপিং প্লাটফর্ম ShekShops এ আপনাকে স্বাগতম!!! কেনাকাটায় থাকছে বিশেষ মূল্যছাড়!!!
+                সারাদেশের সকল জেলা,উপজেলা এবং ইউনিয়ন পর্যায়ে থাকছে হোম ডেলিভারি সুবিধা। প্রয়োজনীয় প্রোডাক্ট পেতে আমাদের
+                সাথেই থাকুন। হেল্পলাইন ☎ 01634385096
               </p>
             </marquee>
           </div>
@@ -49,37 +51,65 @@ const TopBanner = () => {
           <div className="border dark:border-slate-700 py-1">
             <ul className="list-none pl-0">
               <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
-                <Link to="/category" state={{ category: "all" }} className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]">
+                <Link
+                  to="/category"
+                  state={{ category: "all" }}
+                  className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]"
+                >
                   All Categories
                 </Link>
               </li>
               <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
-                <Link to="/category" state={{ category: "bag" }} className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]">
+                <Link
+                  to="/category"
+                  state={{ category: "bag" }}
+                  className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]"
+                >
                   Bag Items
                 </Link>
               </li>
               <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
-                <Link to="/category" state={{ category: "women" }} className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]">
+                <Link
+                  to="/category"
+                  state={{ category: "women" }}
+                  className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]"
+                >
                   Woman Items
                 </Link>
               </li>
               <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
-                <Link to="/category" state={{ category: "mens" }} className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]">
+                <Link
+                  to="/category"
+                  state={{ category: "mens" }}
+                  className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]"
+                >
                   Man Items
                 </Link>
               </li>
               <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
-                <Link to="/category" state={{ category: "kitchen" }} className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]">
+                <Link
+                  to="/category"
+                  state={{ category: "kitchen" }}
+                  className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]"
+                >
                   Kitchen Items
                 </Link>
               </li>
               <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
-                <Link to="/category" state={{ category: "gadget" }} className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]">
+                <Link
+                  to="/category"
+                  state={{ category: "gadget" }}
+                  className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]"
+                >
                   Gadget Items
                 </Link>
               </li>
               <li className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group">
-                <Link to="/category" state={{ category: "travel" }} className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]">
+                <Link
+                  to="/category"
+                  state={{ category: "travel" }}
+                  className="text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]"
+                >
                   Travel Items
                 </Link>
               </li>
@@ -105,8 +135,17 @@ const TopBanner = () => {
                   <div className="keen-slider__slide number-slide1">
                     <img src={slider_image_1} className="w-full h-[300px] md:h-[300px] lg:h-[425px]" alt="Slider image 1" />
                   </div>
+
                   <div className="keen-slider__slide number-slide2">
                     <img src={slider_image_2} className="w-full h-[300px] md:h-[300px] lg:h-[425px]" alt="Slider image 2" />
+                  </div>
+
+                  <div className="keen-slider__slide number-slide3">
+                    <img src={slider_image_3} className="w-full h-[300px] md:h-[300px] lg:h-[425px]" alt="Slider image 3" />
+                  </div>
+
+                  <div className="keen-slider__slide number-slide4">
+                    <img src={slider_image_4} className="w-full h-[300px] md:h-[300px] lg:h-[425px]" alt="Slider image 4" />
                   </div>
                 </div>
                 {loaded && instanceRef.current && (

@@ -9,7 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 
-const ShopByDepartment = () => {
+const OurProductFeature = () => {
   const [swiper, setSwiper] = useState(null);
   const [isBackButtonActive, setIsBackButtonActive] = useState(false);
   const [departments, setDepartments] = useState([]);
@@ -41,17 +41,12 @@ const ShopByDepartment = () => {
   };
 
   return (
-    <div className="my-24 lg:my-32 container mx-auto">
+    <div className="my-12 md:my-16 lg:my-20 container mx-auto">
       {/* Title of this section */}
 
       <div className="relative flex flex-col sm:flex-row sm:items-end md:items-start justify-between mb-12 lg:mb-14 text-neutral-900 dark:text-neutral-50">
         <div>
-          <h2 className="font-primary text-3xl md:text-4xl font-semibold">
-            Shop by department<span>! </span>
-          </h2>
-          <span className="mt-2 md:mt-4 font-normal block text-base sm:text-lg text-neutral-500 dark:text-neutral-400">
-            Exciting deals await you
-          </span>
+          <h2 className="font-primary text-3xl md:text-4xl font-semibold">Our product feature!</h2>
         </div>
         <div className="mt-4 flex justify-end sm:ml-2 sm:mt-0 flex-shrink-0">
           <div className="nc-NextPrev relative flex items-center text-slate-500 dark:text-slate-50">
@@ -137,4 +132,4 @@ const ShopByDepartment = () => {
   );
 };
 
-export default ShopByDepartment;
+export default OurProductFeature;

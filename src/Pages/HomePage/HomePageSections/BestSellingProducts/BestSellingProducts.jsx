@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import ProductCard from "../../HomePageCard/ProductCard/ProductCard";
 
-const NewArrivals = () => {
+const BestSellingProducts = () => {
   // State and functions for handling slides
   const [swiper, setSwiper] = useState(null);
   const [isBackButtonActive, setIsBackButtonActive] = useState(false);
@@ -49,17 +49,14 @@ const NewArrivals = () => {
   const filteredProducts = products.filter((product) => product.categoryStatus === "new");
 
   return (
-    <div className="my-24 lg:my-32 container mx-auto">
+    <div className="my-12 md:my-16 lg:my-20 container mx-auto">
       {/* Title of this section */}
 
       <div className="relative flex flex-col sm:flex-row sm:items-end md:items-start justify-between mb-12 lg:mb-14 text-neutral-900 dark:text-neutral-50">
         <div>
           <h2 className="font-primary text-3xl md:text-4xl font-semibold">
-            New Arrivals<span>! </span>
+            Best selling products<span>! </span>
           </h2>
-          <span className="mt-2 md:mt-4 font-normal block text-base sm:text-lg text-neutral-500 dark:text-neutral-400">
-            REY backpacks & bags
-          </span>
         </div>
         <div className="mt-4 flex justify-end sm:ml-2 sm:mt-0 flex-shrink-0">
           <div className="NextPrev relative flex items-center text-slate-500 dark:text-slate-50">
@@ -131,4 +128,4 @@ const NewArrivals = () => {
   );
 };
 
-export default NewArrivals;
+export default BestSellingProducts;

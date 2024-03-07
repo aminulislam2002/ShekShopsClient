@@ -1,17 +1,17 @@
 import HowItWorks from "../HomePageSections/HowItWorks/HowItWorks";
-import NewArrivals from "../HomePageSections/NewArrivals/NewArrivals";
-import ShopByDepartment from "../HomePageSections/ShopByDepartment/ShopByDepartment";
+import BestSellingProducts from "../HomePageSections/BestSellingProducts/BestSellingProducts";
+import OurProductFeature from "../HomePageSections/OurProductFeature/OurProductFeature";
 import TopBanner from "../HomePageSections/TopBanner/TopBanner";
-import TrendingNow from "../HomePageSections/TrendingNow/TrendingNow";
+import MostPopularItem from "../HomePageSections/MostPopularItem/MostPopularItem";
 
 const Home = () => {
   return (
     <div>
       <TopBanner></TopBanner>
       <HowItWorks></HowItWorks>
-      <NewArrivals></NewArrivals>
-      <TrendingNow></TrendingNow>
-      <ShopByDepartment></ShopByDepartment>
+      <BestSellingProducts></BestSellingProducts>
+      <MostPopularItem></MostPopularItem>
+      <OurProductFeature></OurProductFeature>
     </div>
   );
 };

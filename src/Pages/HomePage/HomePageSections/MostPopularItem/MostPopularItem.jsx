@@ -4,7 +4,7 @@ import { FaFilter } from "react-icons/fa";
 import { FiChevronDown } from "react-icons/fi";
 import ProductCard from "../../HomePageCard/ProductCard/ProductCard";
 
-const TrendingNow = () => {
+const MostPopularItem = () => {
   const [selectedCategory, setSelectedCategory] = useState("All Items");
   const [showAllProducts, setShowAllProducts] = useState(false);
   const [favorites, setFavorites] = useState([]);
@@ -39,19 +39,16 @@ const TrendingNow = () => {
     setDisplayedProductsCount(10); // Display only 4 products
     setShowAllProducts(false);
   };
-
+  
   return (
-    <div className="my-24 lg:my-32 container mx-auto">
+    <div className="my-12 md:my-16 lg:my-20 container mx-auto">
       {/* Title of this section */}
 
       <div className="relative mb-12 lg:mb-14 text-neutral-900 dark:text-neutral-50">
         <div>
           <h2 className="font-primary text-3xl md:text-4xl font-semibold">
-            What's trending now<span>! </span>
+            Most popular item<span>! </span>
           </h2>
-          <span className="mt-2 md:mt-4 font-normal block text-base sm:text-lg text-neutral-500 dark:text-neutral-400">
-            Discover the most trending products in Swift Mart.
-          </span>
         </div>
       </div>
 
@@ -183,45 +180,11 @@ const TrendingNow = () => {
   ${filteredProducts.length >= 4 ? "block" : "hidden"}`}
           onClick={showAllProducts ? handleShowLessClick : handleShowMoreClick}
         >
-          {showAllProducts ? (
-            <>
-              <svg
-                className="animate-spin -ml-1 mr-3 h-5 w-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-              Show less
-            </>
-          ) : (
-            <>
-              <svg
-                className="animate-spin -ml-1 mr-3 h-5 w-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-              Show me more
-            </>
-          )}
+          {showAllProducts ? <>Show less</> : <>Show me more</>}
         </button>
       </div>
     </div>
   );
 };
 
-export default TrendingNow;
+export default MostPopularItem;
