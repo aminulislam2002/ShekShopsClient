@@ -8,6 +8,7 @@ import CheckoutCard from "../Pages/HomePage/HomePageCard/CheckoutCard/CheckoutCa
 import Categories from "../Pages/CategoryPages/Categories/Categories";
 import DashboardLayout from "../Layouts/DashboardLayout/DashboardLayout";
 import AdminDashboard from "../Pages/DashboardPages/AdminDashboard/AdminDashboard";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs></AboutUs>,
       },
       {
         path: "/product-details/:id",
