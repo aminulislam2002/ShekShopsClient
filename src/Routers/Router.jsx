@@ -9,11 +9,13 @@ import Categories from "../Pages/CategoryPages/Categories/Categories";
 import DashboardLayout from "../Layouts/DashboardLayout/DashboardLayout";
 import AdminDashboard from "../Pages/DashboardPages/AdminDashboard/AdminDashboard";
 import AboutUs from "../Pages/AboutUs/AboutUs";
+import PageNotFound from "../Pages/PageNotFound/PageNotFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <PageNotFound></PageNotFound>,
     children: [
       {
         path: "/",
@@ -37,6 +39,7 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashboardLayout></DashboardLayout>,
+    errorElement: <PageNotFound></PageNotFound>,
     children: [
       {
         path: "/dashboard/admin",
@@ -48,6 +51,7 @@ const router = createBrowserRouter([
   {
     path: "/category",
     element: <CategoryLayout></CategoryLayout>,
+    errorElement: <PageNotFound></PageNotFound>,
     children: [
       {
         path: "",
@@ -59,6 +63,7 @@ const router = createBrowserRouter([
   {
     path: "Authentication/Register",
     element: <Register></Register>,
+    errorElement: <PageNotFound></PageNotFound>,
   },
 ]);
 
