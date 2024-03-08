@@ -12,6 +12,10 @@ const NavBar = () => {
       to: "/",
     },
     {
+      label: "Shop",
+      to: "/shop",
+    },
+    {
       label: "About us",
       to: "/about-us",
     },

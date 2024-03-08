@@ -10,6 +10,7 @@ import DashboardLayout from "../Layouts/DashboardLayout/DashboardLayout";
 import AdminDashboard from "../Pages/DashboardPages/AdminDashboard/AdminDashboard";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import PageNotFound from "../Pages/PageNotFound/PageNotFound";
+import Shop from "../Pages/Shop/Shop";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/shop",
+        element: <Shop></Shop>,
       },
       {
         path: "/about-us",
