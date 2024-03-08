@@ -1,11 +1,18 @@
 import { Link } from "react-router-dom";
-import { MdMenu } from "react-icons/md";
+import { MdMenu, MdOutlineClose } from "react-icons/md";
 import { IoCartOutline } from "react-icons/io5";
 import { LuUser2, LuSearch } from "react-icons/lu";
 
 import swift_mart_logo from "../../../assets/Logo/Logo Black Bg.png";
+import { useState } from "react";
 
 const NavBar = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   const navItems = [
     {
       label: "Home",
@@ -36,27 +43,29 @@ const NavBar = () => {
           <div className="grid grid-cols-12 h-20">
             <div className="lg:hidden col-span-2 flex lg:justify-start items-center">
               <div className="dropdown">
-                <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                  <MdMenu className="w-6 h-6"></MdMenu>
+                <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden" onClick={toggleDropdown}>
+                  {isDropdownOpen ? <MdOutlineClose className="w-6 h-6" /> : <MdMenu className="w-6 h-6" />}
                 </div>
-                <ul
-                  tabIndex={0}
-                  className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-                >
-                  <li>
-                    {navItems.map((item, index) => (
-                      <Link key={index} to={item.to}>
-                        {item?.label}
-                      </Link>
-                    ))}
-                  </li>
-                </ul>
+                {isDropdownOpen && (
+                  <ul
+                    tabIndex={0}
+                    className="menu menu-sm dropdown-content bg-green-700 mt-3 z-[1] p-2 shadow rounded-box w-52"
+                  >
+                    <li>
+                      {navItems.map((item, index) => (
+                        <Link key={index} to={item.to}>
+                          {item?.label}
+                        </Link>
+                      ))}
+                    </li>
+                  </ul>
+                )}
               </div>
             </div>
 
             <div className="lg:col-span-3 col-span-8 order-1 lg:order-1 flex justify-center lg:justify-start items-center">
               <Link to="/" className="flex justify-start items-center gap-2 text-xl lg:text-3xl font-bold text-slate-800">
-                <img src={swift_mart_logo} className="h-8 lg:h-12 w-8 lg:w-12 rounded-full" alt="" />{" "}
+                <img src={swift_mart_logo} className="h-8 lg:h-12 w-8 lg:w-12 rounded-full" alt="Logo of ShekShops" />
                 <span className="text-slate-50">ShekShops</span>
               </Link>
             </div>
