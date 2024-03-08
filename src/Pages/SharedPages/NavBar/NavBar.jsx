@@ -4,14 +4,44 @@ import { IoCartOutline } from "react-icons/io5";
 import { LuUser2, LuSearch } from "react-icons/lu";
 
 import swift_mart_logo from "../../../assets/Logo/Logo Black Bg.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const NavBar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isAtTop, setIsAtTop] = useState(true);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
+  };
+
+  // Check screen size on mount and update isSearchOpen accordingly
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSearchOpen(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // Check scroll position on mount and update isAtTop accordingly
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsAtTop(window.scrollY === 0);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const navItems = [
     {
@@ -40,8 +70,9 @@ const NavBar = () => {
     <div className="sticky top-0 w-full z-[1000]">
       <div className="relative z-10 bg-green-700 text-slate-50 dark:bg-slate-900">
         <div className="container mx-auto">
-          <div className="grid grid-cols-12 h-20">
-            <div className="lg:hidden col-span-2 flex lg:justify-start items-center">
+          <div className={`grid grid-cols-12 ${isAtTop ? "h-28" : "h-20"}  lg:h-20`}>
+            {/* Dropdown icon and navbar icon for small and medium devices */}
+            <div className="col-span-2 lg:hidden order-1 flex lg:justify-start items-center">
               <div className="dropdown">
                 <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden" onClick={toggleDropdown}>
                   {isDropdownOpen ? <MdOutlineClose className="w-6 h-6" /> : <MdMenu className="w-6 h-6" />}
@@ -63,32 +94,66 @@ const NavBar = () => {
               </div>
             </div>
 
-            <div className="lg:col-span-3 col-span-8 order-1 lg:order-1 flex justify-center lg:justify-start items-center">
+            {/* Logo part */}
+            <div className="col-span-8 lg:col-span-3 order-2 lg:order-1 flex justify-center lg:justify-start items-center">
               <Link to="/" className="flex justify-start items-center gap-2 text-xl lg:text-3xl font-bold text-slate-800">
                 <img src={swift_mart_logo} className="h-8 lg:h-12 w-8 lg:w-12 rounded-full" alt="Logo of ShekShops" />
                 <span className="text-slate-50">ShekShops</span>
               </Link>
             </div>
 
-            <div className="lg:col-span-6 order-2 hidden lg:flex justify-center items-center mx-4">
-              <ul className="flex items-center">
-                {navItems.map((item, index) => (
-                  <li key={index} className="menu-item flex-shrink-0">
-                    <div className="h-20 flex-shrink-0 flex items-center">
-                      <Link
-                        to={item.to}
-                        className="inline-flex items-center text-sm lg:text-[15px] font-medium text-slate-50 dark:text-slate-50 dark:hover:text-slate-800 dark:hover:bg-slate-50 py-2.5 px-4 xl:px-5 rounded-full hover:text-slate-900 hover:bg-slate-100  uppercase"
-                      >
-                        {item.label}
-                      </Link>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {isSearchOpen ? (
+              <>
+                {/* Search input field */}
+                <div
+                  className={`${
+                    isAtTop || window.innerWidth >= 768 ? "visible" : "hidden"
+                  } col-span-12 order-4 lg:col-span-6 lg:order-2 flex justify-center items-center mx-4`}
+                >
+                  <div className="relative flex items-center w-full">
+                    <input
+                      type="text"
+                      placeholder="Search..."
+                      className="w-full p-2 mt-3 border border-gray-300 rounded-md text-slate-800"
+                    />
+                    <button className="absolute right-0 top-5 mr-2" onClick={toggleSearch}>
+                      <MdOutlineClose className="text-slate-800 w-5 h-5 hidden lg:block" />
+                    </button>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                {/* Navbar items for largest devices */}
+                <div className="hidden lg:col-span-6 lg:order-2  lg:flex justify-center items-center mx-4">
+                  <ul className="flex items-center">
+                    {navItems.map((item, index) => (
+                      <li key={index} className="menu-item flex-shrink-0">
+                        <div className="h-20 flex-shrink-0 flex items-center">
+                          <Link
+                            to={item.to}
+                            className="inline-flex items-center text-sm lg:text-[15px] font-medium text-slate-50 dark:text-slate-50 dark:hover:text-slate-800 dark:hover:bg-slate-50 py-2.5 px-4 xl:px-5 rounded-full hover:text-slate-900 hover:bg-slate-100  uppercase"
+                          >
+                            {item.label}
+                          </Link>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </>
+            )}
 
-            <div className="lg:col-span-3 col-span-2 order-3 flex-1 flex items-center justify-end dark:text-slate-50">
-              <button className="hidden lg:flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full dark:text-slate-50 hover:bg-slate-800 dark:hover:text-slate-800 dark:hover:bg-slate-50 focus:outline-none">
+            {/* Search icon, card icon and user authentication icon */}
+            <div className="col-span-2 order-3 lg:col-span-3 lg:order-3 flex-1 flex items-center justify-end dark:text-slate-50">
+              <button
+                className={` ${
+                  isSearchOpen
+                    ? "hidden"
+                    : "hidden lg:flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full dark:text-slate-50 hover:bg-slate-800 dark:hover:text-slate-800 dark:hover:bg-slate-50 focus:outline-none"
+                }`}
+                onClick={toggleSearch}
+              >
                 <LuSearch className="w-6 h-5" />
               </button>
 
