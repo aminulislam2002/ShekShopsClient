@@ -79,7 +79,7 @@ const CheckoutCard = () => {
     };
 
     // Assuming you have the fetch API available in your environment
-    fetch("http://localhost:5000/postOrder", {
+    fetch("https://shek-shops-server.vercel.app/postOrder", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -8,7 +8,7 @@ const ViewAllProduct = () => {
     // Fetch products from the API endpoint
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:5000/products");
+        const response = await fetch("https://shek-shops-server.vercel.app/products");
         if (response.ok) {
           const data = await response.json();
           setProducts(data);
@@ -25,7 +25,7 @@ const ViewAllProduct = () => {
 
   const handleDeleteProduct = async (productId) => {
     try {
-      const response = await fetch(`http://localhost:5000/deleteProduct/${productId}`, {
+      const response = await fetch(`https://shek-shops-server.vercel.app/deleteProduct/${productId}`, {
         method: "DELETE",
       });
 
