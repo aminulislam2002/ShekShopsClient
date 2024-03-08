@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { MdMenu, MdOutlineClose } from "react-icons/md";
 import { IoCartOutline } from "react-icons/io5";
 import { LuUser2, LuSearch } from "react-icons/lu";
@@ -10,6 +10,7 @@ const NavBar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isAtTop, setIsAtTop] = useState(true);
+  const location = useLocation();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -19,13 +20,15 @@ const NavBar = () => {
     setIsSearchOpen(!isSearchOpen);
   };
 
-  // Check screen size on mount and update isSearchOpen accordingly
+  // Check screen size on mount and update accordingly
   useEffect(() => {
     const handleResize = () => {
-      setIsSearchOpen(window.innerWidth <= 768);
+      setIsSearchOpen(window.innerWidth <= 768  );
     };
+
     handleResize();
     window.addEventListener("resize", handleResize);
+
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -36,12 +39,19 @@ const NavBar = () => {
     const handleScroll = () => {
       setIsAtTop(window.scrollY === 0);
     };
+
     handleScroll();
     window.addEventListener("scroll", handleScroll);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  // Update isSearchOpen when the route changes
+  useEffect(() => {
+    setIsSearchOpen(window.innerWidth <= 768 && location.pathname === "/");
+  }, [location.pathname]);
 
   const navItems = [
     {
@@ -70,7 +80,7 @@ const NavBar = () => {
     <div className="sticky top-0 w-full z-[1000]">
       <div className="relative z-10 bg-green-700 text-slate-50 dark:bg-slate-900">
         <div className="container mx-auto">
-          <div className={`grid grid-cols-12 ${isAtTop ? "h-28" : "h-20"}  lg:h-20`}>
+          <div className={`grid grid-cols-12 ${isAtTop && isSearchOpen ? "h-28" : "h-20"}  lg:h-20`}>
             {/* Dropdown icon and navbar icon for small and medium devices */}
             <div className="col-span-2 lg:hidden order-1 flex lg:justify-start items-center">
               <div className="dropdown">
