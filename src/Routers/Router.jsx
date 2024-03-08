@@ -11,6 +11,10 @@ import AdminDashboard from "../Pages/DashboardPages/AdminDashboard/AdminDashboar
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import PageNotFound from "../Pages/PageNotFound/PageNotFound";
 import Shop from "../Pages/Shop/Shop";
+import AddProduct from "../Pages/DashboardPages/AdminDashboardPages/AddProduct/AddProduct";
+import ViewAllProduct from "../Pages/DashboardPages/AdminDashboardPages/ViewAllProduct/ViewAllProduct";
+import ViewAllCustomer from "../Pages/DashboardPages/AdminDashboardPages/ViewAllCustomer/ViewAllCustomer";
+import ViewAllOrder from "../Pages/DashboardPages/AdminDashboardPages/ViewAllOrder/ViewAllOrder";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +53,22 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/admin",
         element: <AdminDashboard></AdminDashboard>,
+      },
+      {
+        path: "/dashboard/addProduct",
+        element: <AddProduct></AddProduct>,
+      },
+      {
+        path: "/dashboard/viewAllProduct",
+        element: <ViewAllProduct></ViewAllProduct>,
+      },
+      {
+        path: "/dashboard/viewAllCustomer",
+        element: <ViewAllCustomer></ViewAllCustomer>,
+      },
+      {
+        path: "/dashboard/viewAllOrder",
+        element: <ViewAllOrder></ViewAllOrder>,
       },
     ],
   },
