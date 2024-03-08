@@ -296,11 +296,15 @@ const CheckoutCard = () => {
 
               <div className="flex text-sm text-slate-600 dark:text-slate-300 mb-3">
                 <div className="flex items-center space-x-1.5">
-                  <span className="text-gray-700">{productData?.productInfo?.color}</span>
+                  <span className="text-gray-700">Color: {productData?.productInfo?.color}</span>
                 </div>
                 <span className="mx-4 border-l border-slate-200 dark:border-slate-700 "></span>
                 <div className="flex items-center space-x-1.5">
-                  <span>{productData?.productInfo?.size}</span>
+                  <span>Size: {productData?.productInfo?.size}</span>
+                </div>
+                <span className="mx-4 border-l border-slate-200 dark:border-slate-700 "></span>
+                <div className="flex items-center space-x-1.5">
+                  <span>Quantity: {productData?.productInfo?.quantity}</span>
                 </div>
               </div>
 
@@ -330,7 +334,8 @@ const CheckoutCard = () => {
               <span className="text-green-600 text-base font-bold">Total:</span>
               <span className="text-lg font-bold text-green-600">
                 $
-                {(parseFloat(productData?.productInfo?.originalPrice) + parseFloat(customerData?.deliveryCharge)).toFixed(2)}
+                {parseFloat(productData?.productInfo?.originalPrice * productData?.productInfo?.quantity) +
+                  parseFloat(customerData?.deliveryCharge)}
               </span>
             </div>
           </div>

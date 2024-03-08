@@ -23,9 +23,9 @@ const ViewAllOrder = () => {
     fetchOrders();
   }, []);
 
-  const handleDeleteProduct = async (orderId) => {
+  const handleDeleteOrder = async (orderId) => {
     try {
-      const response = await fetch(`http://localhost:5000/orders/${orderId}`, {
+      const response = await fetch(`http://localhost:5000/deleteOrder/${orderId}`, {
         method: "DELETE",
       });
 
@@ -83,7 +83,8 @@ const ViewAllOrder = () => {
                 <p className="text-slate-800 dark:text-slate-50">{`Original Price: ${orderInfo?.productData?.originalPrice}`}</p>
                 <p className="text-slate-800 dark:text-slate-50">{`Delivery Charge: ${orderInfo?.customerData?.deliveryCharge}`}</p>
                 <p className="text-slate-800 dark:text-slate-50">{`Total: ${
-                  parseFloat(orderInfo?.productData?.originalPrice) + parseFloat(orderInfo?.customerData?.deliveryCharge)
+                  parseFloat(orderInfo?.productData?.originalPrice * orderInfo?.productData?.quantity) +
+                  parseFloat(orderInfo?.customerData?.deliveryCharge)
                 }`}</p>
               </div>
               <div>
@@ -113,7 +114,7 @@ const ViewAllOrder = () => {
                       confirmButtonText: "Yes, delete it!",
                     }).then((result) => {
                       if (result.isConfirmed) {
-                        handleDeleteProduct(orderInfo?._id);
+                        handleDeleteOrder(orderInfo?._id);
                       }
                     });
                   }}
