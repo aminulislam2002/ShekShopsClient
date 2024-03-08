@@ -55,7 +55,9 @@ const DashboardLayout = () => {
               </div>
 
               <div className="w-full py-2">
-                <h1 className="text-center text-lg text-slate-50 font-semibold md:text-xl lg:text-3xl">ShekShops</h1>
+                <Link to="/">
+                  <h1 className="text-center text-lg text-slate-50 font-semibold md:text-xl lg:text-3xl">ShekShops</h1>
+                </Link>
               </div>
             </div>
             <div className="flex-none hidden lg:block mt-4">
@@ -70,7 +72,7 @@ const DashboardLayout = () => {
               </ul>
             </div>
           </div>
-          <div className="lg:w-9/12 p-4">
+          <div className="lg:w-10/12 p-4">
             <div className="overflow-y-auto max-h-[95vh]">
               <Outlet />
             </div>

@@ -73,7 +73,7 @@ const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
 
               <div className="absolute bottom-0 inset-x-1 space-x-1.5 flex justify-center opacity-0 invisible group-hover:bottom-4 group-hover:opacity-100 group-hover:visible transition-all">
                 {/* Add your size options here */}
-                {product?.size.map((size) => (
+                {product?.sizes.map((size) => (
                   <div
                     key={size}
                     className="shadow-lg w-10 h-10 rounded-xl bg-white hover:bg-slate-900 hover:text-white transition-colors cursor-pointer flex items-center justify-center uppercase font-semibold tracking-tight text-sm text-slate-900"
@@ -104,7 +104,6 @@ const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
             </div>
 
             <Link to={`/product-details/${id}`}>
-              {" "}
               <div className="space-y-4 p-1.5 md:p-2 lg:p-2.5">
                 <div className="text-start flex justify-between">
                   <div>
@@ -118,25 +117,25 @@ const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
                   {/* Display original price with discounted price */}
                   <div className="col-span-12 flex items-center text-xl font-medium font-primary mb-1">
                     <span className="text-orange-500 font-semibold !leading-none">
-                      {calculateDiscountedPrice(product?.price, product?.offer)}
+                      {calculateDiscountedPrice(product?.originalPrice, product?.offerPrice)}
                     </span>
                   </div>
 
                   <div className="col-span-12 h-[20px] flex items-center mb-0.5">
-                    {product?.offer && (
+                    {product?.offerPrice && (
                       <div>
                         {/* Display discounted percentage if available */}
                         <div className="flex items-center text-sm font-medium">
-                          <span className="text-gray-400 line-through !leading-none">${product?.price}</span>
+                          <span className="text-gray-400 line-through !leading-none">${product?.originalPrice}</span>
                           <span className="text-green-500 mx-1">
-                            -{calculateDiscountedPercentage(product?.price, product?.offer)}
+                            -{calculateDiscountedPercentage(product?.originalPrice, product?.offerPrice)}
                           </span>
                         </div>
                       </div>
                     )}
                   </div>
 
-                  {/* Display rating and number of reviews of the price */}
+                  {/* Display rating and number of reviews of the originalPrice */}
                   <div className="col-span-12 flex justify-start items-center">
                     <FaStar className="w-4 h-4 text-amber-400"></FaStar>
                     <span className="text-sm ml-1 text-slate-500 dark:text-slate-50">

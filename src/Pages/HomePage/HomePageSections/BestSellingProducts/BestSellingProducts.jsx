@@ -46,7 +46,7 @@ const BestSellingProducts = () => {
     );
   };
 
-  const filteredProducts = products.filter((product) => product.categoryStatus === "new");
+  const filteredProducts = products.filter((product) => product?.productType === "best selling");
 
   return (
     <div className="my-12 md:my-16 lg:my-20 container mx-auto">

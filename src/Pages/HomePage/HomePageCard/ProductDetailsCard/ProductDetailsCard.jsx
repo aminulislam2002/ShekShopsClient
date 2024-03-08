@@ -67,7 +67,7 @@ const ProductDetailsCard = () => {
           color: selectedColor,
           size: selectedSize,
           quantity: selectedQuantity,
-          price: calculateDiscountedPrice(selectedProduct?.price, selectedProduct?.offer),
+          originalPrice: calculateDiscountedPrice(selectedProduct?.originalPrice, selectedProduct?.offerPrice),
         };
         setBuyingProductInfo({ productInfo });
       })
@@ -138,18 +138,18 @@ const ProductDetailsCard = () => {
             {/* Display original price with discounted price */}
             <div className="flex items-center text-xl md:text-2xl lg:text-3xl font-medium font-primary mb-5">
               <span className="text-orange-500 font-semibold !leading-none">
-                ${calculateDiscountedPrice(product?.price, product?.offer)}
+                ${calculateDiscountedPrice(product?.originalPrice, product?.offerPrice)}
               </span>
             </div>
 
             {/* Display discounted percentage if available */}
             <div className="h-[20px] flex items-center mb-5">
-              {product?.offer && (
+              {product?.offerPrice && (
                 <div>
                   <div className="flex items-center text-sm md:text-lg font-medium">
                     <span className="text-gray-400 line-through !leading-none">${product?.price}</span>
                     <span className="text-green-500 mx-1">
-                      -{calculateDiscountedPercentage(product?.price, product?.offer)}
+                      -{calculateDiscountedPercentage(product?.originalPrice, product?.offerPrice)}
                     </span>
                   </div>
                 </div>
@@ -164,13 +164,13 @@ const ProductDetailsCard = () => {
               <FaStar className="w-4 h-4 text-amber-400"></FaStar>
               <FaStar className="w-4 h-4 text-amber-400"></FaStar>
               <span className="text-sm ml-1 text-slate-500 dark:text-slate-50">
-                {product?.rating} ({product.reviews} reviews)
+                {product?.ratings} ({product.reviews} reviews)
               </span>
             </div>
 
             {/* Sizes part */}
             <div className="mb-5">
-              {product?.size && product?.size.length > 0 ? (
+              {product?.sizes && product?.sizes.length > 0 ? (
                 <>
                   <div className="">
                     <div className="mb-3 flex items-center gap-3">
@@ -180,7 +180,7 @@ const ProductDetailsCard = () => {
 
                     <div className="col-span-10">
                       <div className="grid grid-cols-5 lg:grid-cols-8 mb-3">
-                        {product?.size.map((size) => (
+                        {product?.sizes.map((size) => (
                           <button
                             key={size}
                             onClick={() => handleSelectedSize(size)}

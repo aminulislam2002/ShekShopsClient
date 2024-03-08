@@ -305,7 +305,9 @@ const CheckoutCard = () => {
               </div>
 
               <div className="col-span-12 flex items-center text-xl font-medium font-primary mb-3">
-                <span className="text-orange-500 font-semibold !leading-none">${productData?.productInfo?.price}</span>
+                <span className="text-orange-500 font-semibold !leading-none">
+                  ${productData?.productInfo?.originalPrice}
+                </span>
               </div>
 
               <div className="flex justify-end items-center">
@@ -318,7 +320,7 @@ const CheckoutCard = () => {
           <div className="py-7 px-3 border-b">
             <div className="flex justify-between items-center mb-4">
               <span className="text-purple-600 text-base font-bold">Sub-Total:</span>
-              <span className="text-lg font-bold text-purple-600">${productData?.productInfo?.price}</span>
+              <span className="text-lg font-bold text-purple-600">${productData?.productInfo?.originalPrice}</span>
             </div>
             <div className="flex justify-between items-center mb-4">
               <span className="text-blue-600 text-base font-bold">{customerData?.deliveryArea}:</span>
@@ -327,7 +329,8 @@ const CheckoutCard = () => {
             <div className="flex justify-between items-center">
               <span className="text-green-600 text-base font-bold">Total:</span>
               <span className="text-lg font-bold text-green-600">
-                ${(parseFloat(productData?.productInfo?.price) + parseFloat(customerData?.deliveryCharge)).toFixed(2)}
+                $
+                {(parseFloat(productData?.productInfo?.originalPrice) + parseFloat(customerData?.deliveryCharge)).toFixed(2)}
               </span>
             </div>
           </div>

@@ -74,12 +74,12 @@ const TopBanner = () => {
   const categoryOptions = [
     { category: "all", label: "All Categories" },
     { category: "bag", label: "Bag Items" },
-    { category: "women", label: "Woman Items" },
-    { category: "mens", label: "Man Items" },
+    { category: "women", label: "Women Items" },
+    { category: "mens", label: "Mens Items" },
     { category: "kitchen", label: "Kitchen Items" },
     { category: "gadget", label: "Gadget Items" },
     { category: "travel", label: "Travel Items" },
-    { category: "home-improvement", label: "Home Improvement" },
+    { category: "home improvement", label: "Home Improvement" },
   ];
 
   return (
@@ -112,7 +112,7 @@ const TopBanner = () => {
                 >
                   <Link
                     to="/category"
-                    state={{ category: option?.category }}
+                    state={{ category: option?.category.toLowerCase() }}
                     className={`text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]`}
                   >
                     {option?.label}
@@ -143,7 +143,7 @@ const TopBanner = () => {
                       >
                         <Link
                           to="/category"
-                          state={{ category: option?.category }}
+                          state={{ category: option?.category.toLowerCase() }}
                           className={`text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]`}
                         >
                           {option?.label}
