@@ -45,7 +45,7 @@ const DashboardLayout = () => {
       <div className="hidden lg:block"></div>
       <div className="drawer">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content lg:flex gap-1">
+        <div className="drawer-content lg:flex">
           <div className="w-full lg:w-2/12 bg-green-700 overflow-y-auto max-h-[100vh] lg:h-screen">
             <div className="flex justify-start">
               <div className="flex-none lg:hidden">
@@ -62,17 +62,12 @@ const DashboardLayout = () => {
             </div>
             <div className="flex-none hidden lg:block mt-4">
               <ul className="menu-vertical">
-                {/* <Link to="/dashboard/profile">
-                  <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
-                    Profile
-                  </li>
-                </Link> */}
                 {isAdmin ? <> {adminOptions} </> : <></>}
                 {isCustomer ? <> {customerOptions} </> : <></>}
               </ul>
             </div>
           </div>
-          <div className="lg:w-10/12 p-4">
+          <div className="lg:w-10/12">
             <div className="overflow-y-auto max-h-[95vh]">
               <Outlet />
             </div>
@@ -81,11 +76,6 @@ const DashboardLayout = () => {
         <div className="drawer-side">
           <label htmlFor="my-drawer-3" className="drawer-overlay overflow-x-auto max-h-[100vh]"></label>
           <ul className="p-4 w-1/2 min-h-screen bg-green-700 overflow-y-auto">
-            {/* <Link to="/dashboard/profile">
-                  <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
-                    Profile
-                  </li>
-                </Link> */}
             {isAdmin ? <> {adminOptions} </> : <></>}
             {isCustomer ? <> {customerOptions} </> : <></>}
           </ul>
