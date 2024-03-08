@@ -25,7 +25,7 @@ const ViewAllProduct = () => {
 
   const handleDeleteProduct = async (productId) => {
     try {
-      const response = await fetch(`http://localhost:5000/products/${productId}`, {
+      const response = await fetch(`http://localhost:5000/deleteProduct/${productId}`, {
         method: "DELETE",
       });
 
@@ -80,7 +80,7 @@ const ViewAllProduct = () => {
           </thead>
           <tbody className="">
             {products.map((product) => (
-              <tr key={product?.id} className="border-t">
+              <tr key={product?._id} className="border-t">
                 <td className="px-4 py-2 w-3/12" title={product?.name}>
                   {product?.name.slice(0, 100)}...
                 </td>

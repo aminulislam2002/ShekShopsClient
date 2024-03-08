@@ -79,7 +79,7 @@ const CheckoutCard = () => {
     };
 
     // Assuming you have the fetch API available in your environment
-    fetch("https://media-master-hub-server.vercel.app/postOrder", {
+    fetch("http://localhost:5000/postOrder", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
