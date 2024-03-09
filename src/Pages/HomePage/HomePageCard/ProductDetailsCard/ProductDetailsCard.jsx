@@ -42,6 +42,14 @@ const ProductDetailsCard = () => {
     setSelectedImageIndex(index);
   };
 
+  const handleSelectedSize = (size) => {
+    setSelectedSize(size);
+  };
+
+  const handleSelectedColor = (color) => {
+    setSelectedColor(color);
+  };
+
   useEffect(() => {
     // Scroll to the top of the page when the component mounts
     window.scrollTo(0, 0);
@@ -80,13 +88,6 @@ const ProductDetailsCard = () => {
 
   const handleSelectQuantity = (value) => {
     setSelectedQuantity((prevQuantity) => prevQuantity + value);
-  };
-
-  const handleSelectedSize = (size) => {
-    setSelectedSize(size);
-  };
-  const handleSelectedColor = (color) => {
-    setSelectedColor(color);
   };
 
   return (
@@ -184,7 +185,11 @@ const ProductDetailsCard = () => {
                           <button
                             key={size}
                             onClick={() => handleSelectedSize(size)}
-                            className="w-16 h-8 rounded-lg border border-slate-300 bg-white hover:bg-slate-900 hover:text-white transition-colors cursor-pointer flex items-center justify-center uppercase font-semibold tracking-widest text-sm text-slate-900"
+                            className={`${
+                              size === selectedSize
+                                ? "border-2 border-red-500 w-16 h-8"
+                                : "w-16 h-8 rounded-lg border border-slate-300 bg-white hover:bg-slate-900 hover:text-white transition-colors cursor-pointer flex items-center justify-center uppercase font-semibold tracking-widest text-sm text-slate-900"
+                            }`}
                           >
                             {size}
                           </button>
@@ -214,7 +219,9 @@ const ProductDetailsCard = () => {
                           <button
                             key={color}
                             onClick={() => handleSelectedColor(color)}
-                            className={`shadow-lg w-16 h-8 rounded-full`}
+                            className={`shadow-lg w-16 h-8 rounded-full ${
+                              color === selectedColor ? "border-2 border-red-500" : ""
+                            }`}
                             style={{ backgroundColor: `${color.toLowerCase()}` }}
                             title={color}
                           ></button>

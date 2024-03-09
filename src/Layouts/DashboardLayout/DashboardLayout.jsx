@@ -6,22 +6,22 @@ const DashboardLayout = () => {
     <>
       <Link to="/dashboard/viewAllOrder">
         <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
-          View all order
+          View All Order
         </li>
       </Link>
       <Link to="/dashboard/viewAllCustomer">
         <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
-          View all customer
+          View All Customer
         </li>
       </Link>
       <Link to="/dashboard/viewAllProduct">
         <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
-          View all product
+          View All Product
         </li>
       </Link>
       <Link to="/dashboard/addProduct">
         <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
-          Add a product
+          Add a Product
         </li>
       </Link>
     </>
