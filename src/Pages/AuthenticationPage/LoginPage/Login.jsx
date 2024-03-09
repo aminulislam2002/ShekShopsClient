@@ -73,7 +73,7 @@ const Login = () => {
           role: "customer",
         };
 
-        const response = await fetch(`http://localhost:5000/postUser`, {
+        const response = await fetch(`https://shek-shops-server.vercel.app/postUser`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -30,16 +30,42 @@ const CheckoutCard = () => {
 
   useEffect(() => {
     // Check if any required field is empty
-    const isAnyFieldEmpty = Object.values(customerData).some((value) => value === "" || value === null);
-    setDisableConfirmButton(isAnyFieldEmpty);
+    const isAnyFieldEmptyExceptComment = Object.entries(customerData).some(([key, value]) => {
+      return key !== "comment" && (value === "" || value === null);
+    });
+    setDisableConfirmButton(isAnyFieldEmptyExceptComment);
   }, [customerData]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setCustomerData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+
+    // Validate mobileNumber field
+    if (name === "mobileNumber") {
+      // Ensure the value is a non-negative integer
+      if (!/^\d*$/.test(value) || parseInt(value) < 0) {
+        // Display an error message or handle it based on your UI/UX requirements
+        console.error("Invalid input for mobile number");
+        return;
+      }
+
+      // Check if the entered mobile number is within the allowed length
+      if (value.length <= 11) {
+        // Update the state
+        setCustomerData((prevData) => ({
+          ...prevData,
+          [name]: value,
+        }));
+      } else {
+        // Display a message or handle it based on your UI/UX requirements
+        alert("Number must be 11 digit");
+      }
+    } else {
+      // For other fields, update the state as usual
+      setCustomerData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
   const handleDeliveryAreaChange = (value) => {
@@ -132,7 +158,7 @@ const CheckoutCard = () => {
       </div>
 
       <div className="grid grid-cols-12 px-5 md:px-10 lg:px-0">
-        <div className="col-span-12 lg:col-span-7 order-2 lg:order-1 border border-slate-200 mt-5 md:mt-7 lg:mt-0 lg:me-10 rounded-xl overflow-hidden">
+        <div className="col-span-12 lg:col-span-7 order-1 border border-slate-200 mt-5 md:mt-7 lg:mt-0 lg:me-10 rounded-xl overflow-hidden">
           <div className="scroll-mt-24">
             <div className=" dark:border-slate-700 rounded-xl ">
               <div className="p-6 flex flex-col sm:flex-row items-start">
@@ -274,7 +300,7 @@ const CheckoutCard = () => {
           </div>
         </div>
 
-        <div className="col-span-12 lg:col-span-5 order-1 lg:order-2 border border-slate-200 mb-5 md:mb-7 lg:mb-0 lg:ms-10 rounded-xl overflow-hidden">
+        <div className="col-span-12 lg:col-span-5 order-2 border border-slate-200 mb-5 md:mb-7 lg:mb-0 lg:ms-10 rounded-xl overflow-hidden">
           <div className="border-b">
             <h3 className="text-lg font-semibold p-6">Order summary</h3>
           </div>

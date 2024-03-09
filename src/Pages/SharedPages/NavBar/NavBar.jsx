@@ -222,7 +222,13 @@ const NavBar = () => {
                   </div>
                   <ul tabIndex={0} className="dropdown-content bg-green-700 z-[1] menu p-2 shadow rounded-box w-52">
                     <li>
-                      <Link to="/dashboard/admin">Dashboard</Link>
+                      {user ? (
+                        <>
+                          <Link to="/dashboard/admin">Dashboard</Link>
+                        </>
+                      ) : (
+                        <></>
+                      )}
                     </li>
                     <li>
                       {user ? (
