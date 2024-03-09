@@ -85,11 +85,12 @@ const AddProduct = () => {
       <form onSubmit={handleSubmit(handleRegistration)} className="">
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-            Name
+            Product Title
           </label>
           <input
             id="name"
             name="name"
+            placeholder="Write product title"
             type="text"
             {...register("name")}
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
@@ -98,13 +99,14 @@ const AddProduct = () => {
 
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">
-            Description
+            Product Description
           </label>
-          <input
+          <textarea
             id="description"
             name="description"
-            type="textarea"
-            rows={5}
+            placeholder="Write product description"
+            type="text"
+            rows="5"
             {...register("description")}
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
           />
@@ -113,7 +115,7 @@ const AddProduct = () => {
         <div className="flex justify-center items-center gap-10">
           <div className="w-full mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="category">
-              Category
+              Product Category
             </label>
             <select
               id="category"
@@ -155,7 +157,7 @@ const AddProduct = () => {
         {/* Sizes checkbox */}
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="sizes">
-            Size
+            Product Size
           </label>
           {/* Use checkboxes for multiple selections */}
           <div className="grid grid-cols-5 md:grid-cols-7 lg:grid-cols-12">
@@ -213,7 +215,7 @@ const AddProduct = () => {
         {/* Colors checkbox */}
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="colors">
-            Colors
+            Product Colors
           </label>
           {/* Use checkboxes for multiple selections */}
           <div className="grid grid-cols-3 lg:grid-cols-10">
@@ -343,7 +345,9 @@ const AddProduct = () => {
             <input
               id="originalPrice"
               name="originalPrice"
+              placeholder="Enter original price"
               type="number"
+              min="1"
               {...register("originalPrice")}
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             />
@@ -357,7 +361,9 @@ const AddProduct = () => {
             <input
               id="offerPrice"
               name="offerPrice"
+              placeholder="Enter offer price"
               type="number"
+              min="1"
               {...register("offerPrice")}
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             />
@@ -371,7 +377,11 @@ const AddProduct = () => {
             <input
               id="ratings"
               name="ratings"
+              placeholder="Enter product ratings"
               type="number"
+              min="1"
+              max="5"
+              step="0.1"
               {...register("ratings")}
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             />
@@ -385,7 +395,9 @@ const AddProduct = () => {
             <input
               id="reviews"
               name="reviews"
+              placeholder="Enter product reviews"
               type="number"
+              min="1"
               {...register("reviews")}
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             />
