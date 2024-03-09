@@ -1,7 +1,78 @@
+import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../../Providers/AuthProvider/AuthProvider";
+import { useForm } from "react-hook-form";
 
 const Register = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
+  const { createUserWithEmail, createUserWithGoogle, updateUserProfileName } = useContext(AuthContext);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    setIsLoading(true);
+
+    try {
+      const userData = {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        role: "customer",
+      };
+
+      // Create user with email and password
+      const result = await createUserWithEmail(data.email, data.password);
+
+      // Update user profile name
+      await updateUserProfileName(userData.name);
+
+      // Post user data to your server
+      const saveUserData = {
+        name: userData.name,
+        email: userData.email,
+        role: userData.role,
+      };
+
+      const response = await fetch(`http://localhost:5000/postUser`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(saveUserData),
+      });
+
+      const responseData = await response.json();
+
+      if (responseData.insertedId) {
+        navigate("/");
+        Swal.fire({
+          icon: "success",
+          title: `${userData.name} Signup Successful`,
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        icon: "warning",
+        title: `${data.name} Signup Failed`,
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="container mx-auto">
       <div className="my-5 lg:my-10 mx-5">
@@ -23,27 +94,40 @@ const Register = () => {
             </span>
             <div className="absolute left-0 w-full top-1/2 transform -translate-y-1/2 border border-slate-100 dark:border-slate-800"></div>
           </div>
-          <form className="grid grid-cols-1 gap-6" action="#" method="post">
+          <form className="grid grid-cols-1 gap-6" onSubmit={handleSubmit(onSubmit)}>
+            <label className="block">
+              <span className="text-slate-800 dark:text-slate-200">Name</span>
+              <input
+                {...register("name", { required: true })}
+                className="block w-full bg-slate-100 border-slate-200 focus:border-slate-300 focus:ring focus:ring-slate-200 focus:ring-opacity-50 dark:border-slate-700 dark:focus:ring-slate-6000 dark:focus:ring-opacity-25 dark:bg-slate-900 disabled:bg-slate-200 dark:disabled:bg-slate-800 rounded-2xl text-sm font-normal h-11 px-4 py-3 mt-1"
+                type="text"
+                placeholder="Your Name"
+              />
+            </label>
             <label className="block">
               <span className="text-slate-800 dark:text-slate-200">Email address</span>
               <input
+                {...register("email", { required: true })}
                 className="block w-full bg-slate-100 border-slate-200 focus:border-slate-300 focus:ring focus:ring-slate-200 focus:ring-opacity-50 dark:border-slate-700 dark:focus:ring-slate-6000 dark:focus:ring-opacity-25 dark:bg-slate-900 disabled:bg-slate-200 dark:disabled:bg-slate-800 rounded-2xl text-sm font-normal h-11 px-4 py-3 mt-1"
-                placeholder="example@example.com"
                 type="email"
+                placeholder="example@example.com"
               />
             </label>
             <label className="block">
-              <span className="flex justify-between items-center text-slate-800 dark:text-slate-200">Password</span>
+              <span className="text-slate-800 dark:text-slate-200">Password</span>
               <input
+                {...register("password", { required: true })}
                 className="block w-full bg-slate-100 border-slate-200 focus:border-slate-300 focus:ring focus:ring-slate-200 focus:ring-opacity-50 dark:border-slate-700 dark:focus:ring-slate-6000 dark:focus:ring-opacity-25 dark:bg-slate-900 disabled:bg-slate-200 dark:disabled:bg-slate-800 rounded-2xl text-sm font-normal h-11 px-4 py-3 mt-1"
                 type="password"
+                placeholder="Enter your password"
               />
             </label>
             <button
-              className="relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 disabled:bg-opacity-90 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 text-slate-50 dark:text-slate-800 shadow-xl  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-6000 dark:focus:ring-offset-0"
+              className="relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 disabled:bg-opacity-90 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 text-slate-50 dark:text-slate-800 shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-6000 dark:focus:ring-offset-0"
               type="submit"
+              disabled={isLoading}
             >
-              Continue
+              {isLoading ? "Signing Up..." : "Continue"}
             </button>
           </form>
           <span className="block text-center text-slate-700 dark:text-slate-300">
