@@ -6,6 +6,7 @@ import { LuUser2, LuSearch } from "react-icons/lu";
 import swift_mart_logo from "../../../assets/Logo/Logo Black Bg.png";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const NavBar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -13,7 +14,33 @@ const NavBar = () => {
   const [isAtTop, setIsAtTop] = useState(true);
   const location = useLocation();
 
-  const {user} = useContext(AuthContext)
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Logout",
+      text: "Are you sure you want to logout?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, logout!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Perform the logout action
+        logOut();
+
+        // Show success sweet alert
+        Swal.fire({
+          title: "Logout Successful",
+          text: "You have been successfully logged out.",
+          icon: "success",
+        }).then(() => {
+          // Redirect or perform any additional actions after logout
+        });
+      }
+    });
+  };
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -72,10 +99,6 @@ const NavBar = () => {
     {
       label: "Contact us",
       to: "/contact-us",
-    },
-    {
-      label: "Admin Dashboard",
-      to: "/dashboard/admin",
     },
   ];
 
@@ -158,17 +181,19 @@ const NavBar = () => {
             )}
 
             {/* Search icon, card icon and user authentication icon */}
-            <div className="col-span-2 order-3 lg:col-span-3 lg:order-3 flex-1 flex items-center justify-end dark:text-slate-50">
-              <button
-                className={` ${
-                  isSearchOpen
-                    ? "hidden"
-                    : "hidden lg:flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full dark:text-slate-50 hover:bg-slate-800 dark:hover:text-slate-800 dark:hover:bg-slate-50 focus:outline-none"
-                }`}
-                onClick={toggleSearch}
-              >
-                <LuSearch className="w-6 h-5" />
-              </button>
+            <div className="col-span-2 order-3 lg:col-span-3 lg:order-3 flex-1 flex items-center justify-end lg:gap-5 dark:text-slate-50">
+              <div className="">
+                <button
+                  className={` ${
+                    isSearchOpen
+                      ? "hidden"
+                      : "hidden lg:flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full dark:text-slate-50 hover:bg-slate-800 dark:hover:text-slate-800 dark:hover:bg-slate-50 focus:outline-none"
+                  }`}
+                  onClick={toggleSearch}
+                >
+                  <LuSearch className="w-6 h-5" />
+                </button>
+              </div>
 
               <div className="relative">
                 <button
@@ -185,17 +210,33 @@ const NavBar = () => {
                 </button>
               </div>
 
-              <div className="AvatarDropdown ">
-                <Link to="authentication/register">
-                  <div className="relative">
-                    <button
-                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-full dark:text-slate-50 hover:bg-slate-800 dark:hover:text-slate-800 dark:hover:bg-slate-50 focus:outline-none flex items-center justify-center"
-                      type="button"
-                    >
-                      <LuUser2 className="w-6 h-6" />
-                    </button>
+              <div className=" ">
+                <div className="dropdown dropdown-bottom dropdown-end">
+                  <div
+                    tabIndex={0}
+                    role="button"
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full dark:text-slate-50 hover:bg-slate-800 dark:hover:text-slate-800 dark:hover:bg-slate-50 focus:outline-none flex items-center justify-center"
+                    type="button"
+                  >
+                    <LuUser2 className="w-6 h-6" />
                   </div>
-                </Link>
+                  <ul tabIndex={0} className="dropdown-content bg-green-700 z-[1] menu p-2 shadow rounded-box w-52">
+                    <li>
+                      <Link to="/dashboard/admin">Dashboard</Link>
+                    </li>
+                    <li>
+                      {user ? (
+                        <>
+                          <button onClick={handleLogout}>Logout</button>
+                        </>
+                      ) : (
+                        <>
+                          <Link to="authentication/register">Register / Login</Link>
+                        </>
+                      )}
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
