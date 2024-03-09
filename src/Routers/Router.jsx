@@ -15,6 +15,8 @@ import AddProduct from "../Pages/DashboardPages/AdminDashboardPages/AddProduct/A
 import ViewAllProduct from "../Pages/DashboardPages/AdminDashboardPages/ViewAllProduct/ViewAllProduct";
 import ViewAllCustomer from "../Pages/DashboardPages/AdminDashboardPages/ViewAllCustomer/ViewAllCustomer";
 import ViewAllOrder from "../Pages/DashboardPages/AdminDashboardPages/ViewAllOrder/ViewAllOrder";
+import Login from "../Pages/AuthenticationPage/LoginPage/Login";
+import AuthenticationLayout from "../Layouts/AuthenticationLayout/AuthenticationLayout";
 
 const router = createBrowserRouter([
   {
@@ -86,9 +88,19 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "Authentication/Register",
-    element: <Register></Register>,
+    path: "authentication",
+    element: <AuthenticationLayout></AuthenticationLayout>,
     errorElement: <PageNotFound></PageNotFound>,
+    children: [
+      {
+        path: "register",
+        element: <Register></Register>,
+      },
+      {
+        path: "login",
+        element: <Login></Login>,
+      },
+    ],
   },
 ]);
 

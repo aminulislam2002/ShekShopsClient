@@ -23,7 +23,7 @@ const NavBar = () => {
   // Check screen size on mount and update accordingly
   useEffect(() => {
     const handleResize = () => {
-      setIsSearchOpen(window.innerWidth <= 768  );
+      setIsSearchOpen(window.innerWidth <= 768);
     };
 
     handleResize();
@@ -168,7 +168,7 @@ const NavBar = () => {
               </button>
 
               <div className="AvatarDropdown ">
-                <Link to="Authentication/Register">
+                <Link to="authentication/register">
                   <div className="relative">
                     <button
                       className="w-10 h-10 sm:w-12 sm:h-12 rounded-full dark:text-slate-50 hover:bg-slate-800 dark:hover:text-slate-800 dark:hover:bg-slate-50 focus:outline-none flex items-center justify-center"
@@ -186,7 +186,7 @@ const NavBar = () => {
                   type="button"
                 >
                   <div className="w-3.5 h-3.5 flex items-center justify-center bg-primary-500 absolute top-1.5 right-1.5 rounded-full text-[10px] leading-none text-white font-medium">
-                    <span className="mt-[1px] bg-blue-500 p-1 rounded-full">10</span>
+                    <span className="mt-[1px] bg-blue-500 p-1 rounded-full">0</span>
                   </div>
                   <Link to="/cart">
                     <IoCartOutline className="w-6 h-6" />
