@@ -73,6 +73,57 @@ const Register = () => {
     }
   };
 
+  const handleGoogleRegister = async () => {
+    setIsLoading(true);
+
+    try {
+      // Create user with Google
+      const result = await createUserWithGoogle();
+
+      // Always treat the user as a new user
+      if (result.user) {
+        // Show success message
+        Swal.fire({
+          icon: "success",
+          title: `${result.user.displayName} Signup Successful`,
+          showConfirmButton: false,
+          timer: 3000,
+        });
+
+        // Post user data to your server
+        const saveUserData = {
+          name: result.user.displayName,
+          email: result.user.email,
+          role: "customer",
+        };
+
+        const response = await fetch(`http://localhost:5000/postUser`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(saveUserData),
+        });
+
+        const responseData = await response.json();
+
+        if (responseData.insertedId) {
+          navigate("/");
+        }
+      }
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        icon: "warning",
+        title: "Google Signup Failed",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="container mx-auto">
       <div className="my-5 lg:my-10 mx-5">
@@ -81,7 +132,10 @@ const Register = () => {
         </h2>
         <div className="max-w-md mx-auto space-y-6 ">
           <div className="grid gap-3">
-            <button className="flex w-full rounded-lg bg-slate-100 dark:bg-slate-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]">
+            <button
+              className="flex w-full rounded-lg bg-slate-100 dark:bg-slate-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]"
+              onClick={handleGoogleRegister}
+            >
               <FcGoogle className="w-6 h-6"></FcGoogle>
               <h3 className="flex-grow text-center text-sm font-medium text-slate-700 dark:text-slate-300 sm:text-sm">
                 Continue with Google
