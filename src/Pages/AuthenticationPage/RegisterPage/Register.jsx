@@ -82,6 +82,7 @@ const Register = () => {
 
       // Always treat the user as a new user
       if (result.user) {
+        navigate("/");
         // Show success message
         Swal.fire({
           icon: "success",

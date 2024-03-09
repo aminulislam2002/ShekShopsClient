@@ -4,13 +4,16 @@ import { IoCartOutline } from "react-icons/io5";
 import { LuUser2, LuSearch } from "react-icons/lu";
 
 import swift_mart_logo from "../../../assets/Logo/Logo Black Bg.png";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../../Providers/AuthProvider/AuthProvider";
 
 const NavBar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isAtTop, setIsAtTop] = useState(true);
   const location = useLocation();
+
+  const {user} = useContext(AuthContext)
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -167,18 +170,6 @@ const NavBar = () => {
                 <LuSearch className="w-6 h-5" />
               </button>
 
-              <div className="AvatarDropdown ">
-                <Link to="authentication/register">
-                  <div className="relative">
-                    <button
-                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-full dark:text-slate-50 hover:bg-slate-800 dark:hover:text-slate-800 dark:hover:bg-slate-50 focus:outline-none flex items-center justify-center"
-                      type="button"
-                    >
-                      <LuUser2 className="w-6 h-6" />
-                    </button>
-                  </div>
-                </Link>
-              </div>
               <div className="relative">
                 <button
                   className="
@@ -192,6 +183,19 @@ const NavBar = () => {
                     <IoCartOutline className="w-6 h-6" />
                   </Link>
                 </button>
+              </div>
+
+              <div className="AvatarDropdown ">
+                <Link to="authentication/register">
+                  <div className="relative">
+                    <button
+                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-full dark:text-slate-50 hover:bg-slate-800 dark:hover:text-slate-800 dark:hover:bg-slate-50 focus:outline-none flex items-center justify-center"
+                      type="button"
+                    >
+                      <LuUser2 className="w-6 h-6" />
+                    </button>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>
