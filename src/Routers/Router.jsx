@@ -53,7 +53,7 @@ const router = createBrowserRouter([
     errorElement: <PageNotFound></PageNotFound>,
     children: [
       {
-        path: "/dashboard/admin",
+        path: "",
         element: <AdminDashboard></AdminDashboard>,
       },
       {

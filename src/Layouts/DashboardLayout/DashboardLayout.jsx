@@ -1,5 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 import { GrMenu } from "react-icons/gr";
+import useAdmin from "../../Hooks/useAdmin";
+import useCustomer from "../../Hooks/useCustomer";
 
 const DashboardLayout = () => {
   const adminOptions = (
@@ -29,16 +31,18 @@ const DashboardLayout = () => {
 
   const customerOptions = (
     <>
-      <Link to="/dashboard/Product">
+      <Link to="/dashboard/myProduct">
         <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
-          {/* This is Student */}
+          MyProduct
         </li>
       </Link>
     </>
   );
 
-  const isAdmin = true;
-  const isCustomer = false;
+  const [isAdmin] = useAdmin();
+  const [isCustomer] = useCustomer();
+  // const isCustomer = false;
+  console.log(isAdmin);
 
   return (
     <div className="bg-slate-50 min-h-screen">

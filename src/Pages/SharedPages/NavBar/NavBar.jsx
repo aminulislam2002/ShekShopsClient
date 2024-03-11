@@ -224,7 +224,7 @@ const NavBar = () => {
                     <li>
                       {user ? (
                         <>
-                          <Link to="/dashboard/admin">Dashboard</Link>
+                          <Link to="/dashboard">Dashboard</Link>
                         </>
                       ) : (
                         <></>
