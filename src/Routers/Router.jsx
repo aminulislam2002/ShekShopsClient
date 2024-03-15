@@ -7,7 +7,6 @@ import ProductDetailsCard from "../Pages/HomePage/HomePageCard/ProductDetailsCar
 import CheckoutCard from "../Pages/HomePage/HomePageCard/CheckoutCard/CheckoutCard";
 import Categories from "../Pages/CategoryPages/Categories/Categories";
 import DashboardLayout from "../Layouts/DashboardLayout/DashboardLayout";
-import AdminDashboard from "../Pages/DashboardPages/AdminDashboard/AdminDashboard";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import PageNotFound from "../Pages/PageNotFound/PageNotFound";
 import Shop from "../Pages/Shop/Shop";
@@ -18,6 +17,7 @@ import ViewAllOrder from "../Pages/DashboardPages/AdminDashboardPages/ViewAllOrd
 import Login from "../Pages/AuthenticationPage/LoginPage/Login";
 import AuthenticationLayout from "../Layouts/AuthenticationLayout/AuthenticationLayout";
 import UpdateProduct from "../Pages/DashboardPages/AdminDashboardPages/UpdateProduct/UpdateProduct";
+import WelcomeDashboard from "../Pages/DashboardPages/WelcomeDashboard/WelcomeDashboard";
 
 const router = createBrowserRouter([
   {
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <AdminDashboard></AdminDashboard>,
+        element: <WelcomeDashboard></WelcomeDashboard>,
       },
       {
         path: "/dashboard/addProduct",

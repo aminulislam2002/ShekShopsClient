@@ -70,7 +70,7 @@ const DashboardLayout = () => {
             </div>
           </div>
           <div className="lg:w-10/12">
-            <div className="overflow-y-auto max-h-[95vh]">
+            <div className="overflow-y-auto max-h-[100vh]">
               <Outlet />
             </div>
           </div>

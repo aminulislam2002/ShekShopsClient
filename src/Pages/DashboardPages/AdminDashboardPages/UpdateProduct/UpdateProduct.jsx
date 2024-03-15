@@ -12,7 +12,7 @@ const UpdateProduct = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/product/${id}`);
+        const response = await fetch(`https://server.shekshops.com/product/${id}`);
         if (response.ok) {
           const data = await response.json();
           setProduct(data);
@@ -86,7 +86,7 @@ const UpdateProduct = () => {
       console.log(productInfo);
 
       // Product updated to database
-      const response = await fetch(`http://localhost:5000/updateProduct/${id}`, {
+      const response = await fetch(`https://server.shekshops.com/updateProduct/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -180,7 +180,7 @@ const UpdateProduct = () => {
   //       };
 
   //       // Product updated to database
-  //       const response = await fetch(`http://localhost:5000/updateProduct/${id}`, {
+  //       const response = await fetch(`https://server.shekshops.com/updateProduct/${id}`, {
   //         method: "PATCH",
   //         headers: {
   //           "Content-Type": "application/json",
