@@ -46,7 +46,7 @@ const AddProduct = () => {
       };
 
       // Product added to database
-      const response = await fetch("https://shek-shops-server.vercel.app/postProduct", {
+      const response = await fetch("https://server.shekshops.com/postProduct", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

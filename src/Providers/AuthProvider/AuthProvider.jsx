@@ -74,7 +74,7 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
 
       if (currentUser) {
-        axios.post("https://shek-shops-server.vercel.app/jwt", { email: currentUser.email }).then((data) => {
+        axios.post("https://server.shekshops.com/jwt", { email: currentUser.email }).then((data) => {
           localStorage.setItem("JWT_ACCESS_TOKEN", data.data.token);
           setLoading(false);
         });

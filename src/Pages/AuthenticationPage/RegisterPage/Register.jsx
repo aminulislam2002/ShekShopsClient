@@ -41,7 +41,7 @@ const Register = () => {
         role: userData.role,
       };
 
-      const response = await fetch(`https://shek-shops-server.vercel.app/postUser`, {
+      const response = await fetch(`https://server.shekshops.com/postUser`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -98,7 +98,7 @@ const Register = () => {
           role: "customer",
         };
 
-        const response = await fetch(`https://shek-shops-server.vercel.app/postUser`, {
+        const response = await fetch(`https://server.shekshops.com/postUser`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
