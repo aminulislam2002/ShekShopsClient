@@ -94,7 +94,7 @@ const TopBanner = () => {
               <p className="mb-0 text-lg font-semibold">
                 বাংলাদেশের অন্যতম বৃহত্তম শপিং প্লাটফর্ম ShekShops এ আপনাকে স্বাগতম!!! কেনাকাটায় থাকছে বিশেষ মূল্যছাড়!!!
                 সারাদেশের সকল জেলা,উপজেলা এবং ইউনিয়ন পর্যায়ে থাকছে হোম ডেলিভারি সুবিধা। প্রয়োজনীয় প্রোডাক্ট পেতে আমাদের
-                সাথেই থাকুন। হেল্পলাইন ☎ 01634385096
+                সাথেই থাকুন। হেল্পলাইন ☎ +880 1704-268005
               </p>
             </marquee>
           </div>
@@ -214,7 +214,7 @@ const TopBanner = () => {
         </div>
 
         {/* Right side image part */}
-        <div className="col-span-12 md:col-span-12 lg:col-span-2">
+        <div className="hidden md:block md:col-span-12 lg:col-span-2">
           <div className="grid grid-cols-12 gap-5">
             <img
               src={right_image_1}

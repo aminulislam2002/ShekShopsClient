@@ -179,7 +179,7 @@ const CheckoutCard = () => {
               <div className="border-t border-slate-200 dark:border-slate-700 px-6 py-7 space-y-4 sm:space-y-6 block">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-3">
                   <div>
-                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">নাম</label>
+                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">Full name</label>
                     <input
                       name="name"
                       value={customerData.name}
@@ -190,7 +190,7 @@ const CheckoutCard = () => {
                     />
                   </div>
                   <div>
-                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">নাম্বার</label>
+                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">Mobile number</label>
                     <input
                       name="mobileNumber"
                       value={customerData.mobileNumber}
@@ -204,7 +204,7 @@ const CheckoutCard = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-3">
                   <div>
-                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">জেলা</label>
+                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">Your district</label>
                     <input
                       name="district"
                       value={customerData.district}
@@ -215,7 +215,7 @@ const CheckoutCard = () => {
                     />
                   </div>
                   <div className="">
-                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">ঠিকানা</label>
+                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">Full address</label>
                     <input
                       name="address"
                       value={customerData.address}
@@ -228,7 +228,7 @@ const CheckoutCard = () => {
                 </div>
 
                 <div className="">
-                  <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">মন্তব্য</label>
+                  <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">Comments (Optional)</label>
                   <input
                     name="comment"
                     value={customerData.comment}
@@ -254,7 +254,7 @@ const CheckoutCard = () => {
                       />
                       <label className="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none">
                         <span className="text-sm font-medium">
-                          Inside of Dhaka <span className="font-light">($60)</span>
+                          Inside of Dhaka <span className="font-light">(৳60)</span>
                         </span>
                       </label>
                     </div>
@@ -270,7 +270,7 @@ const CheckoutCard = () => {
                       />
                       <label className="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none">
                         <span className="text-sm font-medium">
-                          Outside of Dhaka <span className="font-light">($120)</span>
+                          Outside of Dhaka <span className="font-light">(৳120)</span>
                         </span>
                       </label>
                     </div>
@@ -336,7 +336,7 @@ const CheckoutCard = () => {
 
               <div className="col-span-12 flex items-center text-xl font-medium font-primary mb-3">
                 <span className="text-orange-500 font-semibold !leading-none">
-                  ${productData?.productInfo?.originalPrice}
+                ৳{productData?.productInfo?.originalPrice}
                 </span>
               </div>
 
@@ -350,16 +350,16 @@ const CheckoutCard = () => {
           <div className="py-7 px-3 border-b">
             <div className="flex justify-between items-center mb-4">
               <span className="text-purple-600 text-base font-bold">Sub-Total:</span>
-              <span className="text-lg font-bold text-purple-600">${productData?.productInfo?.originalPrice}</span>
+              <span className="text-lg font-bold text-purple-600"><span className="text-2xl">৳</span>{productData?.productInfo?.originalPrice}</span>
             </div>
             <div className="flex justify-between items-center mb-4">
               <span className="text-blue-600 text-base font-bold">{customerData?.deliveryArea}:</span>
-              <span className="text-lg font-bold text-blue-600">${customerData?.deliveryCharge.toFixed(2)}</span>
+              <span className="text-lg font-bold text-blue-600"><span className="text-2xl">৳</span>{customerData?.deliveryCharge.toFixed(2)}</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-green-600 text-base font-bold">Total:</span>
               <span className="text-lg font-bold text-green-600">
-                $
+                <span className="text-2xl">৳</span>
                 {parseFloat(productData?.productInfo?.originalPrice * productData?.productInfo?.quantity) +
                   parseFloat(customerData?.deliveryCharge)}
               </span>

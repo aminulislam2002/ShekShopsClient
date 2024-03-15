@@ -139,7 +139,7 @@ const ProductDetailsCard = () => {
             {/* Display original price with discounted price */}
             <div className="flex items-center text-xl md:text-2xl lg:text-3xl font-medium font-primary mb-5">
               <span className="text-orange-500 font-semibold !leading-none">
-                ${calculateDiscountedPrice(product?.originalPrice, product?.offerPrice)}
+              ৳{calculateDiscountedPrice(product?.originalPrice, product?.offerPrice)}
               </span>
             </div>
 
@@ -148,7 +148,7 @@ const ProductDetailsCard = () => {
               {product?.offerPrice && (
                 <div>
                   <div className="flex items-center text-sm md:text-lg font-medium">
-                    <span className="text-gray-400 line-through !leading-none">${product?.price}</span>
+                    <span className="text-gray-400 line-through !leading-none"><span className="text-xl">৳</span>{product?.originalPrice}</span>
                     <span className="text-green-500 mx-1">
                       -{calculateDiscountedPercentage(product?.originalPrice, product?.offerPrice)}
                     </span>
@@ -291,7 +291,7 @@ const ProductDetailsCard = () => {
                     </div>
                     <div className="mt-2.5">
                       <p className="font-semibold text-slate-900">Free shipping</p>
-                      <p className="text-slate-500 mt-0.5 text-sm">On orders over $50.00</p>
+                      <p className="text-slate-500 mt-0.5 text-sm">On orders over ৳ 5,000</p>
                     </div>
                   </div>
                   <div className="flex flex-col p-5 rounded-2xl bg-sky-50 dark:bg-opacity-90">
@@ -318,7 +318,7 @@ const ProductDetailsCard = () => {
                     </div>
                     <div className="mt-2.5">
                       <p className="font-semibold text-slate-900">Refunds policy</p>
-                      <p className="text-slate-500 mt-0.5 text-sm">60 days return for any reason</p>
+                      <p className="text-slate-500 mt-0.5 text-sm">7 days return for any reason</p>
                     </div>
                   </div>
                 </div>

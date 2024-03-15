@@ -15,10 +15,10 @@ const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
       // Calculate the discounted price
       const discountedPrice = price - offer;
       // Format the discounted price as a string with two decimal places
-      return `$${discountedPrice.toFixed(2)}`;
+      return `${discountedPrice.toFixed(2)}`;
     } else {
       // If there is no offer, return the original price as is
-      return `$${parseFloat(originalPrice).toFixed(2)}`;
+      return `${parseFloat(originalPrice).toFixed(2)}`;
     }
   };
   // Add this function outside the component to calculate discounted percentage
@@ -117,7 +117,7 @@ const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
                   {/* Display original price with discounted price */}
                   <div className="col-span-12 flex items-center text-xl font-medium font-primary mb-1">
                     <span className="text-orange-500 font-semibold !leading-none">
-                      {calculateDiscountedPrice(product?.originalPrice, product?.offerPrice)}
+                    <span className="text-base me-0.5">৳</span>{calculateDiscountedPrice(product?.originalPrice, product?.offerPrice)}
                     </span>
                   </div>
 
@@ -126,7 +126,7 @@ const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
                       <div>
                         {/* Display discounted percentage if available */}
                         <div className="flex items-center text-sm font-medium">
-                          <span className="text-gray-400 line-through !leading-none">${product?.originalPrice}</span>
+                          <span className="text-gray-400 line-through !leading-none">৳{product?.originalPrice}</span>
                           <span className="text-green-500 mx-1">
                             -{calculateDiscountedPercentage(product?.originalPrice, product?.offerPrice)}
                           </span>
