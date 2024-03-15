@@ -101,7 +101,7 @@ const OurProductFeature = () => {
         >
           {departments.map((item) => (
             <SwiperSlide key={item.id}>
-              <Link to={item.linkTo}>
+              {/* <Link to={item.linkTo}> */}
                 <div>
                   <div className={`flex-1 relative w-full rounded-2xl overflow-hidden group aspect-w-1 aspect-h-1`}>
                     <div>
@@ -123,7 +123,7 @@ const OurProductFeature = () => {
                     </span>
                   </div>
                 </div>
-              </Link>
+              {/* </Link> */}
             </SwiperSlide>
           ))}
         </Swiper>

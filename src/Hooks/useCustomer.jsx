@@ -12,7 +12,7 @@ const useCustomer = () => {
 
     queryFn: async () => {
       const res = await axiosSecure.get(`/customer/${user?.email}`);
-      console.log("is customer response", res);
+      // console.log("is customer response", res);
       return res.data.customer;
     },
   });

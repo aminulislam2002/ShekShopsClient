@@ -17,6 +17,7 @@ import ViewAllCustomer from "../Pages/DashboardPages/AdminDashboardPages/ViewAll
 import ViewAllOrder from "../Pages/DashboardPages/AdminDashboardPages/ViewAllOrder/ViewAllOrder";
 import Login from "../Pages/AuthenticationPage/LoginPage/Login";
 import AuthenticationLayout from "../Layouts/AuthenticationLayout/AuthenticationLayout";
+import UpdateProduct from "../Pages/DashboardPages/AdminDashboardPages/UpdateProduct/UpdateProduct";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/addProduct",
         element: <AddProduct></AddProduct>,
+      },
+      {
+        path: "/dashboard/update/:id",
+        element: <UpdateProduct></UpdateProduct>,
       },
       {
         path: "/dashboard/viewAllProduct",

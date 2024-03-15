@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ViewAllProduct = () => {
@@ -93,9 +94,11 @@ const ViewAllProduct = () => {
                   <img src={product?.images[0]} alt={`Product ${product?.name}`} className="w-16 h-16" />
                 </td>
                 <td className="px-4 py-2 text-center w-1/12">
-                  <button className="w-full bg-blue-500 hover:bg-blue-700 text-white px-3 py-1 my-1 rounded-md">
-                    Update
-                  </button>
+                  <Link to={`/dashboard/update/${product?._id}`}>
+                    <button className="w-full bg-blue-500 hover:bg-blue-700 text-white px-3 py-1 my-1 rounded-md">
+                      Update
+                    </button>
+                  </Link>
                   <button
                     onClick={() => {
                       // Show confirmation alert before deletion
