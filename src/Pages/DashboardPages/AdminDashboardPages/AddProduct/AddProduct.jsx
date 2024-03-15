@@ -160,55 +160,20 @@ const AddProduct = () => {
             Product Size
           </label>
           {/* Use checkboxes for multiple selections */}
-          <div className="grid grid-cols-5 md:grid-cols-7 lg:grid-cols-12">
-            <div>
-              <input id="size-xs" name="sizes" type="checkbox" value="xs" {...register("sizes")} className="mr-1" />
-              <label htmlFor="size-xs">Xs</label>
-            </div>
-
-            <div>
-              <input id="size-s" name="sizes" type="checkbox" value="s" {...register("sizes")} className="lg:ml-4 mr-1" />
-              <label htmlFor="size-s">S</label>
-            </div>
-
-            <div>
-              <input id="size-m" name="sizes" type="checkbox" value="m" {...register("sizes")} className="lg:ml-4 mr-1" />
-              <label htmlFor="size-m">M</label>
-            </div>
-
-            <div>
-              <input id="size-l" name="sizes" type="checkbox" value="l" {...register("sizes")} className="lg:ml-4 mr-1" />
-              <label htmlFor="size-l">L</label>
-            </div>
-
-            <div>
-              <input id="size-xl" name="sizes" type="checkbox" value="xl" {...register("sizes")} className="lg:ml-4 mr-1" />
-              <label htmlFor="size-xl">Xl</label>
-            </div>
-
-            <div>
-              <input
-                id="size-2xl"
-                name="sizes"
-                type="checkbox"
-                value="2xl"
-                {...register("sizes")}
-                className="lg:ml-4 mr-1"
-              />
-              <label htmlFor="size-2xl">2xl</label>
-            </div>
-
-            <div>
-              <input
-                id="size-3xl"
-                name="sizes"
-                type="checkbox"
-                value="3xl"
-                {...register("sizes")}
-                className="lg:ml-4 mr-1"
-              />
-              <label htmlFor="size-3xl">3xl</label>
-            </div>
+          <div className="grid grid-cols-3 lg:grid-cols-10">
+            {["XS", "S", "M", "L", "XL", "XXL", "XXXL"].map((size) => (
+              <div key={size}>
+                <input
+                  id={`size-${size}`}
+                  name="sizes"
+                  type="checkbox"
+                  defaultValue={size}
+                  {...register("sizes")}
+                  className="mr-2"
+                />
+                <label htmlFor={`size-${size}`}>{size}</label>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -219,120 +184,19 @@ const AddProduct = () => {
           </label>
           {/* Use checkboxes for multiple selections */}
           <div className="grid grid-cols-3 lg:grid-cols-10">
-            <div>
-              <input id="color-black" name="colors" type="checkbox" value="black" {...register("colors")} className="mr-2" />
-              <label htmlFor="color-black">Black</label>
-            </div>
-
-            <div>
-              <input
-                id="color-gray"
-                name="colors"
-                type="checkbox"
-                value="gray"
-                {...register("colors")}
-                className="lg:ml-4 mr-2"
-              />
-              <label htmlFor="color-gray">Gray</label>
-            </div>
-
-            <div>
-              <input
-                id="color-white"
-                name="colors"
-                type="checkbox"
-                value="white"
-                {...register("colors")}
-                className="lg:ml-4 mr-2"
-              />
-              <label htmlFor="color-white">White</label>
-            </div>
-
-            <div>
-              <input
-                id="color-red"
-                name="colors"
-                type="checkbox"
-                value="red"
-                {...register("colors")}
-                className="lg:ml-4 mr-2"
-              />
-              <label htmlFor="color-red">Red</label>
-            </div>
-
-            <div>
-              <input
-                id="color-green"
-                name="colors"
-                type="checkbox"
-                value="green"
-                {...register("colors")}
-                className="lg:ml-4 mr-2"
-              />
-              <label htmlFor="color-green">Green</label>
-            </div>
-
-            <div>
-              <input
-                id="color-blue"
-                name="colors"
-                type="checkbox"
-                value="blue"
-                {...register("colors")}
-                className="lg:ml-4 mr-2"
-              />
-              <label htmlFor="color-blue">Blue</label>
-            </div>
-
-            <div>
-              <input
-                id="color-yellow"
-                name="colors"
-                type="checkbox"
-                value="yellow"
-                {...register("colors")}
-                className="lg:ml-4 mr-2"
-              />
-              <label htmlFor="color-yellow">Yellow</label>
-            </div>
-
-            <div>
-              <input
-                id="color-pink"
-                name="colors"
-                type="checkbox"
-                value="pink"
-                {...register("colors")}
-                className="lg:ml-4 mr-2"
-              />
-              <label htmlFor="color-pink">Pink</label>
-            </div>
-
-            <div>
-              <input
-                id="color-orange"
-                name="colors"
-                type="checkbox"
-                value="orange"
-                {...register("colors")}
-                className="lg:ml-4 mr-2"
-              />
-              <label htmlFor="color-orange">Orange</label>
-            </div>
-
-            <div>
-              <input
-                id="color-purple"
-                name="colors"
-                type="checkbox"
-                value="purple"
-                {...register("colors")}
-                className="lg:ml-4 mr-2"
-              />
-              <label htmlFor="color-purple">Purple</label>
-            </div>
-
-            {/* Add more colors as needed */}
+            {["black", "gray", "white", "red", "green", "blue", "yellow", "pink", "orange", "purple"].map((color) => (
+              <div key={color}>
+                <input
+                  id={`color-${color}`}
+                  name="colors"
+                  type="checkbox"
+                  defaultValue={color}
+                  {...register("colors")}
+                  className="mr-2"
+                />
+                <label htmlFor={`color-${color}`}>{color}</label>
+              </div>
+            ))}
           </div>
         </div>
 
