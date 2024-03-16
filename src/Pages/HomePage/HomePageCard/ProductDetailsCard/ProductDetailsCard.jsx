@@ -64,7 +64,7 @@ const ProductDetailsCard = () => {
       .then((res) => res.json())
       .then((data) => {
         // Find the specific product based on the id parameter
-        const selectedProduct = data.find((product) => product.id === parseInt(id));
+        const selectedProduct = data.find((product) => product?.id === parseInt(id));
         setProduct(selectedProduct);
 
         // Set buyingProductInfo when product data is available
@@ -133,13 +133,15 @@ const ProductDetailsCard = () => {
         <div className="col-span-12 md:col-span-7">
           <div>
             <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-slate-950 dark:text-slate-50 font-primary mb-5">
-              {product.name}
+              {product?.name}
             </h2>
+
+            <p className="md:text-base lg:text-lg text-slate-950 dark:text-slate-50 mb-5">{product?.description}</p>
 
             {/* Display original price with discounted price */}
             <div className="flex items-center text-xl md:text-2xl lg:text-3xl font-medium font-primary mb-5">
               <span className="text-orange-500 font-semibold !leading-none">
-              ৳{calculateDiscountedPrice(product?.originalPrice, product?.offerPrice)}
+                ৳{calculateDiscountedPrice(product?.originalPrice, product?.offerPrice)}
               </span>
             </div>
 
@@ -148,7 +150,10 @@ const ProductDetailsCard = () => {
               {product?.offerPrice && (
                 <div>
                   <div className="flex items-center text-sm md:text-lg font-medium">
-                    <span className="text-gray-400 line-through !leading-none"><span className="text-xl">৳</span>{product?.originalPrice}</span>
+                    <span className="text-gray-400 line-through !leading-none">
+                      <span className="text-xl">৳</span>
+                      {product?.originalPrice}
+                    </span>
                     <span className="text-green-500 mx-1">
                       -{calculateDiscountedPercentage(product?.originalPrice, product?.offerPrice)}
                     </span>
@@ -165,7 +170,7 @@ const ProductDetailsCard = () => {
               <FaStar className="w-4 h-4 text-amber-400"></FaStar>
               <FaStar className="w-4 h-4 text-amber-400"></FaStar>
               <span className="text-sm ml-1 text-slate-500 dark:text-slate-50">
-                {product?.ratings} ({product.reviews} reviews)
+                {product?.ratings} ({product?.reviews} reviews)
               </span>
             </div>
 
