@@ -49,7 +49,7 @@ const BestSellingProducts = () => {
   const filteredProducts = products.filter((product) => product?.productType === "best selling");
 
   return (
-    <div className="my-12 md:my-16 lg:my-20 container mx-auto">
+    <div className="lg:w-[1200px] lg:mx-auto px-2.5 md:px-5 lg:px-0 my-10 md:my-14 lg:my-16">
       {/* Title of this section */}
 
       <div className="relative flex flex-col sm:flex-row sm:items-end md:items-start justify-between mb-12 lg:mb-14 text-neutral-900 dark:text-neutral-50">

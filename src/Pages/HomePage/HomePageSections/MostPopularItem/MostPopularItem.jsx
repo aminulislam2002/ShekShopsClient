@@ -43,7 +43,7 @@ const MostPopularItem = () => {
   };
 
   return (
-    <div className="my-12 md:my-16 lg:my-20 container mx-auto">
+    <div className="lg:w-[1200px] lg:mx-auto px-2.5 md:px-5 lg:px-0 my-10 md:my-14 lg:my-16">
       {/* Title of this section */}
 
       <div className="relative mb-12 lg:mb-14 text-neutral-900 dark:text-neutral-50">
@@ -163,7 +163,7 @@ const MostPopularItem = () => {
 
       {/* Products Section */}
 
-      <div className="grid gap-3 md:gap-4 lg:gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mt-10">
+      <div className="grid gap-2 md:gap-3 lg:gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mt-10">
         {filteredProducts.map((product) => (
           <ProductCard
             key={product._id}

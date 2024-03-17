@@ -5,7 +5,7 @@ import shepping_charge from "../../../../assets/HowItWorks/shepping_charge.png";
 
 const HowItWorks = () => {
   return (
-    <div className="py-12 md:py-16 lg:py-20 container mx-auto border-t border-b border-slate-200 dark:border-slate-700">
+    <div className="lg:w-[1200px] lg:mx-auto px-2.5 md:px-5 lg:px-0 py-10 md:py-14 lg:py-16 border-t border-b border-slate-200 dark:border-slate-700">
       <div className="nc-SectionHowItWork">
         <div className="relative grid grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-10">
           {/* Step 1 */}

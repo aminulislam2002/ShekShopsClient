@@ -41,7 +41,7 @@ const OurProductFeature = () => {
   };
 
   return (
-    <div className="my-12 md:my-16 lg:my-20 container mx-auto">
+    <div className="lg:w-[1200px] lg:mx-auto px-2.5 md:px-5 lg:px-0 my-10 md:my-14 lg:my-16">
       {/* Title of this section */}
 
       <div className="relative flex flex-col sm:flex-row sm:items-end md:items-start justify-between mb-12 lg:mb-14 text-neutral-900 dark:text-neutral-50">
@@ -80,17 +80,20 @@ const OurProductFeature = () => {
         <Swiper
           // slidesPerView={3}
           breakpoints={{
-            640: {
-              slidesPerView: 1,
+            380: {
+              slidesPerView: 2,
+              spaceBetween: 12,
             },
             768: {
-              slidesPerView: 2,
+              slidesPerView: 3,
+              spaceBetween: 16,
             },
             1024: {
               slidesPerView: 4,
+              spaceBetween: 20,
             },
           }}
-          spaceBetween={30}
+          // spaceBetween={20}
           pagination={
             {
               // clickable: true,
@@ -102,27 +105,27 @@ const OurProductFeature = () => {
           {departments.map((item) => (
             <SwiperSlide key={item.id}>
               {/* <Link to={item.linkTo}> */}
-                <div>
-                  <div className={`flex-1 relative w-full rounded-2xl overflow-hidden group aspect-w-1 aspect-h-1`}>
-                    <div>
-                      <div className="w-full h-full flex justify-center">
-                        <img
-                          src={item?.image}
-                          className="w-[245px] h-[190px] md:w-[225px] md:h-[170px] lg:w-[275px] lg:h-[220px] rounded-2xl"
-                          alt={item?.department}
-                        />
-                      </div>
+              <div>
+                <div className={`flex-1 relative w-full rounded-2xl overflow-hidden group aspect-w-1 aspect-h-1`}>
+                  <div>
+                    <div className="w-full h-full flex justify-center">
+                      <img
+                        src={item?.image}
+                        className="w-full h-[150px] md:w-[225px] md:h-[170px] lg:w-[275px] lg:h-[220px] rounded-2xl"
+                        alt={item?.department}
+                      />
                     </div>
                   </div>
-                  <div className="mt-5 flex-1 text-center">
-                    <h2 className="text-base sm:text-lg text-neutral-900 dark:text-neutral-100 font-semibold">
-                      {item?.department}
-                    </h2>
-                    <span className="block mt-0.5 sm:mt-1.5 text-sm text-neutral-500 dark:text-neutral-400">
-                      {item.products}+ products
-                    </span>
-                  </div>
                 </div>
+                <div className="mt-5 flex-1 text-center">
+                  <h2 className="text-base sm:text-lg text-neutral-900 dark:text-neutral-100 font-semibold">
+                    {item?.department}
+                  </h2>
+                  <span className="block mt-0.5 sm:mt-1.5 text-sm text-neutral-500 dark:text-neutral-400">
+                    {item.products}+ products
+                  </span>
+                </div>
+              </div>
               {/* </Link> */}
             </SwiperSlide>
           ))}

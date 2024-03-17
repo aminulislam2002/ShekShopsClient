@@ -29,7 +29,7 @@ const Shop = () => {
   };
 
   return (
-    <div className="container mx-auto my-10 md:my-16 lg:my-20">
+    <div className="lg:w-[1200px] lg:mx-auto px-2.5 md:px-5 lg:px-0 my-10 md:my-14 lg:my-16">
       {loading ? (
         <h1>Loading...!</h1>
       ) : (

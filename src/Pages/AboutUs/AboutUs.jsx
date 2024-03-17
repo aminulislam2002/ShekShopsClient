@@ -2,7 +2,7 @@ import aboutUsImage from "../../assets/AboutUs/about_us.png";
 
 const AboutUs = () => {
   return (
-    <div className="container mx-auto my-10 md:my-16 lg:my-20">
+    <div className="lg:w-[1200px] lg:mx-auto px-2.5 md:px-5 lg:px-0 my-10 md:my-14 lg:my-16">
       <div className="nc-SectionHero relative">
         <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-10 items-center relative text-center lg:text-left">
           <div className="w-full max-w-lg space-y-5 lg:space-y-7">
