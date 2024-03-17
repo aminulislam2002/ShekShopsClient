@@ -103,12 +103,12 @@ const TopBanner = () => {
         {/* Left side category part */}
         <div className="col-span-12 md:col-span-3 lg:col-span-2">
           <div className="border-0 md:border dark:border-slate-700 py-1">
-            <ul className="list-none pl-0 hidden md:block">
+            <ul className="list-none pl-0 py-1 hidden md:block">
               {/* Map through the categoryOptions array to generate dynamic options */}
               {categoryOptions.map((option) => (
                 <li
                   key={option?.category}
-                  className="mb-2 py-2.5 ps-5 transition-transform transform duration-300 hover:translate-x-2 group"
+                  className="lg:mb-2 md:mb-1.5 lg:py-2 md:py-1.5 lg:ps-5 md:ps-3 transition-transform transform duration-300 hover:translate-x-2 group"
                 >
                   <Link
                     to="/category"
@@ -158,25 +158,25 @@ const TopBanner = () => {
         </div>
 
         {/* Middle - slider part */}
-        <div className="col-span-12 md:col-span-8 lg:col-span-8">
+        <div className="col-span-12 md:col-span-9 lg:col-span-8">
           <div>
             <>
               <div className="navigation-wrapper">
                 <div ref={sliderRef} className="keen-slider">
                   <div className="keen-slider__slide number-slide1">
-                    <img src={slider_image_1} className="w-full h-[250px] md:h-[350px] lg:h-[425px]" alt="Slider image 1" />
+                    <img src={slider_image_1} className="w-full h-[250px] md:h-[350px] lg:h-[400px]" alt="Slider image 1" />
                   </div>
 
                   <div className="keen-slider__slide number-slide2">
-                    <img src={slider_image_2} className="w-full h-[250px] md:h-[350px] lg:h-[425px]" alt="Slider image 2" />
+                    <img src={slider_image_2} className="w-full h-[250px] md:h-[350px] lg:h-[400px]" alt="Slider image 2" />
                   </div>
 
                   <div className="keen-slider__slide number-slide3">
-                    <img src={slider_image_3} className="w-full h-[250px] md:h-[350px] lg:h-[425px]" alt="Slider image 3" />
+                    <img src={slider_image_3} className="w-full h-[250px] md:h-[350px] lg:h-[400px]" alt="Slider image 3" />
                   </div>
 
                   <div className="keen-slider__slide number-slide4">
-                    <img src={slider_image_4} className="w-full h-[250px] md:h-[350px] lg:h-[425px]" alt="Slider image 4" />
+                    <img src={slider_image_4} className="w-full h-[250px] md:h-[350px] lg:h-[400px]" alt="Slider image 4" />
                   </div>
                 </div>
                 {loaded && instanceRef.current && (
@@ -219,17 +219,17 @@ const TopBanner = () => {
             <img
               src={right_image_1}
               alt="right_image_1"
-              className="col-span-12 md:col-span-4 lg:col-span-12 lg:h-[128px] w-full"
+              className="col-span-12 md:col-span-4 lg:col-span-12 lg:h-[119px] w-full"
             />
             <img
               src={right_image_2}
               alt="right_image_2"
-              className="col-span-12 md:col-span-4 lg:col-span-12 lg:h-[128px] w-full"
+              className="col-span-12 md:col-span-4 lg:col-span-12 lg:h-[119px] w-full"
             />
             <img
               src={right_image_3}
               alt="right_image_3"
-              className="col-span-12 md:col-span-4 lg:col-span-12 lg:h-[128px] w-full"
+              className="col-span-12 md:col-span-4 lg:col-span-12 lg:h-[119px] w-full"
             />
           </div>
         </div>

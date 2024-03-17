@@ -117,7 +117,8 @@ const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
                   {/* Display original price with discounted price */}
                   <div className="col-span-12 flex items-center text-xl font-medium font-primary mb-1">
                     <span className="text-orange-500 font-semibold !leading-none">
-                    <span className="text-base me-0.5">৳</span>{calculateDiscountedPrice(product?.originalPrice, product?.offerPrice)}
+                      <span className="text-base me-0.5">৳</span>
+                      {calculateDiscountedPrice(product?.originalPrice, product?.offerPrice)}
                     </span>
                   </div>
 

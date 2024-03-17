@@ -167,7 +167,7 @@ const MostPopularItem = () => {
         {filteredProducts.map((product) => (
           <ProductCard
             key={product._id}
-            id={product.id}
+            id={product._id}
             product={product}
             handleFavoriteClick={handleFavoriteClick}
             favorites={favorites}

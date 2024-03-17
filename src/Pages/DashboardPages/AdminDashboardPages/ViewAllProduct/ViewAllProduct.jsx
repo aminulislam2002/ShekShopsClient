@@ -63,7 +63,7 @@ const ViewAllProduct = () => {
   };
 
   return (
-    <div className="">
+    <div className="container mx-auto">
       <div className="bg-white shadow-md rounded-lg overflow-x-auto">
         <table className="w-full table-auto">
           {/* head */}

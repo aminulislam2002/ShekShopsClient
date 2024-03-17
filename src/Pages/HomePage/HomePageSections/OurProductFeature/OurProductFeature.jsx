@@ -1,5 +1,4 @@
 import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 // Import Swiper React components

@@ -11,9 +11,9 @@ const DashboardLayout = () => {
           View All Order
         </li>
       </Link>
-      <Link to="/dashboard/viewAllCustomer">
+      <Link to="/dashboard/ViewAllUsers">
         <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
-          View All Customer
+          View All Users
         </li>
       </Link>
       <Link to="/dashboard/viewAllProduct">

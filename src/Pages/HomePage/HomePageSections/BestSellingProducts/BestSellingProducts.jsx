@@ -113,9 +113,9 @@ const BestSellingProducts = () => {
           className="mySwiper"
         >
           {filteredProducts.map((product) => (
-            <SwiperSlide key={product?.id}>
+            <SwiperSlide key={product?._id}>
               <ProductCard
-                id={product?.id}
+                id={product?._id}
                 product={product}
                 handleFavoriteClick={handleFavoriteClick}
                 favorites={favorites}

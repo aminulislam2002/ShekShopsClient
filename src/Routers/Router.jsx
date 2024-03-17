@@ -12,12 +12,12 @@ import PageNotFound from "../Pages/PageNotFound/PageNotFound";
 import Shop from "../Pages/Shop/Shop";
 import AddProduct from "../Pages/DashboardPages/AdminDashboardPages/AddProduct/AddProduct";
 import ViewAllProduct from "../Pages/DashboardPages/AdminDashboardPages/ViewAllProduct/ViewAllProduct";
-import ViewAllCustomer from "../Pages/DashboardPages/AdminDashboardPages/ViewAllCustomer/ViewAllCustomer";
 import ViewAllOrder from "../Pages/DashboardPages/AdminDashboardPages/ViewAllOrder/ViewAllOrder";
 import Login from "../Pages/AuthenticationPage/LoginPage/Login";
 import AuthenticationLayout from "../Layouts/AuthenticationLayout/AuthenticationLayout";
 import UpdateProduct from "../Pages/DashboardPages/AdminDashboardPages/UpdateProduct/UpdateProduct";
 import WelcomeDashboard from "../Pages/DashboardPages/WelcomeDashboard/WelcomeDashboard";
+import ViewAllUsers from "../Pages/DashboardPages/AdminDashboardPages/ViewAllUsers/ViewAllUsers";
 
 const router = createBrowserRouter([
   {
@@ -70,8 +70,8 @@ const router = createBrowserRouter([
         element: <ViewAllProduct></ViewAllProduct>,
       },
       {
-        path: "/dashboard/viewAllCustomer",
-        element: <ViewAllCustomer></ViewAllCustomer>,
+        path: "/dashboard/ViewAllUsers",
+        element: <ViewAllUsers></ViewAllUsers>,
       },
       {
         path: "/dashboard/viewAllOrder",
