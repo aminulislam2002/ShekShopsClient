@@ -278,7 +278,7 @@ const AddProduct = () => {
           {[1, 2, 3, 4].map((index) => (
             <div key={index} className="w-full mb-4">
               <label className="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none">
-                <span className="text-sm font-medium">Image {index}</span>
+                <span className="text-sm font-medium">{index === 1 ? "Main Image" : `Optional Image`}</span>
               </label>
               <input
                 type="file"

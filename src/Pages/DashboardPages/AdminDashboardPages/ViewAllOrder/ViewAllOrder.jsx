@@ -77,27 +77,27 @@ const ViewAllOrder = () => {
             <div className="p-6">
               <h2 className="text-lg font-primary font-semibold mb-4">{orderInfo?.productData?.name}</h2>
               <div className="mb-4">
-                <p className="text-slate-800 dark:text-slate-50">{`Color: ${orderInfo?.productData?.color}`}</p>
-                <p className="text-slate-800 dark:text-slate-50">{`Size: ${orderInfo?.productData?.size}`}</p>
-                <p className="text-slate-800 dark:text-slate-50">{`Quantity: ${orderInfo?.productData?.quantity}`}</p>
-                <p className="text-slate-800 dark:text-slate-50">{`Original Price: ${orderInfo?.productData?.originalPrice}`}</p>
-                <p className="text-slate-800 dark:text-slate-50">{`Delivery Charge: ${orderInfo?.customerData?.deliveryCharge}`}</p>
-                <p className="text-slate-800 dark:text-slate-50">{`Total: ${
+                <p className="text-slate-800">{`Color: ${orderInfo?.productData?.color}`}</p>
+                <p className="text-slate-800">{`Size: ${orderInfo?.productData?.size}`}</p>
+                <p className="text-slate-800">{`Quantity: ${orderInfo?.productData?.quantity}`}</p>
+                <p className="text-slate-800">{`Original Price: ${orderInfo?.productData?.originalPrice}`}</p>
+                <p className="text-slate-800">{`Delivery Charge: ${orderInfo?.customerData?.deliveryCharge}`}</p>
+                <p className="text-slate-800">{`Total: ${
                   parseFloat(orderInfo?.productData?.originalPrice * orderInfo?.productData?.quantity) +
                   parseFloat(orderInfo?.customerData?.deliveryCharge)
                 }`}</p>
               </div>
               <div>
-                <p className="text-slate-800 dark:text-slate-50">{`Customer Name: ${orderInfo?.customerData?.name}`}</p>
-                <p className="text-slate-800 dark:text-slate-50">
+                <p className="text-slate-800">{`Customer Name: ${orderInfo?.customerData?.name}`}</p>
+                <p className="text-slate-800">
                   {`Mobile: `}
                   <a href={`tel:${orderInfo?.customerData?.mobileNumber}`} className="text-blue-500">
                     {orderInfo?.customerData?.mobileNumber}
                   </a>
                 </p>
-                <p className="text-slate-800 dark:text-slate-50">{`Delivery Area: ${orderInfo?.customerData?.deliveryArea}`}</p>
-                <p className="text-slate-800 dark:text-slate-50">{`Address: ${orderInfo?.customerData?.address}, ${orderInfo?.customerData?.district}`}</p>
-                <p className="text-slate-800 dark:text-slate-50">{`Comment: ${orderInfo?.customerData?.comment}`}</p>
+                <p className="text-slate-800">{`Delivery Area: ${orderInfo?.customerData?.deliveryArea}`}</p>
+                <p className="text-slate-800">{`Address: ${orderInfo?.customerData?.address}, ${orderInfo?.customerData?.district}`}</p>
+                <p className="text-slate-800">{`Comment: ${orderInfo?.customerData?.comment}`}</p>
               </div>
               <div className="mt-6 flex justify-between">
                 <button className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md">Confirm</button>

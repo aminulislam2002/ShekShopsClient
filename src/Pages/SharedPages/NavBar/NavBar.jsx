@@ -89,7 +89,7 @@ const NavBar = () => {
       to: "/",
     },
     {
-      label: "Shop",
+      label: "Shops",
       to: "/shop",
     },
     {

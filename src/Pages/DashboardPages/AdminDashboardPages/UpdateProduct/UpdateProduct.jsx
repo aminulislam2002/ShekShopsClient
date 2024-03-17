@@ -229,7 +229,7 @@ const UpdateProduct = () => {
           </label>
           {/* Use checkboxes for multiple selections */}
           <div className="grid grid-cols-3 lg:grid-cols-10">
-            {["black", "gray", "white", "red", "green", "blue", "yellow", "pink", "orange", "purple"].map((color) => (
+            {["Black", "Gray", "White", "Red", "Green", "Blue", "Yellow", "Pink", "Orange", "Purple"].map((color) => (
               <div key={color}>
                 <input
                   id={`color-${color}`}
@@ -319,7 +319,7 @@ const UpdateProduct = () => {
           {[1, 2, 3, 4].map((index) => (
             <div key={index} className="w-full mb-4">
               <label className="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none">
-                <span className="text-sm font-medium">Image {index}</span>
+                <span className="text-sm font-medium">{index === 1 ? "Main Image" : `Optional Image`}</span>
               </label>
               <input
                 type="file"

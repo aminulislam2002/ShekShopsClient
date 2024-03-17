@@ -23,7 +23,7 @@ const DashboardLayout = () => {
       </Link>
       <Link to="/dashboard/addProduct">
         <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
-          Add a Product
+          Add A Product
         </li>
       </Link>
     </>

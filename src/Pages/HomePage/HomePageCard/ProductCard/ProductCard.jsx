@@ -43,19 +43,19 @@ const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
     const windowWidth = window.innerWidth;
 
     if (windowWidth <= 400) {
-      return 40; // Adjust the length for small screens
+      return 37; // Adjust the length for small screens
     } else if (windowWidth <= 768) {
-      return 52; // Adjust the length for medium screens
+      return 55; // Adjust the length for medium screens
     } else {
-      return 58; // Default length for large screens
+      return 50; // Default length for large screens
     }
   };
 
   return (
-    <div>
+    <div className="">
       <div
         key={product?._id}
-        className="flex flex-col justify-center items-center hover:shadow-md bg-slate-100 dark:bg-slate-800"
+        className="sm:h-[330px] md:h-[406px] flex flex-col justify-start items-center hover:shadow-md bg-slate-100 dark:bg-slate-800"
       >
         {/* Render filtered product details here */}
         <div className="w-[176px] md:w-[234.67px] lg:w-[224px]">
@@ -140,7 +140,7 @@ const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
                   <div className="col-span-12 flex justify-start items-center">
                     <FaStar className="w-4 h-4 text-amber-400"></FaStar>
                     <span className="text-sm ml-1 text-slate-500 dark:text-slate-50">
-                      {product?.rating} ({product.reviews} reviews)
+                      {product?.ratings} ({product.reviews} reviews)
                     </span>
                   </div>
                 </div>

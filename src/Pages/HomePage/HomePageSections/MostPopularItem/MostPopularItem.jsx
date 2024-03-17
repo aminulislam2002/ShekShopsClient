@@ -42,6 +42,10 @@ const MostPopularItem = () => {
     setShowAllProducts(false);
   };
 
+  const randomProducts = (array) => {
+    return array.sort(() => Math.random() - 0.5);
+  };
+
   return (
     <div className="lg:w-[1200px] lg:mx-auto px-2.5 md:px-5 lg:px-0 my-10 md:my-14 lg:my-16">
       {/* Title of this section */}
@@ -65,7 +69,7 @@ const MostPopularItem = () => {
                   className={`block !leading-none font-medium whitespace-nowrap px-5 py-2.5 text-sm sm:text-base sm:px-6 sm:py-3 capitalize rounded-full
                 ${
                   selectedCategory === "all"
-                    ? "bg-slate-900 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
+                    ? "bg-green-700 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
                     : "text-slate-800 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800"
                 }
                  focus:outline-none`}
@@ -78,8 +82,22 @@ const MostPopularItem = () => {
                 <button
                   className={`block !leading-none font-medium whitespace-nowrap px-5 py-2.5 text-sm sm:text-base sm:px-6 sm:py-3 capitalize rounded-full
                  ${
+                   selectedCategory === "bag"
+                     ? "bg-green-700 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
+                     : "text-slate-800 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800"
+                 }
+                  focus:outline-none`}
+                  onClick={() => setSelectedCategory("bag")}
+                >
+                  Bag
+                </button>
+              </li>
+              <li>
+                <button
+                  className={`block !leading-none font-medium whitespace-nowrap px-5 py-2.5 text-sm sm:text-base sm:px-6 sm:py-3 capitalize rounded-full
+                 ${
                    selectedCategory === "women"
-                     ? "bg-slate-900 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
+                     ? "bg-green-700 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
                      : "text-slate-800 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800"
                  }
                   focus:outline-none`}
@@ -93,7 +111,7 @@ const MostPopularItem = () => {
                   className={`block !leading-none font-medium whitespace-nowrap px-5 py-2.5 text-sm sm:text-base sm:px-6 sm:py-3 capitalize rounded-full
                 ${
                   selectedCategory === "mens"
-                    ? "bg-slate-900 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
+                    ? "bg-green-700 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
                     : "text-slate-800 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800"
                 }
                  focus:outline-none`}
@@ -107,7 +125,7 @@ const MostPopularItem = () => {
                   className={`block !leading-none font-medium whitespace-nowrap px-5 py-2.5 text-sm sm:text-base sm:px-6 sm:py-3 capitalize rounded-full
                 ${
                   selectedCategory === "kitchen"
-                    ? "bg-slate-900 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
+                    ? "bg-green-700 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
                     : "text-slate-800 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800"
                 }
                  focus:outline-none`}
@@ -121,7 +139,7 @@ const MostPopularItem = () => {
                   className={`block !leading-none font-medium whitespace-nowrap px-5 py-2.5 text-sm sm:text-base sm:px-6 sm:py-3 capitalize rounded-full
                 ${
                   selectedCategory === "travel"
-                    ? "bg-slate-900 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
+                    ? "bg-green-700 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
                     : "text-slate-800 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800"
                 }
                  focus:outline-none`}
@@ -135,7 +153,7 @@ const MostPopularItem = () => {
                   className={`block !leading-none font-medium whitespace-nowrap px-5 py-2.5 text-sm sm:text-base sm:px-6 sm:py-3 capitalize rounded-full
                 ${
                   selectedCategory === "gadget"
-                    ? "bg-slate-900 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
+                    ? "bg-green-700 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
                     : "text-slate-800 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800"
                 }
                  focus:outline-none`}
@@ -164,7 +182,7 @@ const MostPopularItem = () => {
       {/* Products Section */}
 
       <div className="grid gap-2 md:gap-3 lg:gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mt-10">
-        {filteredProducts.map((product) => (
+        {randomProducts(filteredProducts).map((product) => (
           <ProductCard
             key={product._id}
             id={product._id}
@@ -182,7 +200,7 @@ const MostPopularItem = () => {
   ${filteredProducts.length >= 4 ? "block" : "hidden"}`}
           onClick={showAllProducts ? handleShowLessClick : handleShowMoreClick}
         >
-          {showAllProducts ? <>Show less</> : <>Show me more</>}
+          {showAllProducts ? <>Show Less</> : <>Show Me More</>}
         </button>
       </div>
     </div>

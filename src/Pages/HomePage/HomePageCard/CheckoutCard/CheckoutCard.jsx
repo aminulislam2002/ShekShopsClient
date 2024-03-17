@@ -254,7 +254,8 @@ const CheckoutCard = () => {
                       />
                       <label className="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none">
                         <span className="text-sm font-medium">
-                          Inside of Dhaka <span className="font-light">(৳60)</span>
+                          ঢাকার মধ্যে ডেলিভারি চার্জ
+                          <span className="font-light">(৳60)</span>
                         </span>
                       </label>
                     </div>
@@ -270,7 +271,8 @@ const CheckoutCard = () => {
                       />
                       <label className="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none">
                         <span className="text-sm font-medium">
-                          Outside of Dhaka <span className="font-light">(৳120)</span>
+                          ঢাকার বাইরে ডেলিভারি চার্জ
+                          <span className="font-light">(৳120)</span>
                         </span>
                       </label>
                     </div>

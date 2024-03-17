@@ -277,7 +277,7 @@ const ProductDetailsCard = () => {
                   className="relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 disabled:bg-opacity-90 bg-green-700 text-slate-50 hover:bg-slate-100 hover:text-slate-800 dark:bg-slate-800  dark:text-slate-50 dark:hover:text-slate-800 shadow-xl flex-1 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
                 >
                   <IoBagCheckOutline className="w-6 h-6"></IoBagCheckOutline>
-                  <span className="ml-3">Buy Now</span>
+                  <span className="ml-3">Order Now</span>
                 </Link>
               </div>
 
