@@ -2,8 +2,9 @@
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { FaTruckArrowRight } from "react-icons/fa6";
 import { Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../../../Providers/AuthProvider/AuthProvider";
 
 const CheckoutCard = () => {
   useEffect(() => {
@@ -11,11 +12,22 @@ const CheckoutCard = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const { user } = useContext(AuthContext);
   const location = useLocation();
   const productData = location?.state?.data;
 
+  const currentDate = new Date();
+  const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
+    .toString()
+    .padStart(2, "0")}-${currentDate.getDate().toString().padStart(2, "0")}`;
+  const formattedTime = `${currentDate.getHours().toString().padStart(2, "0")}:${currentDate
+    .getMinutes()
+    .toString()
+    .padStart(2, "0")}:${currentDate.getSeconds().toString().padStart(2, "0")}`;
+
   const [customerData, setCustomerData] = useState({
     name: "",
+    email: user?.email,
     mobileNumber: "",
     district: "",
     address: "",
@@ -24,7 +36,11 @@ const CheckoutCard = () => {
     deliveryArea: "Inside of Dhaka",
     paymentSystem: "Cash On Delivery",
     deliveryCharge: 60.0,
+    date: formattedDate,
+    time: formattedTime,
   });
+
+  console.log(customerData);
 
   const [disableConfirmButton, setDisableConfirmButton] = useState(true);
 

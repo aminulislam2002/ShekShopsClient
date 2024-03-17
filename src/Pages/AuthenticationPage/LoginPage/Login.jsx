@@ -1,14 +1,15 @@
 import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../Providers/AuthProvider/AuthProvider";
 import { useForm } from "react-hook-form";
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
-
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const { signIn, createUserWithGoogle } = useContext(AuthContext);
 
   const {
@@ -24,7 +25,7 @@ const Login = () => {
     signIn(data.email, data.password)
       .then(() => {
         // Successful login
-        navigate("/");
+        navigate(from, { replace: true })
         setIsLoading(false);
         Swal.fire({
           icon: "success",
@@ -37,7 +38,6 @@ const Login = () => {
         // Failed login
         navigate("/");
         setIsLoading(false);
-        console.error(error);
         Swal.fire({
           icon: "warning",
           title: "Login Failed",
@@ -57,7 +57,7 @@ const Login = () => {
 
       // Always treat the user as a new user
       if (result.user) {
-        navigate("/");
+        navigate(from, { replace: true })
         // Show success message
         Swal.fire({
           icon: "success",
@@ -84,11 +84,10 @@ const Login = () => {
         const responseData = await response.json();
 
         if (responseData.insertedId) {
-          navigate("/");
+          navigate(from, { replace: true })
         }
       }
     } catch (error) {
-      console.error(error);
       Swal.fire({
         icon: "warning",
         title: "Google Signup Failed",

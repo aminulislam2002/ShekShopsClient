@@ -18,6 +18,7 @@ import AuthenticationLayout from "../Layouts/AuthenticationLayout/Authentication
 import UpdateProduct from "../Pages/DashboardPages/AdminDashboardPages/UpdateProduct/UpdateProduct";
 import WelcomeDashboard from "../Pages/DashboardPages/WelcomeDashboard/WelcomeDashboard";
 import ViewAllUsers from "../Pages/DashboardPages/AdminDashboardPages/ViewAllUsers/ViewAllUsers";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/product-details/:id",
-        element: <ProductDetailsCard></ProductDetailsCard>,
+        element: (
+          <PrivateRoute>
+            <ProductDetailsCard></ProductDetailsCard>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/product-checkout",

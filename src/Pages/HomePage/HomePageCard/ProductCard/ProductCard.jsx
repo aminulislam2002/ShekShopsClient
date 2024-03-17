@@ -55,7 +55,7 @@ const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
     <div className="">
       <div
         key={product?._id}
-        className="sm:h-[330px] md:h-[406px] lg:h-[390px] flex flex-col justify-start items-center hover:shadow-md bg-slate-100 dark:bg-slate-800"
+        className="h-[330px] md:h-[406px] lg:h-[390px] flex flex-col justify-start items-center hover:shadow-md bg-slate-100 dark:bg-slate-800"
       >
         {/* Render filtered product details here */}
         <div className="w-[176px] md:w-[234.67px] lg:w-[224px]">

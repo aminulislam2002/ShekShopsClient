@@ -42,9 +42,9 @@ const MostPopularItem = () => {
     setShowAllProducts(false);
   };
 
-  const randomProducts = (array) => {
-    return array.sort(() => Math.random() - 0.5);
-  };
+  // const randomProducts = (array) => {
+  //   return array.sort(() => Math.random() - 0.5);
+  // };
 
   return (
     <div className="lg:w-[1200px] lg:mx-auto px-2.5 md:px-5 lg:px-0 my-10 md:my-14 lg:my-16">
@@ -182,7 +182,7 @@ const MostPopularItem = () => {
       {/* Products Section */}
 
       <div className="grid gap-2 md:gap-3 lg:gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mt-10">
-        {randomProducts(filteredProducts).map((product) => (
+        {filteredProducts.map((product) => (
           <ProductCard
             key={product._id}
             id={product._id}
