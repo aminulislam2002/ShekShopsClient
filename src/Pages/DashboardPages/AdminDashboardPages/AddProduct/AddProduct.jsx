@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 
 const AddProduct = () => {
   const [images, setImages] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const image_hosting_api_key = import.meta.env.VITE_image_hosting_api_key;
   const expiration_seconds = 157680000;
@@ -18,6 +19,7 @@ const AddProduct = () => {
   const { register, handleSubmit } = useForm();
 
   const handleRegistration = async (data) => {
+    setIsLoading(true);
     try {
       const uploadImage = async (file) => {
         const formData = new FormData();
@@ -73,6 +75,8 @@ const AddProduct = () => {
       }
     } catch (error) {
       console.error("Error:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -287,8 +291,12 @@ const AddProduct = () => {
           ))}
         </div>
 
-        <button type="submit" className="w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 focus:outline-none">
-          Submit
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 focus:outline-none"
+        >
+          {isLoading ? "Uploading..." : "Upload"}
         </button>
       </form>
     </div>

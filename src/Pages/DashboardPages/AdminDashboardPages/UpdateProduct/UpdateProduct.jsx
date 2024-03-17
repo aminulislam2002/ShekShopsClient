@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 
 const UpdateProduct = () => {
   const [product, setProduct] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   // Get the product id from the URL
   const { id } = useParams();
   const { register, handleSubmit, setValue } = useForm();
@@ -56,6 +57,7 @@ const UpdateProduct = () => {
   };
 
   const handleRegistration = async (data) => {
+    setIsLoading(true);
     try {
       const uploadImage = async (file) => {
         const formData = new FormData();
@@ -84,8 +86,6 @@ const UpdateProduct = () => {
         productType: data.productType || "",
       };
 
-      console.log(productInfo);
-
       // Product updated to database
       const response = await fetch(`https://server.shekshops.com/updateProduct/${id}`, {
         method: "PATCH",
@@ -113,102 +113,10 @@ const UpdateProduct = () => {
       }
     } catch (error) {
       console.error("Error:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
-
-  //   const handleRegistration = async (data) => {
-  //     try {
-  //       const uploadImage = async (file) => {
-  //         const formData = new FormData();
-  //         formData.append("image", file);
-  //         const response = await fetch(image_hosting_url, {
-  //           method: "POST",
-  //           body: formData,
-  //         });
-  //         const responseData = await response.json();
-  //         return responseData.data.url;
-  //       };
-
-  //       const uploadedImageUrls = await Promise.all(images.map(uploadImage));
-
-  //       // Create a new object to store updated fields only
-  //       const updatedFields = {};
-
-  //       // Check if each field has changed and add it to the updatedFields object
-  //       if (data.name !== product.name) {
-  //         updatedFields.name = data.name;
-  //       }
-  //       if (data.description !== product.description) {
-  //         updatedFields.description = data.description;
-  //       }
-  //       if (data.category !== product.category) {
-  //         updatedFields.category = data.category;
-  //       }
-  //       if (data.productType !== product.productType) {
-  //         updatedFields.productType = data.productType;
-  //       }
-  //       if (data.sizes !== product.sizes) {
-  //         updatedFields.sizes = data.sizes;
-  //       }
-  //       if (data.colors !== product.colors) {
-  //         updatedFields.colors = data.colors;
-  //       }
-  //       if (data.originalPrice !== product.originalPrice) {
-  //         updatedFields.originalPrice = data.originalPrice;
-  //       }
-  //       if (data.offerPrice !== product.offerPrice) {
-  //         updatedFields.offerPrice = data.offerPrice;
-  //       }
-  //       if (data.ratings !== product.ratings) {
-  //         updatedFields.ratings = data.ratings;
-  //       }
-  //       if (data.reviews !== product.reviews) {
-  //         updatedFields.reviews = data.reviews;
-  //       }
-  //       // Add similar checks for other fields you want to update
-
-  //       // If no fields have changed, show a message and return
-  //       if (Object.keys(updatedFields).length === 0) {
-  //         console.log("No fields to update");
-  //         return;
-  //       }
-
-  //       // Merge the updated fields with the original product info
-  //       const productInfo = {
-  //         ...product,
-  //         ...updatedFields,
-  //         images: uploadedImageUrls || product.images, // Keep the original images if no new ones are uploaded
-  //       };
-
-  //       // Product updated to database
-  //       const response = await fetch(`https://server.shekshops.com/updateProduct/${id}`, {
-  //         method: "PATCH",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify(productInfo),
-  //       });
-  //       if (response.ok) {
-  //         // Product successfully updated
-  //         console.log("Product updated successfully");
-  //         Swal.fire({
-  //           icon: "success",
-  //           title: "Product Updated!",
-  //           text: "Your product has been successfully updated.",
-  //         });
-  //       } else {
-  //         // Handle error case
-  //         console.error("Error updating product");
-  //         Swal.fire({
-  //           icon: "error",
-  //           title: "Error!",
-  //           text: "Something went wrong while updating the product.",
-  //         });
-  //       }
-  //     } catch (error) {
-  //       console.error("Error:", error);
-  //     }
-  //   };
 
   return (
     <div className="py-5 px-5 bg-gradient-to-b from-yellow-300 via-pink-300 to-blue-300 text-gray-800">
@@ -424,8 +332,12 @@ const UpdateProduct = () => {
           ))}
         </div>
 
-        <button type="submit" className="w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 focus:outline-none">
-          Submit
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 focus:outline-none"
+        >
+          {isLoading ? "Updating..." : "Update"}
         </button>
       </form>
     </div>
