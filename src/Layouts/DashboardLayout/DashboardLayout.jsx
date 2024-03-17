@@ -6,9 +6,19 @@ import useCustomer from "../../Hooks/useCustomer";
 const DashboardLayout = () => {
   const adminOptions = (
     <>
-      <Link to="/dashboard/viewAllOrder">
+      <Link to="/dashboard/viewAllOrders">
         <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
-          View All Order
+          View All Orders
+        </li>
+      </Link>
+      <Link to="/dashboard/viewConfirmOrders">
+        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
+          View Confirm Orders
+        </li>
+      </Link>
+      <Link to="/dashboard/viewCancelOrders">
+        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
+          View Cancel Orders
         </li>
       </Link>
       <Link to="/dashboard/ViewAllUsers">

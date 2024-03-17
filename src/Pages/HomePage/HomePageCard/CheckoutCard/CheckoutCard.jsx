@@ -36,11 +36,7 @@ const CheckoutCard = () => {
     deliveryArea: "Inside of Dhaka",
     paymentSystem: "Cash On Delivery",
     deliveryCharge: 60.0,
-    date: formattedDate,
-    time: formattedTime,
   });
-
-  console.log(customerData);
 
   const [disableConfirmButton, setDisableConfirmButton] = useState(true);
 
@@ -116,6 +112,9 @@ const CheckoutCard = () => {
 
   const handleSaveAndConfirmOrder = () => {
     const orderInfo = {
+      date: formattedDate,
+      time: formattedTime,
+      orderStatus: "Pending",
       productData: productData?.productInfo,
       customerData: customerData,
     };

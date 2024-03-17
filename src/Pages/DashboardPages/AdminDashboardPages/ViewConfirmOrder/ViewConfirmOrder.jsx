@@ -1,9 +1,9 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const ViewAllOrder = () => {
+const ViewConfirmOrder = () => {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -13,9 +13,9 @@ const ViewAllOrder = () => {
         const response = await fetch("https://server.shekshops.com/orders");
         if (response.ok) {
           const data = await response.json();
-          // Filter orders with orderStatus as "pending"
-          const pendingOrders = data.filter((order) => order.orderStatus === "Pending");
-          setOrders(pendingOrders);
+          // Filter orders with orderStatus as "confirm"
+          const confirmOrders = data.filter((order) => order.orderStatus === "Confirm");
+          setOrders(confirmOrders);
         } else {
           console.error("Error fetching orders");
         }
@@ -26,22 +26,6 @@ const ViewAllOrder = () => {
 
     fetchOrders();
   }, []);
-
-  const handleConfirm = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Yes, confirm it!",
-      cancelButtonText: "No, cancel!",
-      reverseButtons: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        updateOrderStatus(id, "Confirm");
-      }
-    });
-  };
 
   const handleCancel = (id) => {
     Swal.fire({
@@ -78,6 +62,38 @@ const ViewAllOrder = () => {
       .finally(() => {
         setIsLoading(false);
       });
+  };
+
+  const handleDeleteOrder = async (id) => {
+    setIsLoading(true);
+    try {
+      const response = await axios.delete(`https://server.shekshops.com/deleteOrder/${id}`);
+
+      if (response.status === 200) {
+        setOrders((prevOrders) => prevOrders.filter((order) => order._id !== id));
+        Swal.fire({
+          title: "Success!",
+          text: "Order deleted successfully.",
+          icon: "success",
+        });
+      } else {
+        console.error("Error deleting order");
+        Swal.fire({
+          title: "Error!",
+          text: "Error deleting order. Please try again later.",
+          icon: "error",
+        });
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      Swal.fire({
+        title: "Error!",
+        text: "An unexpected error occurred. Please try again later.",
+        icon: "error",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -151,22 +167,14 @@ const ViewAllOrder = () => {
                 <td className="p-4">
                   <div className="grid grid-cols-1 gap-2">
                     <button
-                      onClick={() => handleConfirm(orderInfo?._id)}
-                      disabled={isLoading}
-                      className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
-                    >
-                      Confirm
-                    </button>
-
-                    <button
                       onClick={() => handleCancel(orderInfo?._id)}
                       disabled={isLoading}
-                      className="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded-md"
+                      className="bg-slate-500 hover:bg-slate-700 text-white px-4 py-2 rounded-md"
                     >
                       Cancel
                     </button>
 
-                    {/* <button
+                    <button
                       onClick={() => {
                         Swal.fire({
                           title: "Are you sure?",
@@ -185,7 +193,7 @@ const ViewAllOrder = () => {
                       className="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded-md"
                     >
                       Delete
-                    </button> */}
+                    </button>
                   </div>
                 </td>
               </tr>
@@ -197,4 +205,4 @@ const ViewAllOrder = () => {
   );
 };
 
-export default ViewAllOrder;
+export default ViewConfirmOrder;

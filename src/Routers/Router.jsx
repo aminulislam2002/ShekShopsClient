@@ -19,6 +19,8 @@ import UpdateProduct from "../Pages/DashboardPages/AdminDashboardPages/UpdatePro
 import WelcomeDashboard from "../Pages/DashboardPages/WelcomeDashboard/WelcomeDashboard";
 import ViewAllUsers from "../Pages/DashboardPages/AdminDashboardPages/ViewAllUsers/ViewAllUsers";
 import PrivateRoute from "./PrivateRoute";
+import ViewConfirmOrder from "../Pages/DashboardPages/AdminDashboardPages/ViewConfirmOrder/ViewConfirmOrder";
+import ViewCancelOrder from "../Pages/DashboardPages/AdminDashboardPages/ViewCancelOrder/ViewCancelOrder";
 
 const router = createBrowserRouter([
   {
@@ -79,8 +81,16 @@ const router = createBrowserRouter([
         element: <ViewAllUsers></ViewAllUsers>,
       },
       {
-        path: "/dashboard/viewAllOrder",
+        path: "/dashboard/viewAllOrders",
         element: <ViewAllOrder></ViewAllOrder>,
+      },
+      {
+        path: "/dashboard/viewConfirmOrders",
+        element: <ViewConfirmOrder></ViewConfirmOrder>,
+      },
+      {
+        path: "/dashboard/viewCancelOrders",
+        element: <ViewCancelOrder></ViewCancelOrder>,
       },
     ],
   },
