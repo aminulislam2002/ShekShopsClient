@@ -46,7 +46,8 @@ const UpdateProduct = () => {
   const [images, setImages] = useState([]);
 
   const image_hosting_api_key = import.meta.env.VITE_image_hosting_api_key;
-  const image_hosting_url = `https://api.imgbb.com/1/upload?expiration=600&key=${image_hosting_api_key}`;
+  const expiration_seconds = 157680000;
+  const image_hosting_url = `https://api.imgbb.com/1/upload?expiration=${expiration_seconds}&key=${image_hosting_api_key}`;
 
   const handleImageInputChange = (e, index) => {
     const updatedImages = [...images];

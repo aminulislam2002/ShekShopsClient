@@ -9,7 +9,7 @@ const Shop = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("/products.json");
+        const response = await fetch("https://server.shekshops.com/products");
         const data = await response.json();
         setProducts(data);
         setLoading(false);

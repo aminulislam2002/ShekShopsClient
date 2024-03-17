@@ -336,7 +336,7 @@ const CheckoutCard = () => {
 
               <div className="col-span-12 flex items-center text-xl font-medium font-primary mb-3">
                 <span className="text-orange-500 font-semibold !leading-none">
-                ৳{productData?.productInfo?.originalPrice}
+                  ৳{productData?.productInfo?.originalPrice}
                 </span>
               </div>
 
@@ -350,11 +350,17 @@ const CheckoutCard = () => {
           <div className="py-7 px-3 border-b">
             <div className="flex justify-between items-center mb-4">
               <span className="text-purple-600 text-base font-bold">Sub-Total:</span>
-              <span className="text-lg font-bold text-purple-600"><span className="text-2xl">৳</span>{productData?.productInfo?.originalPrice}</span>
+              <span className="text-lg font-bold text-purple-600">
+                <span className="text-2xl">৳</span>
+                {productData?.productInfo?.originalPrice}
+              </span>
             </div>
             <div className="flex justify-between items-center mb-4">
               <span className="text-blue-600 text-base font-bold">{customerData?.deliveryArea}:</span>
-              <span className="text-lg font-bold text-blue-600"><span className="text-2xl">৳</span>{customerData?.deliveryCharge.toFixed(2)}</span>
+              <span className="text-lg font-bold text-blue-600">
+                <span className="text-2xl">৳</span>
+                {customerData?.deliveryCharge.toFixed(2)}
+              </span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-green-600 text-base font-bold">Total:</span>

@@ -59,28 +59,57 @@ const ProductDetailsCard = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    // Fetch all products
-    fetch("/products.json")
-      .then((res) => res.json())
-      .then((data) => {
-        // Find the specific product based on the id parameter
-        const selectedProduct = data.find((product) => product?.id === parseInt(id));
-        setProduct(selectedProduct);
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(`https://server.shekshops.com/product/${id}`);
+        if (response.ok) {
+          const data = await response.json();
+          setProduct(data);
 
-        // Set buyingProductInfo when product data is available
-        const productInfo = {
-          id: id,
-          name: selectedProduct?.name,
-          imageUrl: selectedProduct?.images[0],
-          color: selectedColor,
-          size: selectedSize,
-          quantity: selectedQuantity,
-          originalPrice: calculateDiscountedPrice(selectedProduct?.originalPrice, selectedProduct?.offerPrice),
-        };
-        setBuyingProductInfo({ productInfo });
-      })
-      .catch((error) => console.error("Error fetching products:", error));
+          // Set buyingProductInfo when product data is available
+          const productInfo = {
+            id: data._id,
+            name: data?.name,
+            imageUrl: data?.images[0],
+            color: selectedColor,
+            size: selectedSize,
+            quantity: selectedQuantity,
+            originalPrice: calculateDiscountedPrice(data?.originalPrice, data?.offerPrice),
+          };
+          setBuyingProductInfo({ productInfo });
+        } else {
+          console.error("Error fetching product");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+    fetchProduct();
   }, [id, selectedColor, selectedSize, selectedQuantity]);
+
+  // useEffect(() => {
+  //   // Fetch all products
+  //   fetch("https://server.shekshops.com/products")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       // Find the specific product based on the id parameter
+  //       const selectedProduct = data.find((product) => product?._id === id);
+  //       setProduct(selectedProduct);
+
+  //       // Set buyingProductInfo when product data is available
+  //       const productInfo = {
+  //         id: id,
+  //         name: selectedProduct?.name,
+  //         imageUrl: selectedProduct?.images[0],
+  //         color: selectedColor,
+  //         size: selectedSize,
+  //         quantity: selectedQuantity,
+  //         originalPrice: calculateDiscountedPrice(selectedProduct?.originalPrice, selectedProduct?.offerPrice),
+  //       };
+  //       setBuyingProductInfo({ productInfo });
+  //     })
+  //     .catch((error) => console.error("Error fetching products:", error));
+  // }, [id, selectedColor, selectedSize, selectedQuantity]);
 
   if (!product) {
     return <div>Loading...</div>;

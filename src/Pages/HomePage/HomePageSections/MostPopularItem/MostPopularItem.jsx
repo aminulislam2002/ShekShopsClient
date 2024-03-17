@@ -12,7 +12,7 @@ const MostPopularItem = () => {
   const [displayedProductsCount, setDisplayedProductsCount] = useState(10);
 
   useEffect(() => {
-    fetch("/products.json")
+    fetch("https://server.shekshops.com/products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
@@ -26,7 +26,9 @@ const MostPopularItem = () => {
   const filteredProducts =
     selectedCategory === "all"
       ? products.filter((product, index) => index < displayedProductsCount)
-      : products.filter((product) => product?.category.toLowerCase() === selectedCategory.toLowerCase()).slice(0, displayedProductsCount);
+      : products
+          .filter((product) => product?.category.toLowerCase() === selectedCategory.toLowerCase())
+          .slice(0, displayedProductsCount);
 
   const handleShowMoreClick = () => {
     const currentDisplayedCount = displayedProductsCount;
@@ -164,7 +166,7 @@ const MostPopularItem = () => {
       <div className="grid gap-3 md:gap-4 lg:gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mt-10">
         {filteredProducts.map((product) => (
           <ProductCard
-            key={product.id}
+            key={product._id}
             id={product.id}
             product={product}
             handleFavoriteClick={handleFavoriteClick}
