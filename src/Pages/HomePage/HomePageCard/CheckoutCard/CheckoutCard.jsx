@@ -141,7 +141,7 @@ const CheckoutCard = () => {
   };
 
   return (
-    <div className="mb-24 lg:mb-32 container mx-auto">
+    <div className="lg:w-[1200px] mx-auto py-5 md:py-7 lg:py-10 px-5 md:px-7 lg:px-0">
       <div className="mb-16 px-5 md:px-10 lg:px-0">
         <h2 className="block text-2xl sm:text-3xl lg:text-4xl font-semibold ">Checkout</h2>
         <div className="block mt-3 sm:mt-5 text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-400">
@@ -179,7 +179,7 @@ const CheckoutCard = () => {
               <div className="border-t border-slate-200 dark:border-slate-700 px-6 py-7 space-y-4 sm:space-y-6 block">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-3">
                   <div>
-                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">Full name</label>
+                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">Full Name</label>
                     <input
                       name="name"
                       value={customerData.name}
@@ -190,7 +190,7 @@ const CheckoutCard = () => {
                     />
                   </div>
                   <div>
-                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">Mobile number</label>
+                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">Mobile Number</label>
                     <input
                       name="mobileNumber"
                       value={customerData.mobileNumber}
@@ -204,7 +204,7 @@ const CheckoutCard = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-3">
                   <div>
-                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">Your district</label>
+                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">Your District</label>
                     <input
                       name="district"
                       value={customerData.district}
@@ -215,7 +215,7 @@ const CheckoutCard = () => {
                     />
                   </div>
                   <div className="">
-                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">Full address</label>
+                    <label className="font-medium text-slate-900 dark:text-slate-200 text-sm">Full Address</label>
                     <input
                       name="address"
                       value={customerData.address}
@@ -352,7 +352,7 @@ const CheckoutCard = () => {
               <span className="text-purple-600 text-base font-bold">Sub-Total:</span>
               <span className="text-lg font-bold text-purple-600">
                 <span className="text-2xl">৳</span>
-                {productData?.productInfo?.originalPrice}
+                {productData?.productInfo?.originalPrice * productData?.productInfo?.quantity}
               </span>
             </div>
             <div className="flex justify-between items-center mb-4">

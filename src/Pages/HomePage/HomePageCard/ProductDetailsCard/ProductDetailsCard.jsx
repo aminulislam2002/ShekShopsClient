@@ -87,30 +87,6 @@ const ProductDetailsCard = () => {
     fetchProduct();
   }, [id, selectedColor, selectedSize, selectedQuantity]);
 
-  // useEffect(() => {
-  //   // Fetch all products
-  //   fetch("https://server.shekshops.com/products")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       // Find the specific product based on the id parameter
-  //       const selectedProduct = data.find((product) => product?._id === id);
-  //       setProduct(selectedProduct);
-
-  //       // Set buyingProductInfo when product data is available
-  //       const productInfo = {
-  //         id: id,
-  //         name: selectedProduct?.name,
-  //         imageUrl: selectedProduct?.images[0],
-  //         color: selectedColor,
-  //         size: selectedSize,
-  //         quantity: selectedQuantity,
-  //         originalPrice: calculateDiscountedPrice(selectedProduct?.originalPrice, selectedProduct?.offerPrice),
-  //       };
-  //       setBuyingProductInfo({ productInfo });
-  //     })
-  //     .catch((error) => console.error("Error fetching products:", error));
-  // }, [id, selectedColor, selectedSize, selectedQuantity]);
-
   if (!product) {
     return <div>Loading...</div>;
   }
@@ -120,8 +96,8 @@ const ProductDetailsCard = () => {
   };
 
   return (
-    <div className="mb-10 md:mb-16 lg:mb-20 container mx-auto">
-      <div className="grid grid-cols-12 gap-3 md:gap-5 lg:gap-10 px-5 md:px-10 lg:px-0">
+    <div className="lg:w-[1200px] mx-auto py-5 md:py-7 lg:py-10 px-5 md:px-7 lg:px-0">
+      <div className="grid grid-cols-12 gap-5 md:gap-7 lg:gap-10">
         <div className="col-span-12 md:col-span-5 mb-">
           <div className="flex justify-center items-center mb-3 lg:mb-5">
             <img
@@ -136,7 +112,7 @@ const ProductDetailsCard = () => {
               <img
                 key={index}
                 src={image}
-                className={`w-full h-[50px] md:h-[50px] lg:h-[80px] cursor-pointer ${
+                className={`w-full h-[55px] md:h-[55px] lg:h-[70px] cursor-pointer ${
                   index === selectedImageIndex ? "border-b-4 border-red-500" : ""
                 }`}
                 alt={`Image ${index + 1}`}

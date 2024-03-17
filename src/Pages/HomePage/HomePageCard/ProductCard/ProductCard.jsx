@@ -86,15 +86,15 @@ const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
               {/* Favorite icon */}
               <div className="w-9 h-9 flex items-center justify-center rounded-full bg-white dark:bg-slate-900 text-neutral-700 dark:text-slate-50 shadow-lg absolute top-2 right-2 z-10">
                 <div className="absolute top-0 right-0 p-2 rounded-full focus:outline-none">
-                  {favorites.includes(product?.id) ? (
+                  {favorites.includes(product?._id) ? (
                     <>
-                      <button onClick={() => handleFavoriteClick(product?.id)}>
+                      <button onClick={() => handleFavoriteClick(product?._id)}>
                         <MdOutlineFavorite className="w-5 h-5 text-red-500"></MdOutlineFavorite>
                       </button>
                     </>
                   ) : (
                     <>
-                      <button onClick={() => handleFavoriteClick(product?.id)}>
+                      <button onClick={() => handleFavoriteClick(product?._id)}>
                         <MdFavoriteBorder className="w-5 h-5 text-gray-500"></MdFavoriteBorder>
                       </button>
                     </>
@@ -103,7 +103,7 @@ const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
               </div>
             </div>
 
-            <Link to={`/product-details/${id}`}>
+            <Link to={`/product-details/${product?._id}`}>
               <div className="space-y-4 p-1.5 md:p-2 lg:p-2.5">
                 <div className="text-start flex justify-between">
                   <div>
