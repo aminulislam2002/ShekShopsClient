@@ -3,7 +3,7 @@ import { MdMenu, MdOutlineClose } from "react-icons/md";
 import { IoCartOutline } from "react-icons/io5";
 import { LuUser2, LuSearch } from "react-icons/lu";
 
-import swift_mart_logo from "../../../assets/Logo/Logo Black Bg.png";
+import swift_mart_logo from "../../../assets/Logo/Logo Without Bg.png";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";

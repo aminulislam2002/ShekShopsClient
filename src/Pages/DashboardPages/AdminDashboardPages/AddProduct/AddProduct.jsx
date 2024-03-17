@@ -150,9 +150,9 @@ const AddProduct = () => {
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             >
               <option value="">Select Product Type</option>
-              <option value="new arrivals">New Arrivals</option>
-              <option value="most popular">Most Popular</option>
-              <option value="best selling">Best Selling</option>
+              <option value="New Arrivals">New Arrivals</option>
+              <option value="Most Popular">Most Popular</option>
+              <option value="Best Selling">Best Selling</option>
             </select>
           </div>
         </div>

@@ -4,11 +4,13 @@ import OurProductFeature from "../HomePageSections/OurProductFeature/OurProductF
 import TopBanner from "../HomePageSections/TopBanner/TopBanner";
 import MostPopularItem from "../HomePageSections/MostPopularItem/MostPopularItem";
 import PromoSection from "../HomePageSections/PromoSection/PromoSection";
+import NewArrivals from "../HomePageSections/NewArrivals/NewArrivals";
 
 const Home = () => {
   return (
     <div>
       <TopBanner></TopBanner>
+      <NewArrivals></NewArrivals>
       <HowItWorks></HowItWorks>
       <BestSellingProducts></BestSellingProducts>
       <PromoSection></PromoSection>
