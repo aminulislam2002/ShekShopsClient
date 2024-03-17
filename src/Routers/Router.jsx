@@ -21,6 +21,10 @@ import ViewAllUsers from "../Pages/DashboardPages/AdminDashboardPages/ViewAllUse
 import PrivateRoute from "./PrivateRoute";
 import ViewConfirmOrder from "../Pages/DashboardPages/AdminDashboardPages/ViewConfirmOrder/ViewConfirmOrder";
 import ViewCancelOrder from "../Pages/DashboardPages/AdminDashboardPages/ViewCancelOrder/ViewCancelOrder";
+import MyOrder from "../Pages/DashboardPages/CustomerDashboardPages/MyOrder/MyOrder";
+import MyCancelOrders from "../Pages/DashboardPages/CustomerDashboardPages/MyCancellations/MyCancellations";
+import MyShopping from "../Pages/DashboardPages/CustomerDashboardPages/MyShopping/MyShopping";
+import ViewSellingProduct from "../Pages/DashboardPages/AdminDashboardPages/ViewSellingProduct/ViewSellingProduct";
 
 const router = createBrowserRouter([
   {
@@ -91,6 +95,22 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/viewCancelOrders",
         element: <ViewCancelOrder></ViewCancelOrder>,
+      },
+      {
+        path: "/dashboard/viewSellingProduct",
+        element: <ViewSellingProduct></ViewSellingProduct>,
+      },
+      {
+        path: "/dashboard/myOrder",
+        element: <MyOrder></MyOrder>,
+      },
+      {
+        path: "/dashboard/myCancellations",
+        element: <MyCancelOrders></MyCancelOrders>,
+      },
+      {
+        path: "/dashboard/myShopping",
+        element: <MyShopping></MyShopping>,
       },
     ],
   },

@@ -43,6 +43,22 @@ const ViewConfirmOrder = () => {
     });
   };
 
+  const handleReceived = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Have customer received the product in good condition?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Received it",
+      cancelButtonText: "Not yet",
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        updateOrderStatus(id, "Received");
+      }
+    });
+  };
+
   const updateOrderStatus = (id, status) => {
     setIsLoading(true);
     axios
@@ -98,7 +114,7 @@ const ViewConfirmOrder = () => {
 
   return (
     <div className="container mx-auto">
-      <h1 className="bg-green-700 text-3xl font-semibold font-primary text-slate-50 text-center py-5">View All Orders</h1>
+      <h1 className="bg-green-700 text-3xl font-semibold font-primary text-slate-50 text-center py-5">View Confirm Orders</h1>
       <div className="overflow-x-auto">
         <table className="min-w-full">
           <thead>
@@ -166,6 +182,14 @@ const ViewConfirmOrder = () => {
 
                 <td className="p-4">
                   <div className="grid grid-cols-1 gap-2">
+                    <button
+                      onClick={() => handleReceived(orderInfo?._id)}
+                      disabled={isLoading}
+                      className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
+                    >
+                      Received
+                    </button>
+
                     <button
                       onClick={() => handleCancel(orderInfo?._id)}
                       disabled={isLoading}

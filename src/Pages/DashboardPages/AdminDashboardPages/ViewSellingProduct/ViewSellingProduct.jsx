@@ -1,9 +1,9 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const ViewAllOrder = () => {
+const ViewSellingProduct = () => {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -13,9 +13,9 @@ const ViewAllOrder = () => {
         const response = await fetch("https://server.shekshops.com/orders");
         if (response.ok) {
           const data = await response.json();
-          // Filter orders with orderStatus as "pending"
-          const pendingOrders = data.filter((order) => order.orderStatus === "Pending");
-          setOrders(pendingOrders);
+          // Filter orders with orderStatus as "received"
+          const receivedOrders = data.filter((order) => order.orderStatus === "Received");
+          setOrders(receivedOrders);
         } else {
           console.error("Error fetching orders");
         }
@@ -27,62 +27,41 @@ const ViewAllOrder = () => {
     fetchOrders();
   }, []);
 
-  const handleConfirm = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Yes, confirm it!",
-      cancelButtonText: "No, cancel!",
-      reverseButtons: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        updateOrderStatus(id, "Confirm");
-      }
-    });
-  };
-
-  const handleCancel = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Yes, cancel it!",
-      cancelButtonText: "No, keep it!",
-      reverseButtons: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        updateOrderStatus(id, "Cancel");
-      }
-    });
-  };
-
-  const updateOrderStatus = (id, status) => {
+  const handleDeleteOrder = async (id) => {
     setIsLoading(true);
-    axios
-      .put(`http://localhost:5000/orderStatus/${id}`, { status })
-      .then((response) => {
-        if (response.status === 200) {
-          // Handle success response
-          Swal.fire("Updated!", "Order status has been updated.", "success");
-        }
-        // Update UI accordingly, you may fetch orders again to update the list
-      })
-      .catch((error) => {
-        console.log(error);
-        // Handle error
-        Swal.fire("Error!", "Failed to update order status.", "error");
-      })
-      .finally(() => {
-        setIsLoading(false);
+    try {
+      const response = await axios.delete(`https://server.shekshops.com/deleteOrder/${id}`);
+
+      if (response.status === 200) {
+        setOrders((prevOrders) => prevOrders.filter((order) => order._id !== id));
+        Swal.fire({
+          title: "Success!",
+          text: "Order deleted successfully.",
+          icon: "success",
+        });
+      } else {
+        console.error("Error deleting order");
+        Swal.fire({
+          title: "Error!",
+          text: "Error deleting order. Please try again later.",
+          icon: "error",
+        });
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      Swal.fire({
+        title: "Error!",
+        text: "An unexpected error occurred. Please try again later.",
+        icon: "error",
       });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="container mx-auto">
-      <h1 className="bg-green-700 text-3xl font-semibold font-primary text-slate-50 text-center py-5">View All Orders</h1>
+      <h1 className="bg-green-700 text-3xl font-semibold font-primary text-slate-50 text-center py-5">View Selling Products</h1>
       <div className="overflow-x-auto">
         <table className="min-w-full">
           <thead>
@@ -151,19 +130,24 @@ const ViewAllOrder = () => {
                 <td className="p-4">
                   <div className="grid grid-cols-1 gap-2">
                     <button
-                      onClick={() => handleConfirm(orderInfo?._id)}
-                      disabled={isLoading}
-                      className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
-                    >
-                      Confirm
-                    </button>
-
-                    <button
-                      onClick={() => handleCancel(orderInfo?._id)}
-                      disabled={isLoading}
+                      onClick={() => {
+                        Swal.fire({
+                          title: "Are you sure?",
+                          text: "You won't be able to revert this!",
+                          icon: "warning",
+                          showCancelButton: true,
+                          confirmButtonColor: "#3085d6",
+                          cancelButtonColor: "#d33",
+                          confirmButtonText: "Yes, delete it!",
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            handleDeleteOrder(orderInfo?._id);
+                          }
+                        });
+                      }}
                       className="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded-md"
                     >
-                      Cancel
+                      Delete
                     </button>
                   </div>
                 </td>
@@ -176,4 +160,4 @@ const ViewAllOrder = () => {
   );
 };
 
-export default ViewAllOrder;
+export default ViewSellingProduct;

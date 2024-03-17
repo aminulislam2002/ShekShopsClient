@@ -21,6 +21,11 @@ const DashboardLayout = () => {
           View Cancel Orders
         </li>
       </Link>
+      <Link to="/dashboard/viewSellingProduct">
+        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
+          View Selling Product
+        </li>
+      </Link>
       <Link to="/dashboard/ViewAllUsers">
         <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
           View All Users
@@ -41,11 +46,21 @@ const DashboardLayout = () => {
 
   const customerOptions = (
     <>
-      {/* <Link to="/dashboard/myProduct">
+      <Link to="/dashboard/myOrder">
         <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
-          MyProduct
+          My Order
         </li>
-      </Link> */}
+      </Link>
+      <Link to="/dashboard/myShopping">
+        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
+          My Shopping
+        </li>
+      </Link>
+      <Link to="/dashboard/myCancellations">
+        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
+          My Cancellations
+        </li>
+      </Link>
     </>
   );
 

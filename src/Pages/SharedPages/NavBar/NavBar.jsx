@@ -13,8 +13,37 @@ const NavBar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isAtTop, setIsAtTop] = useState(true);
   const location = useLocation();
-
+  const [products, setProducts] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const { user, logOut } = useContext(AuthContext);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("https://server.shekshops.com/products");
+        if (response.ok) {
+          const data = await response.json();
+          setProducts(data);
+        } else {
+          console.error("Error fetching products");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const handleSearch = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(query);
+
+    // Filter products based on search query
+    const filtered = products.filter((product) => product.name.toLowerCase().includes(query));
+    setFilteredProducts(filtered);
+  };
 
   const handleLogout = () => {
     Swal.fire({
@@ -152,11 +181,26 @@ const NavBar = () => {
                         type="text"
                         placeholder="Search..."
                         className="w-full p-2 mt-3 border border-gray-300 rounded-md text-slate-800"
+                        value={searchQuery}
+                        onChange={handleSearch}
                       />
                       <button className="absolute right-0 top-5 mr-2" onClick={toggleSearch}>
                         <MdOutlineClose className="text-slate-800 w-5 h-5 hidden lg:block" />
                       </button>
                     </div>
+                  </div>
+
+                  {/* Display filtered products */}
+                  <div>
+                    {searchQuery && (
+                      <div className="absolute z-10 bg-white left-0 right-0 mt-28 lg:mt-20 rounded-md shadow-lg">
+                        {filteredProducts.map((product) => (
+                          <div key={product._id} className="p-2 text-slate-800">
+                           {product.name}
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </>
               ) : (

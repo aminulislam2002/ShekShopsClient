@@ -98,7 +98,7 @@ const ViewCancelOrder = () => {
 
   return (
     <div className="container mx-auto">
-      <h1 className="bg-green-700 text-3xl font-semibold font-primary text-slate-50 text-center py-5">View All Orders</h1>
+      <h1 className="bg-green-700 text-3xl font-semibold font-primary text-slate-50 text-center py-5">View Cancel Orders</h1>
       <div className="overflow-x-auto">
         <table className="min-w-full">
           <thead>
