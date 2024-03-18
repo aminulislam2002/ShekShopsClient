@@ -21,7 +21,6 @@ import MyShopping from "../Pages/DashboardPages/CustomerDashboardPages/MyShoppin
 import PendingOrders from "../Pages/DashboardPages/AdminDashboardPages/PendingOrders/PendingOrders";
 import AllProducts from "../Pages/DashboardPages/AdminDashboardPages/AllProducts/AllProducts";
 import AllUsers from "../Pages/DashboardPages/AdminDashboardPages/AllUsers/AllUsers";
-import PrivateRoute from "./PrivateRoute";
 import ConfirmOrders from "../Pages/DashboardPages/AdminDashboardPages/ConfirmOrders/ConfirmOrders";
 import CancelOrders from "../Pages/DashboardPages/AdminDashboardPages/CancelOrders/CancelOrders";
 import SellingProducts from "../Pages/DashboardPages/AdminDashboardPages/SellingProducts/SellingProducts";
@@ -46,11 +45,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/product-details/:id",
-        element: (
-          <PrivateRoute>
-            <ProductDetailsCard></ProductDetailsCard>
-          </PrivateRoute>
-        ),
+        element: <ProductDetailsCard></ProductDetailsCard>,
       },
       {
         path: "/product-checkout",

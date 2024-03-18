@@ -5,7 +5,8 @@ import { HiOutlineCurrencyBangladeshi } from "react-icons/hi";
 import { FaPlus, FaMinus } from "react-icons/fa6";
 import { IoBagCheckOutline } from "react-icons/io5";
 import { TbTruckReturn } from "react-icons/tb";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
+import ProductCard from "../ProductCard/ProductCard";
 
 // Add this function outside the component to calculate discounted price
 const calculateDiscountedPrice = (originalPrice, offerPrice) => {
@@ -35,8 +36,19 @@ const ProductDetailsCard = () => {
   const [selectedColor, setSelectedColor] = useState("N/A");
   const [selectedSize, setSelectedSize] = useState("N/A");
   const [product, setProduct] = useState(null);
+  const [matchingProducts, setMatchingProducts] = useState([]);
   const [buyingProductInfo, setBuyingProductInfo] = useState({});
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [favorites, setFavorites] = useState([]);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // Scroll to the top of the page smoothly when the pathname changes
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [pathname]);
 
   const handleImageClick = (index) => {
     setSelectedImageIndex(index);
@@ -50,31 +62,33 @@ const ProductDetailsCard = () => {
     setSelectedColor(color);
   };
 
-  useEffect(() => {
-    // Scroll to the top of the page when the component mounts
-    window.scrollTo(0, 0);
-  }, []);
-
   // Get the product id from the URL
   const { id } = useParams();
+
+  const category = product?.category.toLowerCase();
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`https://server.shekshops.com/product/${id}`);
+        // const response = await fetch(`https://server.shekshops.com/product/${id}`);
+        const response = await fetch(`https://server.shekshops.com/products`);
         if (response.ok) {
           const data = await response.json();
-          setProduct(data);
+          const filteredProduct = data.find((product) => product?._id === id);
+          setProduct(filteredProduct);
+
+          const filteredMatchingProducts = data.filter((products) => products?.category === category);
+          setMatchingProducts(filteredMatchingProducts);
 
           // Set buyingProductInfo when product data is available
           const productInfo = {
-            id: data._id,
-            name: data?.name,
-            imageUrl: data?.images[0],
+            id: filteredProduct?._id,
+            name: filteredProduct?.name,
+            imageUrl: filteredProduct?.images[0],
             color: selectedColor,
             size: selectedSize,
             quantity: selectedQuantity,
-            originalPrice: calculateDiscountedPrice(data?.originalPrice, data?.offerPrice),
+            originalPrice: calculateDiscountedPrice(filteredProduct?.originalPrice, filteredProduct?.offerPrice),
           };
           setBuyingProductInfo({ productInfo });
         } else {
@@ -85,7 +99,7 @@ const ProductDetailsCard = () => {
       }
     };
     fetchProduct();
-  }, [id, selectedColor, selectedSize, selectedQuantity]);
+  }, [id, selectedColor, selectedSize, selectedQuantity, category]);
 
   if (!product) {
     return <div>Loading...</div>;
@@ -95,9 +109,16 @@ const ProductDetailsCard = () => {
     setSelectedQuantity((prevQuantity) => prevQuantity + value);
   };
 
+  const handleFavoriteClick = (productId) => {
+    setFavorites((prevFavorites) =>
+      prevFavorites.includes(productId) ? prevFavorites.filter((id) => id !== productId) : [...prevFavorites, productId]
+    );
+  };
+
   return (
     <div className="lg:w-[1200px] mx-auto py-5 md:py-7 lg:py-10 px-5 md:px-7 lg:px-0">
       <div className="grid grid-cols-12 gap-5 md:gap-7 lg:gap-10">
+        {/* Product Image */}
         <div className="col-span-12 md:col-span-5 mb-">
           <div className="flex justify-center items-center mb-3 lg:mb-5">
             <img
@@ -135,6 +156,7 @@ const ProductDetailsCard = () => {
           </div>
         </div>
 
+        {/* Product Details */}
         <div className="col-span-12 md:col-span-7">
           <div>
             <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-slate-950 dark:text-slate-50 font-primary mb-5">
@@ -334,6 +356,21 @@ const ProductDetailsCard = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Matching category products */}
+        <div className="col-span-12">
+          <div className="grid gap-2 md:gap-3 lg:gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mt-10">
+            {matchingProducts.slice(0, 10).map((product) => (
+              <ProductCard
+                key={product._id}
+                id={product._id}
+                product={product}
+                handleFavoriteClick={handleFavoriteClick}
+                favorites={favorites}
+              />
+            ))}
           </div>
         </div>
       </div>
