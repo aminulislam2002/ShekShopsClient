@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const ViewConfirmOrder = () => {
+const CancelOrders = () => {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -13,9 +13,9 @@ const ViewConfirmOrder = () => {
         const response = await fetch("https://server.shekshops.com/orders");
         if (response.ok) {
           const data = await response.json();
-          // Filter orders with orderStatus as "confirm"
-          const confirmOrders = data.filter((order) => order.orderStatus === "Confirm");
-          setOrders(confirmOrders);
+          // Filter orders with orderStatus as "cancel"
+          const cancelOrders = data.filter((order) => order.orderStatus === "Cancel");
+          setOrders(cancelOrders);
         } else {
           console.error("Error fetching orders");
         }
@@ -27,34 +27,18 @@ const ViewConfirmOrder = () => {
     fetchOrders();
   }, []);
 
-  const handleCancel = (id) => {
+  const handleConfirm = (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Yes, cancel it!",
-      cancelButtonText: "No, keep it!",
+      confirmButtonText: "Yes, confirm it!",
+      cancelButtonText: "No, cancel!",
       reverseButtons: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        updateOrderStatus(id, "Cancel");
-      }
-    });
-  };
-
-  const handleReceived = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "Have customer received the product in good condition?",
-      icon: "question",
-      showCancelButton: true,
-      confirmButtonText: "Yes, Received it",
-      cancelButtonText: "Not yet",
-      reverseButtons: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        updateOrderStatus(id, "Received");
+        updateOrderStatus(id, "Confirm");
       }
     });
   };
@@ -62,7 +46,7 @@ const ViewConfirmOrder = () => {
   const updateOrderStatus = (id, status) => {
     setIsLoading(true);
     axios
-      .put(`http://localhost:5000/orderStatus/${id}`, { status })
+      .put(`https://server.shekshops.com/orderStatus/${id}`, { status })
       .then((response) => {
         if (response.status === 200) {
           // Handle success response
@@ -114,7 +98,7 @@ const ViewConfirmOrder = () => {
 
   return (
     <div className="container mx-auto">
-      <h1 className="bg-green-700 text-3xl font-semibold font-primary text-slate-50 text-center py-5">View Confirm Orders</h1>
+      <h1 className="bg-green-700 text-3xl font-semibold font-primary text-slate-50 text-center py-5">View Cancel Orders</h1>
       <div className="overflow-x-auto">
         <table className="min-w-full">
           <thead>
@@ -183,22 +167,15 @@ const ViewConfirmOrder = () => {
                 <td className="p-4">
                   <div className="grid grid-cols-1 gap-2">
                     <button
-                      onClick={() => handleReceived(orderInfo?._id)}
+                      onClick={() => handleConfirm(orderInfo?._id)}
                       disabled={isLoading}
                       className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
                     >
-                      Received
+                      Confirm
                     </button>
 
                     <button
-                      onClick={() => handleCancel(orderInfo?._id)}
                       disabled={isLoading}
-                      className="bg-slate-500 hover:bg-slate-700 text-white px-4 py-2 rounded-md"
-                    >
-                      Cancel
-                    </button>
-
-                    <button
                       onClick={() => {
                         Swal.fire({
                           title: "Are you sure?",
@@ -229,4 +206,4 @@ const ViewConfirmOrder = () => {
   );
 };
 
-export default ViewConfirmOrder;
+export default CancelOrders;

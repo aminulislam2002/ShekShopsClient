@@ -9,7 +9,7 @@ const MyShopping = () => {
     const fetchMyOrders = async () => {
       try {
         if (user && user.email) {
-          const response = await fetch(`http://localhost:5000/order?email=${user.email}`);
+          const response = await fetch(`https://server.shekshops.com/order?email=${user.email}`);
           if (response.ok) {
             const data = await response.json();
             const orders = data.filter((order) => order?.orderStatus === "Received");

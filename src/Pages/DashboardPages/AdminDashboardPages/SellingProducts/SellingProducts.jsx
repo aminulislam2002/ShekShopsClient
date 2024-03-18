@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const ViewCancelOrder = () => {
+const SellingProducts = () => {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -13,9 +13,9 @@ const ViewCancelOrder = () => {
         const response = await fetch("https://server.shekshops.com/orders");
         if (response.ok) {
           const data = await response.json();
-          // Filter orders with orderStatus as "cancel"
-          const cancelOrders = data.filter((order) => order.orderStatus === "Cancel");
-          setOrders(cancelOrders);
+          // Filter orders with orderStatus as "received"
+          const receivedOrders = data.filter((order) => order.orderStatus === "Received");
+          setOrders(receivedOrders);
         } else {
           console.error("Error fetching orders");
         }
@@ -26,43 +26,6 @@ const ViewCancelOrder = () => {
 
     fetchOrders();
   }, []);
-
-  const handleConfirm = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Yes, confirm it!",
-      cancelButtonText: "No, cancel!",
-      reverseButtons: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        updateOrderStatus(id, "Confirm");
-      }
-    });
-  };
-
-  const updateOrderStatus = (id, status) => {
-    setIsLoading(true);
-    axios
-      .put(`http://localhost:5000/orderStatus/${id}`, { status })
-      .then((response) => {
-        if (response.status === 200) {
-          // Handle success response
-          Swal.fire("Updated!", "Order status has been updated.", "success");
-        }
-        // Update UI accordingly, you may fetch orders again to update the list
-      })
-      .catch((error) => {
-        console.log(error);
-        // Handle error
-        Swal.fire("Error!", "Failed to update order status.", "error");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
 
   const handleDeleteOrder = async (id) => {
     setIsLoading(true);
@@ -98,7 +61,7 @@ const ViewCancelOrder = () => {
 
   return (
     <div className="container mx-auto">
-      <h1 className="bg-green-700 text-3xl font-semibold font-primary text-slate-50 text-center py-5">View Cancel Orders</h1>
+      <h1 className="bg-green-700 text-3xl font-semibold font-primary text-slate-50 text-center py-5">View Selling Products</h1>
       <div className="overflow-x-auto">
         <table className="min-w-full">
           <thead>
@@ -167,15 +130,6 @@ const ViewCancelOrder = () => {
                 <td className="p-4">
                   <div className="grid grid-cols-1 gap-2">
                     <button
-                      onClick={() => handleConfirm(orderInfo?._id)}
-                      disabled={isLoading}
-                      className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
-                    >
-                      Confirm
-                    </button>
-
-                    <button
-                      disabled={isLoading}
                       onClick={() => {
                         Swal.fire({
                           title: "Are you sure?",
@@ -206,4 +160,4 @@ const ViewCancelOrder = () => {
   );
 };
 
-export default ViewCancelOrder;
+export default SellingProducts;

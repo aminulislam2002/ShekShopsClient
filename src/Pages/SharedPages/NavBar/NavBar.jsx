@@ -42,7 +42,13 @@ const NavBar = () => {
 
     // Filter products based on search query
     const filtered = products.filter((product) => product.name.toLowerCase().includes(query));
-    setFilteredProducts(filtered);
+    setFilteredProducts(filtered.slice(0, 10)); // Show only the first 10 matching products
+  };
+
+  // Function to handle click on a product name
+  const handleClickProductName = () => {
+    // Clear the search query state when a product name is clicked
+    setSearchQuery("");
   };
 
   const handleLogout = () => {
@@ -191,11 +197,15 @@ const NavBar = () => {
                   </div>
 
                   {/* Display filtered products */}
-                  <div className={`${isAtTop || window.innerWidth >= 768 ? "visible" : "hidden"} col-span-12 order-4 flex justify-center items-center`}>
+                  <div
+                    className={`${
+                      isAtTop || window.innerWidth >= 768 ? "visible" : "hidden"
+                    } col-span-12 order-4 flex justify-center items-center`}
+                  >
                     {searchQuery && (
                       <div className="absolute z-10 bg-white top-28 md:-top-5 lg:top-20 rounded-md shadow-lg md:w-full lg:w-1/2 mx-5 md:mx-5 lg:mx-0">
                         {filteredProducts.map((product) => (
-                          <div key={product._id} className="p-2 text-slate-800">
+                          <div key={product._id} className="p-2 text-slate-800" onClick={handleClickProductName}>
                             <Link to={`/product-details/${product._id}`}>{product.name}</Link>
                           </div>
                         ))}

@@ -6,39 +6,39 @@ import useCustomer from "../../Hooks/useCustomer";
 const DashboardLayout = () => {
   const adminOptions = (
     <>
-      <Link to="/dashboard/viewAllOrders">
-        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
-          View All Orders
+      <Link to="/dashboard/allUsers">
+        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary uppercase text-center">
+          All Users
         </li>
       </Link>
-      <Link to="/dashboard/viewConfirmOrders">
-        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
-          View Confirm Orders
+      <Link to="/dashboard/allProducts">
+        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary uppercase text-center">
+          All Products
         </li>
       </Link>
-      <Link to="/dashboard/viewCancelOrders">
-        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
-          View Cancel Orders
+      <Link to="/dashboard/pendingOrders">
+        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary uppercase text-center">
+          Pending Orders
         </li>
       </Link>
-      <Link to="/dashboard/viewSellingProduct">
-        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
-          View Selling Product
+      <Link to="/dashboard/confirmOrders">
+        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary uppercase text-center">
+          Confirm Orders
         </li>
       </Link>
-      <Link to="/dashboard/ViewAllUsers">
-        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
-          View All Users
+      <Link to="/dashboard/cancelOrders">
+        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary uppercase text-center">
+          Cancel Orders
         </li>
       </Link>
-      <Link to="/dashboard/viewAllProduct">
-        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
-          View All Product
+      <Link to="/dashboard/sellingProducts">
+        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary uppercase text-center">
+          Selling Products
         </li>
       </Link>
       <Link to="/dashboard/addProduct">
-        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
-          Add A Product
+        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary uppercase text-center">
+          Add Product
         </li>
       </Link>
     </>
@@ -47,17 +47,17 @@ const DashboardLayout = () => {
   const customerOptions = (
     <>
       <Link to="/dashboard/myOrder">
-        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
+        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary uppercase text-center">
           My Order
         </li>
       </Link>
       <Link to="/dashboard/myShopping">
-        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
+        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary uppercase text-center">
           My Shopping
         </li>
       </Link>
       <Link to="/dashboard/myCancellations">
-        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary">
+        <li className="my-1 py-1 ps-5 rounded text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary uppercase text-center">
           My Cancellations
         </li>
       </Link>

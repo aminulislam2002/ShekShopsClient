@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const ViewAllProduct = () => {
+const AllProducts = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -130,4 +130,4 @@ const ViewAllProduct = () => {
   );
 };
 
-export default ViewAllProduct;
+export default AllProducts;

@@ -8,9 +8,9 @@ const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const location = useLocation();
 
-//   if (loading) {
-//     return <GridLoader color="#36d7b7" />;
-//   }
+  //   if (loading) {
+  //     return <GridLoader color="#36d7b7" />;
+  //   }
 
   if (user) {
     return children;

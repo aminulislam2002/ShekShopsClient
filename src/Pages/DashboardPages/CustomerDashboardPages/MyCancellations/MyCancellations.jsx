@@ -12,7 +12,7 @@ const MyCancellations = () => {
     const fetchMyOrders = async () => {
       try {
         if (user && user.email) {
-          const response = await fetch(`http://localhost:5000/order?email=${user.email}`);
+          const response = await fetch(`https://server.shekshops.com/order?email=${user.email}`);
           if (response.ok) {
             const data = await response.json();
             const orders = data.filter((order) => order?.orderStatus === "Cancel");
@@ -48,7 +48,7 @@ const MyCancellations = () => {
   const updateOrderStatus = (id, status) => {
     setIsLoading(true);
     axios
-      .put(`http://localhost:5000/orderStatus/${id}`, { status })
+      .put(`https://server.shekshops.com/orderStatus/${id}`, { status })
       .then((response) => {
         if (response.status === 200) {
           // Handle success response

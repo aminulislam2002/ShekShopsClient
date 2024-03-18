@@ -11,20 +11,20 @@ import AboutUs from "../Pages/AboutUs/AboutUs";
 import PageNotFound from "../Pages/PageNotFound/PageNotFound";
 import Shop from "../Pages/Shop/Shop";
 import AddProduct from "../Pages/DashboardPages/AdminDashboardPages/AddProduct/AddProduct";
-import ViewAllProduct from "../Pages/DashboardPages/AdminDashboardPages/ViewAllProduct/ViewAllProduct";
-import ViewAllOrder from "../Pages/DashboardPages/AdminDashboardPages/ViewAllOrder/ViewAllOrder";
 import Login from "../Pages/AuthenticationPage/LoginPage/Login";
 import AuthenticationLayout from "../Layouts/AuthenticationLayout/AuthenticationLayout";
 import UpdateProduct from "../Pages/DashboardPages/AdminDashboardPages/UpdateProduct/UpdateProduct";
 import WelcomeDashboard from "../Pages/DashboardPages/WelcomeDashboard/WelcomeDashboard";
-import ViewAllUsers from "../Pages/DashboardPages/AdminDashboardPages/ViewAllUsers/ViewAllUsers";
-import PrivateRoute from "./PrivateRoute";
-import ViewConfirmOrder from "../Pages/DashboardPages/AdminDashboardPages/ViewConfirmOrder/ViewConfirmOrder";
-import ViewCancelOrder from "../Pages/DashboardPages/AdminDashboardPages/ViewCancelOrder/ViewCancelOrder";
 import MyOrder from "../Pages/DashboardPages/CustomerDashboardPages/MyOrder/MyOrder";
 import MyCancelOrders from "../Pages/DashboardPages/CustomerDashboardPages/MyCancellations/MyCancellations";
 import MyShopping from "../Pages/DashboardPages/CustomerDashboardPages/MyShopping/MyShopping";
-import ViewSellingProduct from "../Pages/DashboardPages/AdminDashboardPages/ViewSellingProduct/ViewSellingProduct";
+import PendingOrders from "../Pages/DashboardPages/AdminDashboardPages/PendingOrders/PendingOrders";
+import AllProducts from "../Pages/DashboardPages/AdminDashboardPages/AllProducts/AllProducts";
+import AllUsers from "../Pages/DashboardPages/AdminDashboardPages/AllUsers/AllUsers";
+import PrivateRoute from "./PrivateRoute";
+import ConfirmOrders from "../Pages/DashboardPages/AdminDashboardPages/ConfirmOrders/ConfirmOrders";
+import CancelOrders from "../Pages/DashboardPages/AdminDashboardPages/CancelOrders/CancelOrders";
+import SellingProducts from "../Pages/DashboardPages/AdminDashboardPages/SellingProducts/SellingProducts";
 
 const router = createBrowserRouter([
   {
@@ -77,28 +77,28 @@ const router = createBrowserRouter([
         element: <UpdateProduct></UpdateProduct>,
       },
       {
-        path: "/dashboard/viewAllProduct",
-        element: <ViewAllProduct></ViewAllProduct>,
+        path: "/dashboard/allProducts",
+        element: <AllProducts></AllProducts>,
       },
       {
-        path: "/dashboard/ViewAllUsers",
-        element: <ViewAllUsers></ViewAllUsers>,
+        path: "/dashboard/allUsers",
+        element: <AllUsers></AllUsers>,
       },
       {
-        path: "/dashboard/viewAllOrders",
-        element: <ViewAllOrder></ViewAllOrder>,
+        path: "/dashboard/pendingOrders",
+        element: <PendingOrders></PendingOrders>,
       },
       {
-        path: "/dashboard/viewConfirmOrders",
-        element: <ViewConfirmOrder></ViewConfirmOrder>,
+        path: "/dashboard/confirmOrders",
+        element: <ConfirmOrders></ConfirmOrders>,
       },
       {
-        path: "/dashboard/viewCancelOrders",
-        element: <ViewCancelOrder></ViewCancelOrder>,
+        path: "/dashboard/cancelOrders",
+        element: <CancelOrders></CancelOrders>,
       },
       {
-        path: "/dashboard/viewSellingProduct",
-        element: <ViewSellingProduct></ViewSellingProduct>,
+        path: "/dashboard/sellingProducts",
+        element: <SellingProducts></SellingProducts>,
       },
       {
         path: "/dashboard/myOrder",

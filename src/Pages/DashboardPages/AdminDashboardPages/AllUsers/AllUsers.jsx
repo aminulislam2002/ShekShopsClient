@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const ViewAllUsers = () => {
+const AllUsers = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -53,4 +53,4 @@ const ViewAllUsers = () => {
   );
 };
 
-export default ViewAllUsers;
+export default AllUsers;
