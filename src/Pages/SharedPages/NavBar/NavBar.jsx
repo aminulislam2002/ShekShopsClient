@@ -136,7 +136,7 @@ const NavBar = () => {
       <div className="lg:w-[1200px] mx-auto">
         <div className="relative z-10">
           <div className="container mx-auto">
-            <div className={`grid grid-cols-12 ${isAtTop && isSearchOpen ? "h-28" : "h-20"}  lg:h-20`}>
+            <div className={`grid grid-cols-12 ${isAtTop && isSearchOpen ? "h-28" : "h-20"} md:h-28  lg:h-20`}>
               {/* Dropdown icon and navbar icon for small and medium devices */}
               <div className="col-span-2 lg:hidden order-1 flex lg:justify-start items-center">
                 <div className="dropdown">
@@ -174,7 +174,7 @@ const NavBar = () => {
                   <div
                     className={`${
                       isAtTop || window.innerWidth >= 768 ? "visible" : "hidden"
-                    } col-span-12 order-4 lg:col-span-6 lg:order-2 flex justify-center items-center mx-4`}
+                    } lg:h-20 col-span-12 order-4 lg:col-span-6 lg:order-2 flex justify-center items-center mx-5 md:mx-5 lg:mx-0`}
                   >
                     <div className="relative flex items-center w-full">
                       <input
@@ -191,12 +191,12 @@ const NavBar = () => {
                   </div>
 
                   {/* Display filtered products */}
-                  <div>
+                  <div className={`${isAtTop || window.innerWidth >= 768 ? "visible" : "hidden"} col-span-12 order-4 flex justify-center items-center`}>
                     {searchQuery && (
-                      <div className="absolute z-10 bg-white left-0 right-0 mt-28 lg:mt-20 rounded-md shadow-lg">
+                      <div className="absolute z-10 bg-white top-28 md:-top-5 lg:top-20 rounded-md shadow-lg md:w-full lg:w-1/2 mx-5 md:mx-5 lg:mx-0">
                         {filteredProducts.map((product) => (
                           <div key={product._id} className="p-2 text-slate-800">
-                           {product.name}
+                            <Link to={`/product-details/${product._id}`}>{product.name}</Link>
                           </div>
                         ))}
                       </div>
