@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import ProductCard from "../../HomePageCard/ProductCard/ProductCard";
 
 const HundredTakaItems = () => {
-  const [selectedCategory, setSelectedCategory] = useState("all");
   const [showAllProducts, setShowAllProducts] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [products, setProducts] = useState([]);
@@ -15,8 +14,8 @@ const HundredTakaItems = () => {
         const response = await fetch("https://server.shekshops.com/products");
         if (response.ok) {
           const data = await response.json();
-          // Filter products with original price 100 or less
-          const filterProducts = data.filter((item) => parseFloat(item.originalPrice - item.offerPrice) <= 100);
+          // Filter products only hundred taka category products
+          const filterProducts = data.filter((item) => item.category === "hundred taka");
           setProducts(filterProducts);
         } else {
           console.error("Error fetching products");
@@ -34,13 +33,6 @@ const HundredTakaItems = () => {
       prevFavorites.includes(productId) ? prevFavorites.filter((id) => id !== productId) : [...prevFavorites, productId]
     );
   };
-
-  const filteredProducts =
-    selectedCategory === "all"
-      ? products.filter((product, index) => index < displayedProductsCount)
-      : products
-          .filter((product) => product?.category.toLowerCase() === selectedCategory.toLowerCase())
-          .slice(0, displayedProductsCount);
 
   const handleShowMoreClick = () => {
     const currentDisplayedCount = displayedProductsCount;
@@ -68,117 +60,10 @@ const HundredTakaItems = () => {
 
       {/* Product Filter Section */}
 
-      <div>
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between space-y-6 lg:space-y-0 lg:space-x-2 ">
-          <nav className="relative flex w-full overflow-x-auto text-sm md:text-base hiddenScrollbar" data-nc-id="Nav">
-            <ul className="flex sm:space-x-2 gap-1 lg:gap-0">
-              <li>
-                <button
-                  className={`block !leading-none font-medium whitespace-nowrap px-5 py-2.5 text-sm sm:text-base sm:px-6 sm:py-3 capitalize rounded-full
-                ${
-                  selectedCategory === "all"
-                    ? "bg-green-700 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
-                    : "text-slate-800 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800"
-                }
-                 focus:outline-none`}
-                  onClick={() => setSelectedCategory("all")}
-                >
-                  All items
-                </button>
-              </li>
-              <li>
-                <button
-                  className={`block !leading-none font-medium whitespace-nowrap px-5 py-2.5 text-sm sm:text-base sm:px-6 sm:py-3 capitalize rounded-full
-                 ${
-                   selectedCategory === "bag"
-                     ? "bg-green-700 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
-                     : "text-slate-800 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800"
-                 }
-                  focus:outline-none`}
-                  onClick={() => setSelectedCategory("bag")}
-                >
-                  Bag
-                </button>
-              </li>
-              <li>
-                <button
-                  className={`block !leading-none font-medium whitespace-nowrap px-5 py-2.5 text-sm sm:text-base sm:px-6 sm:py-3 capitalize rounded-full
-                 ${
-                   selectedCategory === "women"
-                     ? "bg-green-700 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
-                     : "text-slate-800 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800"
-                 }
-                  focus:outline-none`}
-                  onClick={() => setSelectedCategory("women")}
-                >
-                  Women
-                </button>
-              </li>
-              <li>
-                <button
-                  className={`block !leading-none font-medium whitespace-nowrap px-5 py-2.5 text-sm sm:text-base sm:px-6 sm:py-3 capitalize rounded-full
-                ${
-                  selectedCategory === "mens"
-                    ? "bg-green-700 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
-                    : "text-slate-800 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800"
-                }
-                 focus:outline-none`}
-                  onClick={() => setSelectedCategory("mens")}
-                >
-                  Mens
-                </button>
-              </li>
-              <li>
-                <button
-                  className={`block !leading-none font-medium whitespace-nowrap px-5 py-2.5 text-sm sm:text-base sm:px-6 sm:py-3 capitalize rounded-full
-                ${
-                  selectedCategory === "kitchen"
-                    ? "bg-green-700 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
-                    : "text-slate-800 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800"
-                }
-                 focus:outline-none`}
-                  onClick={() => setSelectedCategory("kitchen")}
-                >
-                  Kitchen
-                </button>
-              </li>
-              <li>
-                <button
-                  className={`block !leading-none font-medium whitespace-nowrap px-5 py-2.5 text-sm sm:text-base sm:px-6 sm:py-3 capitalize rounded-full
-                ${
-                  selectedCategory === "travel"
-                    ? "bg-green-700 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
-                    : "text-slate-800 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800"
-                }
-                 focus:outline-none`}
-                  onClick={() => setSelectedCategory("travel")}
-                >
-                  Travel
-                </button>
-              </li>
-              <li>
-                <button
-                  className={`block !leading-none font-medium whitespace-nowrap px-5 py-2.5 text-sm sm:text-base sm:px-6 sm:py-3 capitalize rounded-full
-                ${
-                  selectedCategory === "gadget"
-                    ? "bg-green-700 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
-                    : "text-slate-800 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800"
-                }
-                 focus:outline-none`}
-                  onClick={() => setSelectedCategory("gadget")}
-                >
-                  Gadget
-                </button>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-
       {/* Products Section */}
 
       <div className="grid gap-2 md:gap-3 lg:gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mt-10">
-        {filteredProducts.map((product) => (
+        {products.map((product) => (
           <ProductCard
             key={product._id}
             id={product._id}
@@ -193,7 +78,7 @@ const HundredTakaItems = () => {
       <div className="flex mt-16 justify-center items-center">
         <button
           className={`relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 disabled:bg-opacity-90 bg-green-700 text-slate-50 hover:bg-slate-200 hover:text-slate-800 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-50 dark:hover:text-slate-800 shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0
-  ${filteredProducts.length >= 4 ? "block" : "hidden"}`}
+  ${products.length >= 10 ? "block" : "hidden"}`}
           onClick={showAllProducts ? handleShowLessClick : handleShowMoreClick}
         >
           {showAllProducts ? <>Show Less</> : <>Show Me More</>}

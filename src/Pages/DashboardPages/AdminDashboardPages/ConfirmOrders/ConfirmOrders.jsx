@@ -65,6 +65,8 @@ const ConfirmOrders = () => {
       .put(`https://server.shekshops.com/orderStatus/${id}`, { status })
       .then((response) => {
         if (response.status === 200) {
+          const filterOrders = (prevOrders) => prevOrders.filter((order) => order.orderStatus !== "Confirm");
+          setOrders(filterOrders);
           // Handle success response
           Swal.fire("Updated!", "Order status has been updated.", "success");
         }
@@ -78,38 +80,6 @@ const ConfirmOrders = () => {
       .finally(() => {
         setIsLoading(false);
       });
-  };
-
-  const handleDeleteOrder = async (id) => {
-    setIsLoading(true);
-    try {
-      const response = await axios.delete(`https://server.shekshops.com/deleteOrder/${id}`);
-
-      if (response.status === 200) {
-        setOrders((prevOrders) => prevOrders.filter((order) => order._id !== id));
-        Swal.fire({
-          title: "Success!",
-          text: "Order deleted successfully.",
-          icon: "success",
-        });
-      } else {
-        console.error("Error deleting order");
-        Swal.fire({
-          title: "Error!",
-          text: "Error deleting order. Please try again later.",
-          icon: "error",
-        });
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      Swal.fire({
-        title: "Error!",
-        text: "An unexpected error occurred. Please try again later.",
-        icon: "error",
-      });
-    } finally {
-      setIsLoading(false);
-    }
   };
 
   return (
@@ -198,27 +168,6 @@ const ConfirmOrders = () => {
                       className="bg-slate-500 hover:bg-slate-700 text-white px-4 py-2 rounded-md"
                     >
                       Cancel
-                    </button>
-
-                    <button
-                      onClick={() => {
-                        Swal.fire({
-                          title: "Are you sure?",
-                          text: "You won't be able to revert this!",
-                          icon: "warning",
-                          showCancelButton: true,
-                          confirmButtonColor: "#3085d6",
-                          cancelButtonColor: "#d33",
-                          confirmButtonText: "Yes, delete it!",
-                        }).then((result) => {
-                          if (result.isConfirmed) {
-                            handleDeleteOrder(orderInfo?._id);
-                          }
-                        });
-                      }}
-                      className="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded-md"
-                    >
-                      Delete
                     </button>
                   </div>
                 </td>

@@ -49,6 +49,8 @@ const CancelOrders = () => {
       .put(`https://server.shekshops.com/orderStatus/${id}`, { status })
       .then((response) => {
         if (response.status === 200) {
+          const filterOrders = (prevOrders) => prevOrders.filter((order) => order.orderStatus !== "Cancel");
+          setOrders(filterOrders);
           // Handle success response
           Swal.fire("Updated!", "Order status has been updated.", "success");
         }
@@ -70,7 +72,8 @@ const CancelOrders = () => {
       const response = await axios.delete(`https://server.shekshops.com/deleteOrder/${id}`);
 
       if (response.status === 200) {
-        setOrders((prevOrders) => prevOrders.filter((order) => order._id !== id));
+        const filterOrders = (prevOrders) => prevOrders.filter((order) => order._id !== id);
+        setOrders(filterOrders);
         Swal.fire({
           title: "Success!",
           text: "Order deleted successfully.",

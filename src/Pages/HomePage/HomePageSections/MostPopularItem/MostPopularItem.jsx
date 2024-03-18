@@ -150,14 +150,14 @@ const MostPopularItem = () => {
                 <button
                   className={`block !leading-none font-medium whitespace-nowrap px-5 py-2.5 text-sm sm:text-base sm:px-6 sm:py-3 capitalize rounded-full
                 ${
-                  selectedCategory === "travel"
+                  selectedCategory === "hundred taka"
                     ? "bg-green-700 text-slate-100 dark:bg-slate-100 dark:text-slate-800"
                     : "text-slate-800 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800"
                 }
                  focus:outline-none`}
-                  onClick={() => setSelectedCategory("travel")}
+                  onClick={() => setSelectedCategory("hundred taka")}
                 >
-                  Travel
+                  100 TK
                 </button>
               </li>
               <li>
@@ -209,7 +209,7 @@ const MostPopularItem = () => {
       <div className="flex mt-16 justify-center items-center">
         <button
           className={`relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 disabled:bg-opacity-90 bg-green-700 text-slate-50 hover:bg-slate-200 hover:text-slate-800 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-50 dark:hover:text-slate-800 shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0
-  ${filteredProducts.length >= 4 ? "block" : "hidden"}`}
+  ${filteredProducts.length >= 10 ? "block" : "hidden"}`}
           onClick={showAllProducts ? handleShowLessClick : handleShowMoreClick}
         >
           {showAllProducts ? <>Show Less</> : <>Show Me More</>}

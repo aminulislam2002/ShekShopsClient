@@ -78,7 +78,7 @@ const TopBanner = () => {
     { category: "mens", label: "Mens Items" },
     { category: "kitchen", label: "Kitchen Items" },
     { category: "gadget", label: "Gadget Items" },
-    { category: "travel", label: "Travel Items" },
+    { category: "hundred taka", label: "100 TK Items" },
     { category: "home improvement", label: "Home Improvement" },
   ];
 
