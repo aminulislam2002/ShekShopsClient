@@ -251,7 +251,7 @@ const ProductDetailsCard = () => {
                           <button
                             key={color}
                             onClick={() => handleSelectedColor(color)}
-                            className={`shadow-lg w-16 h-8 rounded-full ${
+                            className={`shadow-lg w-16 h-8 rounded-full mb-3 ${
                               color === selectedColor ? "border-2 border-red-500" : ""
                             }`}
                             style={{ backgroundColor: `${color.toLowerCase()}` }}

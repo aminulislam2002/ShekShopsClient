@@ -170,7 +170,7 @@ const NavBar = () => {
               <div className="col-span-8 lg:col-span-3 order-2 lg:order-1 flex justify-center lg:justify-start items-center">
                 <Link to="/" className="flex justify-start items-center gap-2 text-xl lg:text-3xl font-bold text-slate-800">
                   <img src={swift_mart_logo} className="h-8 lg:h-12 w-8 lg:w-12 rounded-full" alt="Logo of ShekShops" />
-                  <span className="text-slate-50">ShekShops</span>
+                  <span className="text-slate-50 font-primary">ShekShops</span>
                 </Link>
               </div>
 

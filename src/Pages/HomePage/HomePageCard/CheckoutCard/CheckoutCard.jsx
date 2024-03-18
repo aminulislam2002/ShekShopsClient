@@ -155,9 +155,21 @@ const CheckoutCard = () => {
       });
   };
 
+  const getSliceLength = () => {
+    const windowWidth = window.innerWidth;
+
+    if (windowWidth <= 400) {
+      return 25; // Adjust the length for small screens
+    } else if (windowWidth <= 768) {
+      return 180; // Adjust the length for medium screens
+    } else {
+      return 60; // Default length for large screens
+    }
+  };
+
   return (
     <div className="lg:w-[1200px] mx-auto py-5 md:py-7 lg:py-10 px-5 md:px-7 lg:px-0">
-      <div className="mb-16 px-5 md:px-10 lg:px-0">
+      <div className="mb-10 md:mb-14">
         <h2 className="block text-2xl sm:text-3xl lg:text-4xl font-semibold ">Checkout</h2>
         <div className="block mt-3 sm:mt-5 text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-400">
           <Link className="hover:underline" to="/">
@@ -172,8 +184,8 @@ const CheckoutCard = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-12 px-5 md:px-10 lg:px-0">
-        <div className="col-span-12 lg:col-span-7 order-1 border border-slate-200 mt-5 md:mt-7 lg:mt-0 lg:me-10 rounded-xl overflow-hidden">
+      <div className="grid grid-cols-12 ">
+        <div className="col-span-12 lg:col-span-7 order-1 border border-slate-200 mb-5 md:mb-7 lg:mb-0 lg:me-10 rounded-xl overflow-hidden">
           <div className="scroll-mt-24">
             <div className=" dark:border-slate-700 rounded-xl ">
               <div className="p-6 flex flex-col sm:flex-row items-start">
@@ -317,7 +329,7 @@ const CheckoutCard = () => {
           </div>
         </div>
 
-        <div className="col-span-12 lg:col-span-5 order-2 border border-slate-200 mb-5 md:mb-7 lg:mb-0 lg:ms-10 rounded-xl overflow-hidden">
+        <div className="col-span-12 lg:col-span-5 order-2 border border-slate-200 mt-5 md:mt-7 lg:mt-0 lg:ms-10 rounded-xl overflow-hidden">
           <div className="border-b">
             <h3 className="text-lg font-semibold p-6">Order summary</h3>
           </div>
@@ -333,9 +345,15 @@ const CheckoutCard = () => {
             </div>
 
             <div className="ml-3 sm:ml-6 flex flex-1 flex-col">
-              <h3 className="text-base font-semibold font-primary mb-3">
-                <p className="text-primary-6000">{productData?.productInfo?.name}</p>
-              </h3>
+             
+                <div className="mb-3">
+                  <h2 className="text-sm font-semibold dark:text-slate-50 transition-colors">
+                    {productData?.productInfo?.name.length >= 25
+                      ? productData?.productInfo?.name.slice(0, getSliceLength()) + "..."
+                      : productData?.productInfo?.name}
+                  </h2>
+                </div>
+           
 
               <div className="flex text-sm text-slate-600 dark:text-slate-300 mb-3">
                 <div className="flex items-center space-x-1.5">

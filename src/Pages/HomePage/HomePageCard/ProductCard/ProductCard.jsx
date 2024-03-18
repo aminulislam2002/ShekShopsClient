@@ -2,6 +2,7 @@
 import { MdFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { IoBagCheckOutline } from "react-icons/io5";
 
 const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
   // Add this function outside the component to calculate discounted price
@@ -43,19 +44,20 @@ const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
     const windowWidth = window.innerWidth;
 
     if (windowWidth <= 400) {
-      return 37; // Adjust the length for small screens
+      return 27; // Adjust the length for small screens
     } else if (windowWidth <= 768) {
       return 55; // Adjust the length for medium screens
     } else {
-      return 50; // Default length for large screens
+      return 55; // Default length for large screens
     }
   };
 
   return (
     <div className="">
+      {/* Product Card */}
       <div
         key={product?._id}
-        className="h-[330px] md:h-[406px] lg:h-[390px] flex flex-col justify-start items-center hover:shadow-md bg-slate-100 dark:bg-slate-800"
+        className="h-[365px] md:h-[430px] lg:h-[430px] flex flex-col justify-start items-center hover:shadow-md bg-slate-100 dark:bg-slate-800"
       >
         {/* Render filtered product details here */}
         <div className="w-[176px] md:w-[234.67px] lg:w-[224px]">
@@ -104,16 +106,18 @@ const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
             </div>
 
             <Link to={`/product-details/${product?._id}`}>
-              <div className="space-y-4 p-1.5 md:p-2 lg:p-2.5">
+              <div className="space-y-2 p-1.5 md:p-2 lg:p-2.5">
                 <div className="text-start flex justify-between">
                   <div>
                     <h2 className="text-sm font-semibold dark:text-slate-50 transition-colors">
-                      {product?.name.length > 20 ? product?.name.slice(0, getSliceLength()) + "..." : product?.name}
+                      {product?.name.length >= getSliceLength()
+                        ? product?.name.slice(0, getSliceLength()) + "..."
+                        : product?.name}
                     </h2>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-12 gap-2">
+                <div className="grid grid-cols-12 gap-1">
                   {/* Display original price with discounted price */}
                   <div className="col-span-12 flex items-center text-xl font-medium font-primary mb-1">
                     <span className="text-orange-500 font-semibold !leading-none">
@@ -147,6 +151,16 @@ const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
               </div>
             </Link>
           </div>
+        </div>
+
+        {/* Buy Now button */}
+        <div className="mt-auto w-full p-1.5 md:p-2 lg:p-2.5">
+          <Link to={`/product-details/${product?._id}`}>
+            <button className="relative h-auto w-full inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-2 px-5 lg:px-10 disabled:bg-opacity-90 bg-green-700 text-slate-50 hover:bg-slate-100 hover:text-slate-800 dark:bg-slate-800 dark:text-slate-50 dark:hover:text-slate-800 shadow-xl flex-1 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0">
+              <IoBagCheckOutline className="w-5 h-5 me-2"></IoBagCheckOutline>
+              Buy Now
+            </button>
+          </Link>
         </div>
       </div>
     </div>
