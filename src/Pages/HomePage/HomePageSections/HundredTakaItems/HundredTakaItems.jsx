@@ -17,7 +17,6 @@ const HundredTakaItems = () => {
           const data = await response.json();
           // Filter products with original price 100 or less
           const filterProducts = data.filter((item) => parseFloat(item.originalPrice - item.offerPrice) <= 100);
-          console.log("Filter Products", filterProducts);
           setProducts(filterProducts);
         } else {
           console.error("Error fetching products");

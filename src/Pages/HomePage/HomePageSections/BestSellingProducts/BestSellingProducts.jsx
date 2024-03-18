@@ -15,9 +15,21 @@ const BestSellingProducts = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("https://server.shekshops.com/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("https://server.shekshops.com/products");
+        if (response.ok) {
+          const data = await response.json();
+          setProducts(data);
+        } else {
+          console.error("Error fetching products");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchProducts();
   }, []);
 
   const handleBack = () => {
