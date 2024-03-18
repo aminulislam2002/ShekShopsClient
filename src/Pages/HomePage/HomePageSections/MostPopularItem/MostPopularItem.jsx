@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useEffect, useState } from "react";
-import { FaFilter } from "react-icons/fa";
-import { FiChevronDown } from "react-icons/fi";
+// import { FaFilter } from "react-icons/fa";
+// import { FiChevronDown } from "react-icons/fi";
 import ProductCard from "../../HomePageCard/ProductCard/ProductCard";
 
 const MostPopularItem = () => {
@@ -176,7 +176,7 @@ const MostPopularItem = () => {
               </li>
             </ul>
           </nav>
-          <span className="block flex-shrink-0">
+          {/* <span className="block flex-shrink-0">
             <button
               className="relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium pl-4 py-2.5 sm:pl-6 disabled:bg-opacity-90 bg-green-700 text-slate-50 hover:bg-slate-200 hover:text-slate-800 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-50 dark:hover:text-slate-800 shadow-xl w-full !pr-16 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
               // onClick={handleSubmit(onSubmit)}
@@ -187,7 +187,7 @@ const MostPopularItem = () => {
                 <FiChevronDown className="w-6 h-6"></FiChevronDown>
               </span>
             </button>
-          </span>
+          </span> */}
         </div>
       </div>
 

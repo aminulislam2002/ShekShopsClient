@@ -205,8 +205,8 @@ const NavBar = () => {
                     {searchQuery && (
                       <div className="absolute z-10 bg-white top-28 md:-top-5 lg:top-20 rounded-md shadow-lg md:w-full lg:w-1/2 mx-5 md:mx-5 lg:mx-0">
                         {filteredProducts.map((product) => (
-                          <div key={product._id} className="p-2 text-slate-800" onClick={handleClickProductName}>
-                            <Link to={`/product-details/${product._id}`}>{product.name}</Link>
+                          <div key={product?._id} className="p-2 text-slate-800 hover:underline hover:text-blue-500" onClick={handleClickProductName}>
+                            <Link to={`/product-details/${product?._id}`}>{product?.name}</Link>
                           </div>
                         ))}
                       </div>

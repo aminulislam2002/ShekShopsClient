@@ -13,9 +13,9 @@ const Home = () => {
       <TopBanner></TopBanner>
       <NewArrivals></NewArrivals>
       <HowItWorks></HowItWorks>
-      <BestSellingProducts></BestSellingProducts>
-      <PromoSection></PromoSection>
       <MostPopularItem></MostPopularItem>
+      <PromoSection></PromoSection>
+      <BestSellingProducts></BestSellingProducts>
       <OurProductFeature></OurProductFeature>
       <HundredTakaItems></HundredTakaItems>
     </div>
