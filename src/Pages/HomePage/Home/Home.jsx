@@ -5,6 +5,7 @@ import TopBanner from "../HomePageSections/TopBanner/TopBanner";
 import MostPopularItem from "../HomePageSections/MostPopularItem/MostPopularItem";
 import PromoSection from "../HomePageSections/PromoSection/PromoSection";
 import NewArrivals from "../HomePageSections/NewArrivals/NewArrivals";
+import HundredTakaItems from "../HomePageSections/HundredTakaItems/HundredTakaItems";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <PromoSection></PromoSection>
       <MostPopularItem></MostPopularItem>
       <OurProductFeature></OurProductFeature>
+      <HundredTakaItems></HundredTakaItems>
     </div>
   );
 };
