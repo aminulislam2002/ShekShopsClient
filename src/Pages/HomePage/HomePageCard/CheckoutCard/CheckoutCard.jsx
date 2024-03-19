@@ -345,15 +345,13 @@ const CheckoutCard = () => {
             </div>
 
             <div className="ml-3 sm:ml-6 flex flex-1 flex-col">
-             
-                <div className="mb-3">
-                  <h2 className="text-sm font-semibold dark:text-slate-50 transition-colors">
-                    {productData?.productInfo?.name.length >= 25
-                      ? productData?.productInfo?.name.slice(0, getSliceLength()) + "..."
-                      : productData?.productInfo?.name}
-                  </h2>
-                </div>
-           
+              <div className="mb-3">
+                <h2 className="text-sm font-semibold dark:text-slate-50 transition-colors">
+                  {productData?.productInfo?.name.length >= 25
+                    ? productData?.productInfo?.name.slice(0, getSliceLength()) + "..."
+                    : productData?.productInfo?.name}
+                </h2>
+              </div>
 
               <div className="flex text-sm text-slate-600 dark:text-slate-300 mb-3">
                 <div className="flex items-center space-x-1.5">

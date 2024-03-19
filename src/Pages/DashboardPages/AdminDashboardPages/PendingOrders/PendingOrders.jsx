@@ -14,7 +14,7 @@ const PendingOrders = () => {
         if (response.ok) {
           const data = await response.json();
           // Filter orders with orderStatus as "pending"
-          const pendingOrders = data.filter((order) => order.orderStatus === "Pending");
+          const pendingOrders = data.filter((order) => order?.orderStatus === "Pending");
           setOrders(pendingOrders);
         } else {
           console.error("Error fetching orders");
@@ -65,6 +65,9 @@ const PendingOrders = () => {
       .put(`https://server.shekshops.com/orderStatus/${id}`, { status })
       .then((response) => {
         if (response.status === 200) {
+          // Filter out the updated order from the orders state
+          const updatedOrders = orders.filter((order) => order._id !== id);
+          setOrders(updatedOrders);
           // Handle success response
           Swal.fire("Updated!", "Order status has been updated.", "success");
         }
