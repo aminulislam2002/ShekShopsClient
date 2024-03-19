@@ -2,62 +2,70 @@ import { Link, Outlet } from "react-router-dom";
 import { GrMenu } from "react-icons/gr";
 import useAdmin from "../../Hooks/useAdmin";
 import useCustomer from "../../Hooks/useCustomer";
+import ActiveLink from "../../Components/ActiveLink/ActiveLink";
 
 const DashboardLayout = () => {
   const adminOptions = (
     <>
-      <Link to="/dashboard/allUsers">
-        <li className="my-3 py-2 ps-5 rounded bg-gray-500 text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary uppercase text-center">
-          All Users
-        </li>
-      </Link>
-      <Link to="/dashboard/allProducts">
-        <li className="my-3 py-2 ps-5 rounded bg-lime-500 text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary uppercase text-center">
-          All Products
-        </li>
-      </Link>
-      <Link to="/dashboard/pendingOrders">
-        <li className="my-3 py-2 ps-5 rounded bg-yellow-500 text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary uppercase text-center">
-          Pending Orders
-        </li>
-      </Link>
-      <Link to="/dashboard/confirmOrders">
-        <li className="my-3 py-2 ps-5 rounded bg-blue-500 text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary uppercase text-center">
-          Confirm Orders
-        </li>
-      </Link>
-      <Link to="/dashboard/cancelOrders">
-        <li className="my-3 py-2 ps-5 rounded bg-red-500 text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary uppercase text-center">
-          Cancel Orders
-        </li>
-      </Link>
-      <Link to="/dashboard/sellingProducts">
-        <li className="my-3 py-2 ps-5 rounded bg-indigo-500 text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary uppercase text-center">
-          Selling Products
-        </li>
-      </Link>
-      <Link to="/dashboard/addProduct">
-        <li className="my-3 py-2 ps-5 rounded bg-teal-500 text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary uppercase text-center">
-          Add Product
-        </li>
-      </Link>
+      <ActiveLink
+        to="/dashboard/allUsers"
+        label="All Users"
+        activeClassName="text-slate-800 bg-slate-50"
+        className="my-3 py-2 ps-5 rounded bg-gray-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center"
+      />
+      <ActiveLink
+        to="/dashboard/allProducts"
+        label="All Products"
+        activeClassName="text-slate-800 bg-slate-50"
+        className="my-3 py-2 ps-5 rounded bg-teal-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center"
+      />
+      <ActiveLink
+        to="/dashboard/pendingOrders"
+        label="Pending Orders"
+        activeClassName="text-slate-800 bg-slate-50"
+        className="my-3 py-2 ps-5 rounded bg-amber-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center"
+      />
+      <ActiveLink
+        to="/dashboard/confirmOrders"
+        label="Confirm Orders"
+        activeClassName="text-slate-800 bg-slate-50"
+        className="my-3 py-2 ps-5 rounded bg-blue-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center"
+      />
+      <ActiveLink
+        to="/dashboard/cancelOrders"
+        label="Cancel Orders"
+        activeClassName="text-slate-800 bg-slate-50"
+        className="my-3 py-2 ps-5 rounded bg-red-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center"
+      />
+      <ActiveLink
+        to="/dashboard/sellingProducts"
+        label="Selling Products"
+        activeClassName="text-slate-800 bg-slate-50"
+        className="my-3 py-2 ps-5 rounded bg-green-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center"
+      />
+      <ActiveLink
+        to="/dashboard/addProduct"
+        label="Add Product"
+        activeClassName="text-slate-800 bg-slate-50"
+        className="my-3 py-2 ps-5 rounded bg-sky-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center"
+      />
     </>
   );
 
   const customerOptions = (
     <>
       <Link to="/dashboard/myOrder">
-        <li className="my-3 py-2 ps-5 rounded bg-blue-500 text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary uppercase text-center">
+        <li className="my-3 py-2 ps-5 rounded bg-blue-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center">
           Active Order
         </li>
       </Link>
       <Link to="/dashboard/myShopping">
-        <li className="my-3 py-2 ps-5 rounded bg-teal-500 text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary uppercase text-center">
+        <li className="my-3 py-2 ps-5 rounded bg-teal-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center">
           My Shopping
         </li>
       </Link>
       <Link to="/dashboard/myCancellations">
-        <li className="my-3 py-2 ps-5 rounded bg-red-500 text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary uppercase text-center">
+        <li className="my-3 py-2 ps-5 rounded bg-red-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center">
           My Cancellations
         </li>
       </Link>
@@ -82,7 +90,7 @@ const DashboardLayout = () => {
               </div>
 
               <div className="w-full py-2">
-                <Link to="/" className="text-center block">
+                <Link to="/dashboard" className="text-center block">
                   <h1 className="text-lg md:text-xl lg:text-3xl text-slate-800 font-bold font-serif tracking-wider uppercase">
                     Shek<span className="text-blue-200">Shops</span>
                   </h1>
@@ -94,7 +102,7 @@ const DashboardLayout = () => {
                 {isAdmin ? <> {adminOptions} </> : <></>}
                 {isCustomer ? <> {customerOptions} </> : <></>}
                 <Link to="/">
-                  <li className="my-3 py-2 ps-5 rounded bg-black text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary uppercase text-center">
+                  <li className="my-3 py-2 ps-5 rounded bg-black text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center">
                     Back To Home
                   </li>
                 </Link>
@@ -113,7 +121,7 @@ const DashboardLayout = () => {
             {isAdmin ? <> {adminOptions} </> : <></>}
             {isCustomer ? <> {customerOptions} </> : <></>}
             <Link to="/">
-              <li className="my-3 py-2 ps-5 rounded bg-black text-slate-50 hover:text-slate-800 hover:bg-white text-base lg:text-lg font-semibold font-primary uppercase text-center">
+              <li className="my-3 py-2 ps-5 rounded bg-black text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center">
                 Back To Home
               </li>
             </Link>

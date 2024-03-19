@@ -214,22 +214,22 @@ const TopBanner = () => {
         </div>
 
         {/* Right side image part */}
-        <div className="hidden md:block md:col-span-12 lg:col-span-2">
-          <div className="grid grid-cols-12 gap-5">
+        <div className="hidden lg:block md:col-span-12 lg:col-span-2">
+          <div className="">
             <img
               src={right_image_1}
               alt="right_image_1"
-              className="col-span-12 md:col-span-4 lg:col-span-12 lg:h-[119px] w-full"
+              className="mb-5 lg:h-[119px] w-full"
             />
             <img
               src={right_image_2}
               alt="right_image_2"
-              className="col-span-12 md:col-span-4 lg:col-span-12 lg:h-[119px] w-full"
+              className="mb-5 lg:h-[119px] w-full"
             />
             <img
               src={right_image_3}
               alt="right_image_3"
-              className="col-span-12 md:col-span-4 lg:col-span-12 lg:h-[119px] w-full"
+              className="mb-5 lg:h-[119px] w-full"
             />
           </div>
         </div>

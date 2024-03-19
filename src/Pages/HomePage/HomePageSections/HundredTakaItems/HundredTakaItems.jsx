@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import { useEffect, useState } from "react";
 import ProductCard from "../../HomePageCard/ProductCard/ProductCard";
 
@@ -6,7 +5,7 @@ const HundredTakaItems = () => {
   const [showAllProducts, setShowAllProducts] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [products, setProducts] = useState([]);
-  const [displayedProductsCount, setDisplayedProductsCount] = useState(10);
+  const [displayedProducts, setDisplayedProducts] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -17,6 +16,7 @@ const HundredTakaItems = () => {
           // Filter products only hundred taka category products
           const filterProducts = data.filter((item) => item.category === "hundred taka");
           setProducts(filterProducts);
+          setDisplayedProducts(filterProducts.slice(0, 10)); // Initially display 10 products
         } else {
           console.error("Error fetching products");
         }
@@ -35,21 +35,18 @@ const HundredTakaItems = () => {
   };
 
   const handleShowMoreClick = () => {
-    const currentDisplayedCount = displayedProductsCount;
-    const newDisplayedCount = currentDisplayedCount + 10;
-    setDisplayedProductsCount(newDisplayedCount);
-    setShowAllProducts(newDisplayedCount >= products.length);
+    setDisplayedProducts(products); // Show all products
+    setShowAllProducts(true);
   };
 
   const handleShowLessClick = () => {
-    setDisplayedProductsCount(10); // Display only 10 products
+    setDisplayedProducts(products.slice(0, 10)); // Display only 10 products
     setShowAllProducts(false);
   };
 
   return (
     <div className="lg:w-[1200px] lg:mx-auto px-2.5 md:px-5 lg:px-0 my-10 md:my-14 lg:my-16">
       {/* Title of this section */}
-
       <div className="relative mb-12 lg:mb-14 text-neutral-900 dark:text-neutral-50">
         <div className="px-5 md:px-10 lg:px-0">
           <h2 className="font-primary text-3xl md:text-4xl font-semibold">
@@ -58,12 +55,9 @@ const HundredTakaItems = () => {
         </div>
       </div>
 
-      {/* Product Filter Section */}
-
       {/* Products Section */}
-
       <div className="grid gap-2 md:gap-3 lg:gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mt-10">
-        {products.map((product) => (
+        {displayedProducts.map((product) => (
           <ProductCard
             key={product._id}
             id={product._id}
@@ -78,7 +72,7 @@ const HundredTakaItems = () => {
       <div className="flex mt-16 justify-center items-center">
         <button
           className={`relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 disabled:bg-opacity-90 bg-green-700 text-slate-50 hover:bg-slate-200 hover:text-slate-800 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-50 dark:hover:text-slate-800 shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0
-  ${products.length >= 10 ? "block" : "hidden"}`}
+  ${products.length > 10 ? "block" : "hidden"}`}
           onClick={showAllProducts ? handleShowLessClick : handleShowMoreClick}
         >
           {showAllProducts ? <>Show Less</> : <>Show Me More</>}
