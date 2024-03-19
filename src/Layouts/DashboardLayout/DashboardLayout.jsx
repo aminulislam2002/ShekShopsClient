@@ -54,21 +54,24 @@ const DashboardLayout = () => {
 
   const customerOptions = (
     <>
-      <Link to="/dashboard/myOrder">
-        <li className="my-3 py-2 ps-5 rounded bg-blue-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center">
-          Active Order
-        </li>
-      </Link>
-      <Link to="/dashboard/myShopping">
-        <li className="my-3 py-2 ps-5 rounded bg-teal-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center">
-          My Shopping
-        </li>
-      </Link>
-      <Link to="/dashboard/myCancellations">
-        <li className="my-3 py-2 ps-5 rounded bg-red-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center">
-          My Cancellations
-        </li>
-      </Link>
+      <ActiveLink
+        to="/dashboard/myOrder"
+        label="Active Order"
+        activeClassName="text-slate-800 bg-slate-50"
+        className="my-3 py-2 ps-5 rounded bg-blue-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center"
+      />
+      <ActiveLink
+        to="/dashboard/myShopping"
+        label="My Shopping"
+        activeClassName="text-slate-800 bg-slate-50"
+        className="my-3 py-2 ps-5 rounded bg-teal-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center"
+      />
+      <ActiveLink
+        to="/dashboard/myCancellations"
+        label="My Cancellations"
+        activeClassName="text-slate-800 bg-slate-50"
+        className="my-3 py-2 ps-5 rounded bg-red-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center"
+      />
     </>
   );
 

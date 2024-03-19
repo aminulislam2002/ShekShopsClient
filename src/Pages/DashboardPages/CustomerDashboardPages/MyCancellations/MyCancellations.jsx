@@ -51,6 +51,9 @@ const MyCancellations = () => {
       .put(`https://server.shekshops.com/orderStatus/${id}`, { status })
       .then((response) => {
         if (response.status === 200) {
+          // Filter out the updated order from the orders state
+          const updatedOrders = myOrders.filter((order) => order._id !== id);
+          setMyOrders(updatedOrders);
           // Handle success response
           Swal.fire("Updated!", "Order status has been updated.", "success");
         }
