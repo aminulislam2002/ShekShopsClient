@@ -41,11 +41,14 @@ const CheckoutCard = () => {
   const [disableConfirmButton, setDisableConfirmButton] = useState(true);
 
   useEffect(() => {
-    // Check if any required field is empty
-    const isAnyFieldEmptyExceptComment = Object.entries(customerData).some(([key, value]) => {
+    // Check if any required field is empty or mobile number length is not 11
+    const isAnyFieldEmptyOrMobileNumberInvalid = Object.entries(customerData).some(([key, value]) => {
+      if (key === "mobileNumber" && value.length !== 11) {
+        return true; // Return true if mobile number length is not 11
+      }
       return key !== "comment" && (value === "" || value === null);
     });
-    setDisableConfirmButton(isAnyFieldEmptyExceptComment);
+    setDisableConfirmButton(isAnyFieldEmptyOrMobileNumberInvalid);
   }, [customerData]);
 
   const handleChange = (e) => {
