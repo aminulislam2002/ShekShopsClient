@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaStar, FaShippingFast } from "react-icons/fa";
 import { TbWorld } from "react-icons/tb";
 import { HiOutlineCurrencyBangladeshi } from "react-icons/hi";
 import { FaPlus, FaMinus } from "react-icons/fa6";
-import { IoBagCheckOutline } from "react-icons/io5";
+import { IoBagCheckOutline, IoCartOutline } from "react-icons/io5";
 import { TbTruckReturn } from "react-icons/tb";
 import { Link, useLocation, useParams } from "react-router-dom";
 import ProductCard from "../ProductCard/ProductCard";
+import { AuthContext } from "../../../../Providers/AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 // Add this function outside the component to calculate discounted price
 const calculateDiscountedPrice = (originalPrice, offerPrice) => {
@@ -37,10 +40,11 @@ const ProductDetailsCard = () => {
   const [selectedSize, setSelectedSize] = useState("N/A");
   const [product, setProduct] = useState(null);
   const [matchingProducts, setMatchingProducts] = useState([]);
-  const [buyingProductInfo, setBuyingProductInfo] = useState({});
+  const [buyingProductInfo, setBuyingProductInfo] = useState(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [favorites, setFavorites] = useState([]);
   const { pathname } = useLocation();
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     // Scroll to the top of the page smoothly when the pathname changes
@@ -70,7 +74,6 @@ const ProductDetailsCard = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        // const response = await fetch(`https://server.shekshops.com/product/${id}`);
         const response = await fetch(`https://server.shekshops.com/products`);
         if (response.ok) {
           const data = await response.json();
@@ -100,6 +103,52 @@ const ProductDetailsCard = () => {
     };
     fetchProduct();
   }, [id, selectedColor, selectedSize, selectedQuantity, category]);
+
+  const handleAddToCart = () => {
+    const customerEmail = user?.email;
+    // Add the email to the buyingProductInfo object
+    const updatedBuyingProductInfo = {
+      ...buyingProductInfo,
+      productInfo: {
+        ...buyingProductInfo.productInfo,
+        customerEmail: customerEmail,
+      },
+    };
+
+    // Product added to carts database
+    axios
+      .post("http://localhost:5000/postCartProduct", updatedBuyingProductInfo, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          // Product successfully added
+          Swal.fire({
+            icon: "success",
+            title: "Product Added!",
+            text: "Your product has been successfully added.",
+          });
+        } else {
+          console.error("Error adding product. Status code: ", response.status);
+          Swal.fire({
+            icon: "error",
+            title: "Error!",
+            text: "Something went wrong while adding the product.",
+          });
+        }
+      })
+      .catch((error) => {
+        // Handle error case
+        console.error("Error adding product", error);
+        Swal.fire({
+          icon: "error",
+          title: "Error!",
+          text: "Something went wrong while adding the product.",
+        });
+      });
+  };
 
   if (!product) {
     return <div>Loading...</div>;
@@ -267,31 +316,44 @@ const ProductDetailsCard = () => {
               )}
             </div>
 
+            {/* Quantity */}
+
+            <div className="mb-5 w-1/3 flex justify-start items-center">
+              <div className="me-2">Quantity: </div>
+              <div className="w-full flex items-center justify-center bg-slate-100/70 dark:bg-slate-800/70 px-2 py-3 sm:p-3.5 rounded-full">
+                <div className="flex items-center justify-between space-x-5 w-full">
+                  <div className="flex items-center justify-between w-[104px] sm:w-28">
+                    <button
+                      className="w-8 h-8 rounded-full flex items-center justify-center border border-slate-400 dark:border-slate-500 bg-white dark:bg-slate-900 focus:outline-none hover:border-slate-700 dark:hover:border-slate-400 disabled:hover:border-slate-400 dark:disabled:hover:border-slate-500 disabled:opacity-50 disabled:cursor-default"
+                      type="button"
+                      onClick={() => handleSelectQuantity(-1)}
+                      disabled={selectedQuantity === 1}
+                    >
+                      <FaMinus></FaMinus>
+                    </button>
+                    <span className="select-none block flex-1 text-center leading-none">{selectedQuantity}</span>
+                    <button
+                      className="w-8 h-8 rounded-full flex items-center justify-center border border-slate-400 dark:border-slate-500 bg-white dark:bg-slate-900 focus:outline-none hover:border-slate-700 dark:hover:border-slate-400 disabled:hover:border-slate-400 dark:disabled:hover:border-slate-500 disabled:opacity-50 disabled:cursor-default"
+                      type="button"
+                      onClick={() => handleSelectQuantity(1)}
+                    >
+                      <FaPlus></FaPlus>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Buy now button */}
             <div className="mb-5">
               <div className="flex space-x-3.5">
-                <div className="flex items-center justify-center bg-slate-100/70 dark:bg-slate-800/70 px-2 py-3 sm:p-3.5 rounded-full">
-                  <div className="nc-NcInputNumber flex items-center justify-between space-x-5 w-full">
-                    <div className="nc-NcInputNumber__content flex items-center justify-between w-[104px] sm:w-28">
-                      <button
-                        className="w-8 h-8 rounded-full flex items-center justify-center border border-slate-400 dark:border-slate-500 bg-white dark:bg-slate-900 focus:outline-none hover:border-slate-700 dark:hover:border-slate-400 disabled:hover:border-slate-400 dark:disabled:hover:border-slate-500 disabled:opacity-50 disabled:cursor-default"
-                        type="button"
-                        onClick={() => handleSelectQuantity(-1)}
-                        disabled={selectedQuantity === 1}
-                      >
-                        <FaMinus></FaMinus>
-                      </button>
-                      <span className="select-none block flex-1 text-center leading-none">{selectedQuantity}</span>
-                      <button
-                        className="w-8 h-8 rounded-full flex items-center justify-center border border-slate-400 dark:border-slate-500 bg-white dark:bg-slate-900 focus:outline-none hover:border-slate-700 dark:hover:border-slate-400 disabled:hover:border-slate-400 dark:disabled:hover:border-slate-500 disabled:opacity-50 disabled:cursor-default"
-                        type="button"
-                        onClick={() => handleSelectQuantity(1)}
-                      >
-                        <FaPlus></FaPlus>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                <button
+                  onClick={handleAddToCart}
+                  className="relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 disabled:bg-opacity-90 bg-amber-700 text-slate-50 hover:bg-slate-100 hover:text-slate-800 dark:bg-slate-800  dark:text-slate-50 dark:hover:text-slate-800 shadow-xl flex-1 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
+                >
+                  <IoCartOutline className="w-6 h-6"></IoCartOutline>
+                  <span className="ml-3">Add To Cart</span>
+                </button>
 
                 <Link
                   to="/product-checkout"
