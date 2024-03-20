@@ -93,7 +93,7 @@ const ProductDetailsCard = () => {
             quantity: selectedQuantity,
             originalPrice: calculateDiscountedPrice(filteredProduct?.originalPrice, filteredProduct?.offerPrice),
           };
-          setBuyingProductInfo({ productInfo });
+          setBuyingProductInfo([productInfo]);
         } else {
           console.error("Error fetching product");
         }
@@ -108,11 +108,8 @@ const ProductDetailsCard = () => {
     const customerEmail = user?.email;
     // Add the email to the buyingProductInfo object
     const updatedBuyingProductInfo = {
-      ...buyingProductInfo,
-      productInfo: {
-        ...buyingProductInfo.productInfo,
-        customerEmail: customerEmail,
-      },
+      ...buyingProductInfo[0],
+      customerEmail: customerEmail,
     };
 
     // Product added to carts database
@@ -131,11 +128,11 @@ const ProductDetailsCard = () => {
             text: "Your product has been successfully added.",
           });
         } else {
-          console.error("Error adding product. Status code: ", response.status);
+          console.error("Error adding product?. Status code: ", response.status);
           Swal.fire({
             icon: "error",
             title: "Error!",
-            text: "Something went wrong while adding the product.",
+            text: "Something went wrong while adding the product?.",
           });
         }
       })
@@ -145,7 +142,7 @@ const ProductDetailsCard = () => {
         Swal.fire({
           icon: "error",
           title: "Error!",
-          text: "Something went wrong while adding the product.",
+          text: "Something went wrong while adding the product?.",
         });
       });
   };
@@ -426,8 +423,8 @@ const ProductDetailsCard = () => {
           <div className="grid gap-2 md:gap-3 lg:gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mt-10">
             {matchingProducts.slice(0, 10).map((product) => (
               <ProductCard
-                key={product._id}
-                id={product._id}
+                key={product?._id}
+                id={product?._id}
                 product={product}
                 handleFavoriteClick={handleFavoriteClick}
                 favorites={favorites}

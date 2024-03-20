@@ -24,6 +24,7 @@ import AllUsers from "../Pages/DashboardPages/AdminDashboardPages/AllUsers/AllUs
 import ConfirmOrders from "../Pages/DashboardPages/AdminDashboardPages/ConfirmOrders/ConfirmOrders";
 import CancelOrders from "../Pages/DashboardPages/AdminDashboardPages/CancelOrders/CancelOrders";
 import SellingProducts from "../Pages/DashboardPages/AdminDashboardPages/SellingProducts/SellingProducts";
+import CartPage from "../Pages/CartPage/CartPage";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "/shop",
         element: <Shop></Shop>,
+      },
+      {
+        path: "/cart",
+        element: <CartPage></CartPage>,
       },
       {
         path: "/about-us",

@@ -1,10 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { FaTruckArrowRight } from "react-icons/fa6";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../../Providers/AuthProvider/AuthProvider";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { FaMinus, FaPlus } from "react-icons/fa";
 
 const CheckoutCard = () => {
   useEffect(() => {
@@ -12,9 +14,13 @@ const CheckoutCard = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const location = useLocation();
   const productData = location?.state?.data;
+  console.log(productData);
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
+  const [myCartProducts, setMyCartProducts] = useState(productData);
 
   const currentDate = new Date();
   const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
@@ -113,12 +119,99 @@ const CheckoutCard = () => {
     }));
   };
 
+  const handleQuantityChange = (productId, newQuantity) => {
+    const updatedProducts = myCartProducts.map((product) => {
+      if (product?._id === productId) {
+        return {
+          ...product,
+          quantity: newQuantity,
+        };
+      }
+      return product;
+    });
+    setMyCartProducts(updatedProducts);
+  };
+
+  const handleIncreaseQuantity = (productId) => {
+    const updatedQuantity = myCartProducts.find((product) => product._id === productId).quantity + 1;
+    handleQuantityChange(productId, updatedQuantity);
+  };
+
+  const handleDecreaseQuantity = (productId) => {
+    const currentQuantity = myCartProducts.find((product) => product._id === productId).quantity;
+    if (currentQuantity > 1) {
+      const updatedQuantity = currentQuantity - 1;
+      handleQuantityChange(productId, updatedQuantity);
+      setSelectedQuantity(updatedQuantity)
+    }
+  };
+
+  const handleDeleteProduct = async (productId) => {
+    const confirmDelete = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (confirmDelete.isConfirmed) {
+      try {
+        const response = await fetch(`http://localhost:5000/deleteProductFromCart/${productId}`, {
+          method: "DELETE",
+        });
+
+        if (response.ok) {
+          // Update the products state without the deleted product
+          const filterProducts = (prevProducts) => prevProducts.filter((product) => product._id !== productId);
+          setMyCartProducts(filterProducts);
+
+          // Show success alert
+          Swal.fire({
+            title: "Success!",
+            text: "Product deleted successfully.",
+            icon: "success",
+          });
+        } else {
+          console.error("Error deleting product");
+
+          // Show error alert
+          Swal.fire({
+            title: "Error!",
+            text: "Error deleting product. Please try again later.",
+            icon: "error",
+          });
+        }
+      } catch (error) {
+        console.error("Error:", error);
+
+        // Show error alert
+        Swal.fire({
+          title: "Error!",
+          text: "An unexpected error occurred. Please try again later.",
+          icon: "error",
+        });
+      }
+    }
+  };
+
+  // Pricing count part
+  const subTotal = myCartProducts.reduce((total, product) => {
+    return total + product.originalPrice * product.quantity;
+  }, 0);
+
+  const total = subTotal + customerData.deliveryCharge;
+
   const handleSaveAndConfirmOrder = () => {
     const orderInfo = {
       date: formattedDate,
       time: formattedTime,
+      subTotal: subTotal,
+      total: total,
       orderStatus: "Pending",
-      productData: productData?.productInfo,
+      products: myCartProducts,
       customerData: customerData,
     };
 
@@ -137,14 +230,15 @@ const CheckoutCard = () => {
         return response.json();
       })
       .then((data) => {
-        console.log(data); // Log the server response
-
-        // Success message with SweetAlert
-        Swal.fire({
-          icon: "success",
-          title: "Order Saved!",
-          text: "Your order has been successfully saved.",
-        });
+        if (data.insertedId) {
+          // Show alert if insertedId exists
+          Swal.fire({
+            icon: "success",
+            title: "Order Confirmed!",
+            text: "ধন্যবাদ! আপনার অর্ডারটি কনফার্ম হয়েছে। ডেলিভারির জন্য প্রস্তুত করার আগে আমরা ফোন করে নিশ্চিত করবো।",
+          });
+        }
+        navigate("/");
       })
       .catch((error) => {
         console.error("Error saving order:", error);
@@ -162,16 +256,16 @@ const CheckoutCard = () => {
     const windowWidth = window.innerWidth;
 
     if (windowWidth <= 400) {
-      return 25; // Adjust the length for small screens
+      return 20; // Adjust the length for small screens
     } else if (windowWidth <= 768) {
       return 180; // Adjust the length for medium screens
     } else {
-      return 60; // Default length for large screens
+      return 30; // Default length for large screens
     }
   };
 
   return (
-    <div className="lg:w-[1200px] mx-auto py-5 md:py-7 lg:py-10 px-5 md:px-7 lg:px-0">
+    <div className="lg:w-[1200px] mx-auto py-2 md:py-3 lg:py-5 px-2.5 md:px-7 lg:px-0">
       <div className="mb-10 md:mb-14">
         <h2 className="block text-2xl sm:text-3xl lg:text-4xl font-semibold ">Checkout</h2>
         <div className="block mt-3 sm:mt-5 text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-400">
@@ -179,16 +273,12 @@ const CheckoutCard = () => {
             Homepage
           </Link>
           <span className="text-xs mx-1 sm:mx-1.5">/</span>
-          <Link className="hover:underline" to={`/product-details/${productData?.productInfo?.id}`}>
-            Product Details
-          </Link>
-          <span className="text-xs mx-1 sm:mx-1.5">/</span>
           <span className="underline">Checkout</span>
         </div>
       </div>
 
-      <div className="grid grid-cols-12 ">
-        <div className="col-span-12 lg:col-span-7 order-1 border border-slate-200 mb-5 md:mb-7 lg:mb-0 lg:me-10 rounded-xl overflow-hidden">
+      <div className="grid grid-cols-12">
+        <div className="col-span-12 lg:col-span-7 order-1 border border-slate-200 mb-5 lg:mb-0 lg:me-5 rounded-xl overflow-hidden">
           <div className="scroll-mt-24">
             <div className=" dark:border-slate-700 rounded-xl ">
               <div className="p-6 flex flex-col sm:flex-row items-start">
@@ -332,83 +422,127 @@ const CheckoutCard = () => {
           </div>
         </div>
 
-        <div className="col-span-12 lg:col-span-5 order-2 border border-slate-200 mt-5 md:mt-7 lg:mt-0 lg:ms-10 rounded-xl overflow-hidden">
+        <div className="col-span-12 lg:col-span-5 order-2 border border-slate-200 mt-5 lg:mt-0 lg:ms-5 rounded-xl overflow-hidden">
           <div className="border-b">
             <h3 className="text-lg font-semibold p-6">Order summary</h3>
           </div>
 
-          <div className="flex py-7 first:pt-0 last:pb-0 px-3 border-b">
-            <div className="h-36 w-24 sm:w-28 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100 relative">
-              <img
-                src={productData?.productInfo?.imageUrl}
-                alt={productData?.productInfo?.name}
-                className="w-full h-full object-cover"
-              />
-              <a className="absolute inset-0" href="/product-detail"></a>
-            </div>
-
-            <div className="ml-3 sm:ml-6 flex flex-1 flex-col">
-              <div className="mb-3">
-                <h2 className="text-sm font-semibold dark:text-slate-50 transition-colors">
-                  {productData?.productInfo?.name.length >= 25
-                    ? productData?.productInfo?.name.slice(0, getSliceLength()) + "..."
-                    : productData?.productInfo?.name}
-                </h2>
-              </div>
-
-              <div className="flex text-sm text-slate-600 dark:text-slate-300 mb-3">
-                <div className="flex items-center space-x-1.5">
-                  <span className="text-gray-700">Color: {productData?.productInfo?.color}</span>
+          <div>
+            {myCartProducts.map((product) => (
+              <div key={product?.id} className="rounded-lg p-3 flex items-center">
+                <div className="flex-shrink-0 w-20 lg:w-24">
+                  <img src={product?.imageUrl} alt={product?.name} className="w-full h-auto rounded-md" />
                 </div>
-                <span className="mx-4 border-l border-slate-200 dark:border-slate-700 "></span>
-                <div className="flex items-center space-x-1.5">
-                  <span>Size: {productData?.productInfo?.size}</span>
-                </div>
-                <span className="mx-4 border-l border-slate-200 dark:border-slate-700 "></span>
-                <div className="flex items-center space-x-1.5">
-                  <span>Quantity: {productData?.productInfo?.quantity}</span>
-                </div>
-              </div>
+                <div className="flex-grow ml-2 lg:ml-3">
+                  <Link
+                    className="text-sm lg:text-base font-primary font-semibold dark:text-slate-50 transition-colors mb-1 hover:underline hover:text-blue-500"
+                    to={`/product-details/${product?.id}`}
+                  >
+                    {product?.name?.length >= getSliceLength()
+                      ? product?.name.slice(0, getSliceLength()) + "..."
+                      : product?.name}
+                  </Link>
 
-              <div className="col-span-12 flex items-center text-xl font-medium font-primary mb-3">
-                <span className="text-orange-500 font-semibold !leading-none">
-                  ৳{productData?.productInfo?.originalPrice}
-                </span>
-              </div>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <div className="flex text-gray-600 text-sm md:text-base">
+                        <span className="mr-2">
+                          {product?.color !== "N/A" ? (
+                            <>
+                              <span className="font-semibold text-sm md:text-base">Color:</span>{" "}
+                              <span>{product?.color}</span>
+                            </>
+                          ) : (
+                            <></>
+                          )}
+                        </span>
+                        <span className="mr-2">
+                          {product?.size !== "N/A" ? (
+                            <>
+                              <span className="font-semibold text-sm md:text-base">Size:</span> <span>{product?.size}</span>
+                            </>
+                          ) : (
+                            <></>
+                          )}
+                        </span>
+                      </div>
+                      <div className="font-semibold text-sm md:text-base">
+                        Price:{" "}
+                        <span className="text-sm md:text-base text-amber-600 font-primary">৳{product?.originalPrice}</span>
+                      </div>
+                      <div className="font-semibold text-sm md:text-base">
+                        Sub-Total:{" "}
+                        <span className="text-sm md:text-base text-purple-600 font-primary">
+                          ৳{product?.originalPrice * product?.quantity}
+                        </span>
+                      </div>
+                    </div>
 
-              <div className="flex justify-end items-center">
-                <button className="text-base text-blue-600 font-semibold">Remove</button>
+                    <div>
+                      {/* Quantity update buttons */}
+                      <div className="w-full flex items-center justify-center bg-slate-100/70 dark:bg-slate-800/70 rounded-full">
+                        <div className="flex items-center justify-between space-x-5 w-full">
+                          <div className="flex items-center justify-between w-[80px]">
+                            <button
+                              className="w-5 md:w-7 h-5 md:h-7 rounded-full flex items-center justify-center border border-slate-400 dark:border-slate-500 bg-white dark:bg-slate-900 focus:outline-none hover:border-slate-700 dark:hover:border-slate-400 disabled:hover:border-slate-400 dark:disabled:hover:border-slate-500 disabled:opacity-50 disabled:cursor-default"
+                              type="button"
+                              onClick={() => handleDecreaseQuantity(product?._id)}
+                              disabled={selectedQuantity === "1"}
+                            >
+                              <FaMinus className="w-2 md:w-3 h-2 md:h-3 font-normal"></FaMinus>
+                            </button>
+                            <span className="select-none block flex-1 text-center text-sm md:text-base leading-none">
+                              {product?.quantity}
+                            </span>
+                            <button
+                              className="w-5 md:w-7 h-5 md:h-7 rounded-full flex items-center justify-center border border-slate-400 dark:border-slate-500 bg-white dark:bg-slate-900 focus:outline-none hover:border-slate-700 dark:hover:border-slate-400 disabled:hover:border-slate-400 dark:disabled:hover:border-slate-500 disabled:opacity-50 disabled:cursor-default"
+                              type="button"
+                              onClick={() => handleIncreaseQuantity(product?._id)}
+                            >
+                              <FaPlus className="w-2 md:w-3 h-2 md:h-3 font-normal"></FaPlus>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Delete button */}
+                      <div className="flex justify-center items-center">
+                        <button onClick={() => handleDeleteProduct(product?._id)} className="text-red-600 mt-2">
+                          <RiDeleteBin6Line className="w-4 md:w-6 h-6 md:h-8"></RiDeleteBin6Line>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
 
           {/* Pricing count part */}
-          <div className="py-7 px-3 border-b">
-            <div className="flex justify-between items-center mb-4">
-              <span className="text-purple-600 text-base font-bold">Sub-Total:</span>
-              <span className="text-lg font-bold text-purple-600">
-                <span className="text-2xl">৳</span>
-                {productData?.productInfo?.originalPrice * productData?.productInfo?.quantity}
-              </span>
-            </div>
-            <div className="flex justify-between items-center mb-4">
-              <span className="text-blue-600 text-base font-bold">{customerData?.deliveryArea}:</span>
-              <span className="text-lg font-bold text-blue-600">
-                <span className="text-2xl">৳</span>
-                {customerData?.deliveryCharge.toFixed(2)}
-              </span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-green-600 text-base font-bold">Total:</span>
-              <span className="text-lg font-bold text-green-600">
-                <span className="text-2xl">৳</span>
-                {parseFloat(productData?.productInfo?.originalPrice * productData?.productInfo?.quantity) +
-                  parseFloat(customerData?.deliveryCharge)}
-              </span>
+          <div className="p-3 border-b border-t">
+            <div>
+              {myCartProducts.length > 0 ? (
+                <div className="py-1 font-bold text-lg flex justify-between items-center font-primary">
+                  <span className="me-1">Sub-Total:</span>
+                  <span className="text-blue-500">৳{subTotal}</span>
+                </div>
+              ) : (
+                <></>
+              )}
+
+              <div className="py-1 font-bold text-lg flex justify-between items-center font-primary">
+                <span className="text-blue-600 text-base font-bold">{customerData?.deliveryArea}:</span>
+                <span className="text-lg font-bold text-blue-600">৳{customerData?.deliveryCharge.toFixed(2)}</span>
+              </div>
+
+              <div className="py-1 font-bold text-lg flex justify-between items-center font-primary">
+                <span className="text-green-600 text-base font-bold">Total:</span>
+                <span className="text-lg font-bold text-green-600">৳{total.toFixed(2)}</span>
+              </div>
             </div>
           </div>
 
-          <div className="py-7 px-3">
+          <div className="p-3">
             <div className="flex flex-col sm:flex-row pt-6 gap-3">
               <button
                 onClick={handleSaveAndConfirmOrder}
