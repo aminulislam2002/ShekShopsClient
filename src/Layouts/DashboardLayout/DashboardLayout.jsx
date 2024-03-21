@@ -3,6 +3,7 @@ import { GrMenu } from "react-icons/gr";
 import useAdmin from "../../Hooks/useAdmin";
 import useCustomer from "../../Hooks/useCustomer";
 import ActiveLink from "../../Components/ActiveLink/ActiveLink";
+import useTheme from "../../Hooks/useTheme";
 
 const DashboardLayout = () => {
   const adminOptions = (
@@ -77,14 +78,15 @@ const DashboardLayout = () => {
 
   const [isAdmin] = useAdmin();
   const [isCustomer] = useCustomer();
+  const { isDarkMode } = useTheme();
 
   return (
-    <div className="bg-slate-50 min-h-screen">
+    <div className={` font-secondary min-h-screen ${isDarkMode && "dark"}`}>
       <div className="hidden lg:block"></div>
       <div className="drawer">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content lg:flex">
-          <div className="w-full lg:w-2/12 bg-green-700 overflow-y-auto max-h-[100vh] lg:h-screen">
+          <div className="w-full lg:w-2/12 bg-neutral-100 dark:bg-neutral-900 overflow-y-auto max-h-[100vh] lg:h-screen">
             <div className="flex justify-start">
               <div className="flex-none lg:hidden">
                 <label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">
@@ -120,7 +122,7 @@ const DashboardLayout = () => {
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-3" className="drawer-overlay overflow-x-auto max-h-[100vh]"></label>
-          <ul className="p-4 w-2/3 md:w-1/3 min-h-screen bg-green-700 overflow-y-auto">
+          <ul className="p-4 w-2/3 md:w-1/3 min-h-screen grid grid-cols-1  overflow-y-auto">
             {isAdmin ? <> {adminOptions} </> : <></>}
             {isCustomer ? <> {customerOptions} </> : <></>}
             <Link to="/">

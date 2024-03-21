@@ -7,6 +7,7 @@ import swift_mart_logo from "../../../assets/Logo/Logo Without Bg.png";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import useTheme from "../../../Hooks/useTheme";
 
 const NavBar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -137,6 +138,8 @@ const NavBar = () => {
     },
   ];
 
+  const { isDarkMode, toggleDarkMode } = useTheme();
+
   return (
     <div className="sticky top-0 w-full z-[1000] bg-green-700 text-slate-50 dark:bg-slate-900">
       <div className="lg:w-[1200px] mx-auto">
@@ -205,7 +208,11 @@ const NavBar = () => {
                     {searchQuery && (
                       <div className="absolute z-10 bg-white top-28 md:-top-5 lg:top-20 rounded-md shadow-lg md:w-full lg:w-1/2 mx-5 md:mx-5 lg:mx-0">
                         {filteredProducts.map((product) => (
-                          <div key={product?._id} className="p-2 text-slate-800 hover:underline hover:text-blue-500" onClick={handleClickProductName}>
+                          <div
+                            key={product?._id}
+                            className="p-2 text-slate-800 hover:underline hover:text-blue-500"
+                            onClick={handleClickProductName}
+                          >
                             <Link to={`/product-details/${product?._id}`}>{product?.name}</Link>
                           </div>
                         ))}
@@ -265,7 +272,7 @@ const NavBar = () => {
                   </button>
                 </div>
 
-                <div className=" ">
+                <div className={`${isDarkMode && "dark"}`}>
                   <div className="dropdown dropdown-bottom dropdown-end">
                     <div
                       tabIndex={0}
@@ -275,7 +282,10 @@ const NavBar = () => {
                     >
                       <LuUser2 className="w-6 h-6" />
                     </div>
-                    <ul tabIndex={0} className="dropdown-content bg-green-700 z-[1] menu p-2 shadow rounded-box w-52">
+                    <ul
+                      tabIndex={0}
+                      className="dropdown-content bg-green-700 dark:bg-slate-900 z-[1] menu p-2 shadow rounded-box w-52"
+                    >
                       <li>
                         {user ? (
                           <>
@@ -295,6 +305,14 @@ const NavBar = () => {
                             <Link to="authentication/register">Register / Login</Link>
                           </>
                         )}
+                      </li>
+                      <li>
+                        <button
+                          onClick={toggleDarkMode}
+                          className="rounded-full bg-green-700 dark:bg-slate-100 text-slate-50 dark:text-slate-800 font-secondary font-semibold"
+                        >
+                          {isDarkMode ? "Light" : "Dark"}
+                        </button>
                       </li>
                     </ul>
                   </div>

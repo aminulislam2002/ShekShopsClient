@@ -16,8 +16,10 @@ export default {
       },
       fontFamily: {
         primary: "Poppins",
+        secondary: "Public Sans",
       },
     },
   },
   plugins: [require("daisyui")],
+  darkMode: "class",
 };
