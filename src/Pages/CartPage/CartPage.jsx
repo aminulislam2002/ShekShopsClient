@@ -15,7 +15,7 @@ const CartPage = () => {
     const fetchMyCartProducts = async () => {
       try {
         if (user && user.email) {
-          const response = await fetch(`http://localhost:5000/cartProducts?email=${user.email}`);
+          const response = await fetch(`https://server.shekshops.com/cartProducts?email=${user.email}`);
           if (response.ok) {
             const data = await response.json();
             setMyCartProducts(data);
@@ -55,7 +55,7 @@ const CartPage = () => {
 
     if (confirmDelete.isConfirmed) {
       try {
-        const response = await fetch(`http://localhost:5000/deleteProductFromCart/${productId}`, {
+        const response = await fetch(`https://server.shekshops.com/deleteProductFromCart/${productId}`, {
           method: "DELETE",
         });
 
@@ -117,7 +117,7 @@ const CartPage = () => {
     const currentQuantity = myCartProducts.find((product) => product._id === productId).quantity;
     if (currentQuantity > 1) {
       const updatedQuantity = currentQuantity - 1;
-      setSelectedQuantity(updatedQuantity)
+      setSelectedQuantity(updatedQuantity);
       handleQuantityChange(productId, updatedQuantity);
     }
   };

@@ -114,7 +114,7 @@ const ProductDetailsCard = () => {
 
     // Product added to carts database
     axios
-      .post("http://localhost:5000/postCartProduct", updatedBuyingProductInfo, {
+      .post("https://server.shekshops.com/postCartProduct", updatedBuyingProductInfo, {
         headers: {
           "Content-Type": "application/json",
         },

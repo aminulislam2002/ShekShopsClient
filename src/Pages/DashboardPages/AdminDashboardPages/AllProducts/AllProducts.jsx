@@ -83,7 +83,7 @@ const AllProducts = () => {
             {products.map((product) => (
               <tr key={product?._id} className="border-t">
                 <td className="px-4 py-2 w-3/12" title={product?.name}>
-                  {product?.name.slice(0, 100)}...
+                  <Link className="hover:text-blue-600 hover:underline" to={`/product-details/${product?._id}`}>{product?.name.slice(0, 100)}...</Link>
                 </td>
                 <td className="px-4 py-2 text-center w-1/12">{product?.category}</td>
                 <td className="px-4 py-2 text-center w-1/12">{product?.originalPrice}</td>

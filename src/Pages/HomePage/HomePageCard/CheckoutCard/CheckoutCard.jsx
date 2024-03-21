@@ -159,7 +159,7 @@ const CheckoutCard = () => {
 
     if (confirmDelete.isConfirmed) {
       try {
-        const response = await fetch(`http://localhost:5000/deleteProductFromCart/${productId}`, {
+        const response = await fetch(`https://server.shekshops.com/deleteProductFromCart/${productId}`, {
           method: "DELETE",
         });
 

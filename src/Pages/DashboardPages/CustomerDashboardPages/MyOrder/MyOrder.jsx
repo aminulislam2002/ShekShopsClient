@@ -51,9 +51,9 @@ const MyOrder = () => {
       .put(`https://server.shekshops.com/orderStatus/${id}`, { status })
       .then((response) => {
         if (response.status === 200) {
-              // Filter out the updated order from the orders state
-              const updatedOrders = myOrders.filter((order) => order._id !== id);
-              setMyOrders(updatedOrders);
+          // Filter out the updated order from the orders state
+          const updatedOrders = myOrders.filter((order) => order._id !== id);
+          setMyOrders(updatedOrders);
           // Handle success response
           Swal.fire("Updated!", "Order status has been updated.", "success");
         }
@@ -70,7 +70,7 @@ const MyOrder = () => {
   };
 
   return (
-    <div className="container mx-auto bg-slate-100">
+    <div className="container mx-auto bg-slate-200">
       <h1 className="text-2xl py-2 ps-2 font-semibold font-primary">Order Details</h1>
       <div>
         <div className="mb-4">
@@ -94,16 +94,19 @@ const MyOrder = () => {
                   </p>
                 </div>
                 <div>
-                  <p>
-                    <span className="text-slate-600 text-base font-bold me-1">Qty:</span>
-                    <span>{order?.productData?.quantity}</span>
-                  </p>
+                  <span
+                    className={`text-${
+                      order?.orderStatus === "Pending" ? "red-600" : order?.orderStatus === "Confirm" ? "blue-600" : "black"
+                    } italic text-base font-bold me-1`}
+                  >
+                    {order?.orderStatus}
+                  </span>
                 </div>
                 <div>
                   <span className="text-purple-600 text-base font-bold me-1">Total:</span>
                   <span className="text-lg font-bold text-purple-600">
                     <span className="text-2xl">৳</span>
-                    {order?.productData?.originalPrice * order?.productData?.quantity + order?.customerData?.deliveryCharge}
+                    {order?.total}
                   </span>
                 </div>
               </div>
@@ -111,33 +114,36 @@ const MyOrder = () => {
 
             <div className="bg-white shadow-md rounded-lg p-3 grid grid-cols-12 lg:gap-10">
               <div className="mb-5 lg:mb-0 col-span-12 md:border border-slate-400 rounded-md">
-                <div className="md:flex md:justify-start md:items-start">
-                  <div className="flex justify-center items-center">
-                    <img
-                      src={order?.productData?.imageUrl}
-                      alt={order?.productData?.name}
-                      className="w-[100px] h-[100px] object-cover rounded-l-md"
-                    />
-                  </div>
+                {order?.products?.map((product) => (
+                  <div key={product._id} className="md:flex md:justify-start md:items-start">
+                    {console.log("product", product.imageUrl)}
+                    <div className="flex justify-center items-center">
+                      <img
+                        src={product?.imageUrl}
+                        alt={product?.name}
+                        className="w-[100px] h-[100px] object-cover rounded-l-md"
+                      />
+                    </div>
 
-                  <div className="p-3">
-                    <h3 className="text-lg font-semibold mb-1">{order?.productData?.name.slice(0, 50)}...</h3>
+                    <div className="p-3">
+                      <h3 className="text-lg font-semibold mb-1">{product?.name.slice(0, 50)}...</h3>
 
-                    <div className="flex text-slate-600 dark:text-slate-300 mb-4">
-                      <div className="flex items-center space-x-1.5">
-                        <span className="text-gray-700">Color: {order?.productData?.color}</span>
-                      </div>
-                      <span className="mx-4 border-l border-slate-200 dark:border-slate-700 "></span>
-                      <div className="flex items-center space-x-1.5">
-                        <span>Size: {order?.productData?.size}</span>
-                      </div>
-                      <span className="mx-4 border-l border-slate-200 dark:border-slate-700 "></span>
-                      <div className="flex items-center space-x-1.5">
-                        <span>Quantity: {order?.productData?.quantity}</span>
+                      <div className="flex text-slate-600 dark:text-slate-300 mb-4">
+                        <div className="flex items-center space-x-1.5">
+                          <span className="text-gray-700">Color: {product?.color}</span>
+                        </div>
+                        <span className="mx-4 border-l border-slate-200 dark:border-slate-700 "></span>
+                        <div className="flex items-center space-x-1.5">
+                          <span>Size: {product?.size}</span>
+                        </div>
+                        <span className="mx-4 border-l border-slate-200 dark:border-slate-700 "></span>
+                        <div className="flex items-center space-x-1.5">
+                          <span>Quantity: {product?.quantity}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
 
               <div className="mb-5 lg:mb-0 col-span-12 lg:col-span-6 p-3 border border-slate-400 rounded-md">
@@ -175,10 +181,10 @@ const MyOrder = () => {
                 </div>
 
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-purple-600 text-base font-bold">Product Price:</span>
+                  <span className="text-purple-600 text-base font-bold">Sub-Total:</span>
                   <span className="text-lg font-bold text-purple-600">
                     <span className="text-2xl">৳</span>
-                    {order?.productData?.originalPrice}
+                    {order?.subTotal}
                   </span>
                 </div>
 
@@ -194,7 +200,7 @@ const MyOrder = () => {
                   <span className="text-purple-600 text-base font-bold">Total:</span>
                   <span className="text-lg font-bold text-purple-600">
                     <span className="text-2xl">৳</span>
-                    {order?.productData?.originalPrice * order?.productData?.quantity + order?.customerData?.deliveryCharge}
+                    {order?.total}
                   </span>
                 </div>
 
