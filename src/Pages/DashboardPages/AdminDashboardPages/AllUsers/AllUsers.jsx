@@ -23,13 +23,13 @@ const AllUsers = () => {
   }, []);
 
   return (
-    <div className="container mx-auto">
-      <h1 className="bg-green-700 text-3xl font-semibold font-primary text-slate-50 text-center py-5">View All Users</h1>
+    <div className="">
+      <h1 className="bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50 text-base font-semibold font-secondary text-start p-5">View All Users</h1>
 
-      <div className="bg-white shadow-md rounded-lg overflow-x-auto">
+      <div className="bg-white shadow-md overflow-x-auto">
         <table className="w-full table-auto">
           {/* head */}
-          <thead className="bg-slate-50">
+          <thead className="bg-slate-100 text-slate-800 dark:bg-[#1C2E45] dark:text-slate-50">
             <tr>
               <th className="px-4 py-2 text-center">#</th>
               <th className="px-4 py-2 text-center">Name</th>
@@ -37,7 +37,7 @@ const AllUsers = () => {
               <th className="px-4 py-2 text-center">Role</th>
             </tr>
           </thead>
-          <tbody className="">
+          <tbody className="bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50">
             {users.map((user, index) => (
               <tr key={user?._id} className="border-t">
                 <td className="px-4 py-2 text-center">{index + 1}</td>
