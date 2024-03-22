@@ -3,6 +3,7 @@ import { MdFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { IoBagCheckOutline } from "react-icons/io5";
+import useTheme from "../../../../Hooks/useTheme";
 
 const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
   // Add this function outside the component to calculate discounted price
@@ -52,17 +53,19 @@ const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
     }
   };
 
+  const { isDarkMode } = useTheme();
+
   return (
-    <div className="">
+    <div className={`${isDarkMode && "dark"}`}>
       {/* Product Card */}
       <div
         key={product?._id}
-        className="h-[365px] md:h-[430px] lg:h-[430px] flex flex-col justify-start items-center hover:shadow-md bg-slate-100 dark:bg-slate-800"
+        className="h-[365px] md:h-[430px] lg:h-[430px] flex flex-col justify-start items-center hover:shadow-md bg-slate-50 dark:bg-[#132337]"
       >
         {/* Render filtered product details here */}
         <div className="w-[184px] md:w-[234.67px] lg:w-[224px]">
           <div className="flex flex-col bg-transparent">
-            <div className="relative flex-shrink-0 bg-slate-50 dark:bg-slate-300 overflow-hidden z-[55] group">
+            <div className="relative flex-shrink-0 overflow-hidden z-[55] group">
               <Link to={`/product-details/${product?._id}`}>
                 <div className="flex justify-center items-center aspect-w-11 aspect-h-12 w-full w-w-full h-full">
                   <img

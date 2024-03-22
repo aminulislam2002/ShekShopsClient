@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../HomePage/HomePageCard/ProductCard/ProductCard";
+import useTheme from "../../Hooks/useTheme";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -28,25 +29,31 @@ const Shop = () => {
     );
   };
 
+  const { isDarkMode } = useTheme();
+
   return (
-    <div className="lg:w-[1200px] lg:mx-auto px-2.5 md:px-5 lg:px-0 my-10 md:my-14 lg:my-16">
-      {loading ? (
-        <h1>Loading...!</h1>
-      ) : (
-        <>
-          <div className="grid gap-3 md:gap-4 lg:gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-            {products.map((product) => (
-              <ProductCard
-                key={product?.id}
-                id={product?.id}
-                product={product}
-                handleFavoriteClick={handleFavoriteClick}
-                favorites={favorites}
-              ></ProductCard>
-            ))}
-          </div>
-        </>
-      )}
+    <div className={`${isDarkMode && "dark"}`}>
+      <div className="bg-white text-slate-800 dark:bg-[#0F1824] dark:text-slate-50">
+        <div className="lg:w-[1200px] lg:mx-auto px-2.5 md:px-5 lg:px-0 py-10 md:py-14 lg:py-16">
+          {loading ? (
+            <h1>Loading...!</h1>
+          ) : (
+            <>
+              <div className="grid gap-3 md:gap-4 lg:gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+                {products.map((product) => (
+                  <ProductCard
+                    key={product?.id}
+                    id={product?.id}
+                    product={product}
+                    handleFavoriteClick={handleFavoriteClick}
+                    favorites={favorites}
+                  ></ProductCard>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

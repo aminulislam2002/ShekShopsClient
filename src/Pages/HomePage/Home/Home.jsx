@@ -6,18 +6,23 @@ import MostPopularItem from "../HomePageSections/MostPopularItem/MostPopularItem
 import PromoSection from "../HomePageSections/PromoSection/PromoSection";
 import NewArrivals from "../HomePageSections/NewArrivals/NewArrivals";
 import HundredTakaItems from "../HomePageSections/HundredTakaItems/HundredTakaItems";
+import useTheme from "../../../Hooks/useTheme";
 
 const Home = () => {
+  const { isDarkMode } = useTheme();
+
   return (
-    <div>
-      <TopBanner></TopBanner>
-      <NewArrivals></NewArrivals>
-      <HowItWorks></HowItWorks>
-      <MostPopularItem></MostPopularItem>
-      <PromoSection></PromoSection>
-      <BestSellingProducts></BestSellingProducts>
-      <OurProductFeature></OurProductFeature>
-      <HundredTakaItems></HundredTakaItems>
+    <div className={`${isDarkMode && "dark"}`}>
+      <div className="bg-white dark:bg-[#0F1824]">
+        <TopBanner></TopBanner>
+        <NewArrivals></NewArrivals>
+        <HowItWorks></HowItWorks>
+        <MostPopularItem></MostPopularItem>
+        <PromoSection></PromoSection>
+        <BestSellingProducts></BestSellingProducts>
+        <OurProductFeature></OurProductFeature>
+        <HundredTakaItems></HundredTakaItems>
+      </div>
     </div>
   );
 };

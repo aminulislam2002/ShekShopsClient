@@ -45,7 +45,7 @@ const HundredTakaItems = () => {
   };
 
   return (
-    <div className="lg:w-[1200px] lg:mx-auto px-2.5 md:px-5 lg:px-0 my-10 md:my-14 lg:my-16">
+    <div className="lg:w-[1200px] lg:mx-auto px-2.5 md:px-5 lg:px-0 py-10 md:py-14 lg:py-16">
       {/* Title of this section */}
       <div className="relative mb-12 lg:mb-14 text-neutral-900 dark:text-neutral-50">
         <div className="px-5 md:px-10 lg:px-0">

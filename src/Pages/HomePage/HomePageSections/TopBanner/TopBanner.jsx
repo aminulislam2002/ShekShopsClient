@@ -83,7 +83,7 @@ const TopBanner = () => {
   ];
 
   return (
-    <div className="lg:w-[1200px] lg:mx-auto px-2.5 md:px-5 lg:px-0 mb-10 md:mb-14 lg:mb-16">
+    <div className="lg:w-[1200px] lg:mx-auto px-2.5 md:px-5 lg:px-0 mb-10 md:mb-14 lg:mb-16 bg-white dark:bg-[#0F1824]">
       {/* Category, slider and image section */}
       <div className="grid grid-cols-12 md:gap-5">
         {/* Notice section */}

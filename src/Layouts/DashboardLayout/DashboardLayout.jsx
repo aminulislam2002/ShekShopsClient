@@ -109,7 +109,7 @@ const DashboardLayout = () => {
             <div className="flex justify-start">
               <div className="flex-none lg:hidden">
                 <label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">
-                  <GrMenu className="w-6 h-6" />
+                  <GrMenu className="w-6 h-6 dark:text-white" />
                 </label>
               </div>
 

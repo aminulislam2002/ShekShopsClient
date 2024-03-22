@@ -68,7 +68,7 @@ const WelcomeDashboard = () => {
               <h5 className="mt-4 mb-2 dark:text-slate-50 text-lg md:text-xl lg:text-2xl font-secondary font-semibold">
                 20
               </h5>
-              <p className="text-slate-400 dark:text-zink-200">Total Orders</p>
+              <p className="text-slate-400 dark:text-zink-200">Active Orders</p>
             </div>
           </div>
 

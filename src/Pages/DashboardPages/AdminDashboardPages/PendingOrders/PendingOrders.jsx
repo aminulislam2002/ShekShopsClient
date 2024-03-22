@@ -125,7 +125,9 @@ const PendingOrders = () => {
               <tr key={order?._id} className="border-t border-slate-400">
                 {console.log(order)}
                 <td className="px-4 py-2 text-center text-blue-500 hover:underline">#{order?._id}</td>
-                <td className="px-4 py-2 text-center">{order?.date}</td>
+                <td className="px-4 py-2 text-center">
+                  {order?.date} <br /> {order?.time}
+                </td>
                 <td className="px-4 py-2 text-center">৳{order?.total}</td>
                 <td className="px-4 py-2 text-center">{order?.customerData?.name}</td>
                 <td className="px-4 py-2 text-center">{order?.customerData?.mobileNumber}</td>
