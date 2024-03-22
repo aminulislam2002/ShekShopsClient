@@ -19,7 +19,7 @@ const DashboardLayout = () => {
         label="Dashboards"
         icon={MdDashboard}
         activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
-        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       ></ActiveLink>
 
       <ActiveLink
@@ -27,7 +27,7 @@ const DashboardLayout = () => {
         label="All Users"
         icon={FcConferenceCall}
         activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
-        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
 
       <ActiveLink
@@ -35,42 +35,42 @@ const DashboardLayout = () => {
         label="All Products"
         icon={FaProductHunt}
         activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
-        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
       <ActiveLink
         to="/dashboard/pendingOrders"
         label="Pending Orders"
         icon={MdOutlinePendingActions}
         activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
-        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
       <ActiveLink
         to="/dashboard/confirmOrders"
         label="Confirm Orders"
         icon={GiConfirmed}
         activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
-        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
       <ActiveLink
         to="/dashboard/cancelOrders"
         label="Cancel Orders"
         icon={FcCancel}
         activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
-        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
       <ActiveLink
         to="/dashboard/sellingProducts"
         label="Selling Products"
         icon={IoCloudDone}
         activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
-        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
       {/* <ActiveLink
         to="/dashboard/addProduct"
         label="Add Product"
          icon={}
         activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
-        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       /> */}
     </>
   );
@@ -82,14 +82,14 @@ const DashboardLayout = () => {
         label="Active Order"
         icon={FcOk}
         activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
-        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
       <ActiveLink
         to="/dashboard/myShopping"
         label="My Shopping"
         icon={FaShoppingBasket}
         activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
-        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
 
       <ActiveLink
@@ -97,7 +97,7 @@ const DashboardLayout = () => {
         label="My Cancellations"
         icon={FcCancel}
         activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
-        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
     </>
   );
@@ -112,7 +112,7 @@ const DashboardLayout = () => {
       <div className="drawer">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content lg:flex">
-          <div className="w-full lg:w-2/12 bg-slate-50 dark:bg-[#132337] overflow-y-auto max-h-[100vh] lg:h-screen">
+          <div className="w-full lg:w-2/12 bg-white dark:bg-[#132337] overflow-y-auto max-h-[100vh] lg:h-screen">
             <div className="flex justify-start">
               <div className="flex-none lg:hidden">
                 <label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">
@@ -138,13 +138,13 @@ const DashboardLayout = () => {
                     label="Go To Home"
                     icon={FaHome}
                     activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
-                    className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+                    className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
                   ></ActiveLink>
                 </li>
                 <li>
                   <button
                     onClick={toggleDarkMode}
-                    className="w-full my-1 py-2.5 px-3 ps-8 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+                    className="w-full my-1 py-2.5 px-3 ps-8 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
                   >
                     {isDarkMode ? (
                       <>
@@ -174,7 +174,7 @@ const DashboardLayout = () => {
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-3" className="drawer-overlay overflow-x-auto max-h-[100vh]"></label>
-          <ul className="p-4 w-2/3 md:w-1/3 min-h-screen bg-slate-50 dark:bg-[#132337] grid grid-cols-1  overflow-y-auto">
+          <ul className="p-4 w-2/3 md:w-1/3 min-h-screen bg-white dark:bg-[#132337] grid grid-cols-1  overflow-y-auto">
             {isAdmin ? <> {adminOptions} </> : <></>}
             {isCustomer ? <> {customerOptions} </> : <></>}
             <li>
@@ -183,13 +183,13 @@ const DashboardLayout = () => {
                 label="Go To Home"
                 icon={FaHome}
                 activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
-                className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+                className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
               ></ActiveLink>
             </li>
             <li>
               <button
                 onClick={toggleDarkMode}
-                className="w-full my-1 py-2.5 px-3 ps-8 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+                className="w-full my-1 py-2.5 px-3 ps-8 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
               >
                 {isDarkMode ? (
                   <>
