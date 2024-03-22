@@ -1,11 +1,11 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { GrView } from "react-icons/gr";
-import Swal from "sweetalert2";
 import { MdOutlineDoneOutline } from "react-icons/md";
-import { FcCancel } from "react-icons/fc";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import Swal from "sweetalert2";
 
-const PendingOrders = () => {
+const CancelledOrders = () => {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -15,9 +15,9 @@ const PendingOrders = () => {
         const response = await fetch("https://server.shekshops.com/orders");
         if (response.ok) {
           const data = await response.json();
-          // Filter orders with orderStatus as "pending"
-          const pendingOrders = data.filter((order) => order?.orderStatus === "Pending");
-          setOrders(pendingOrders);
+          // Filter orders with orderStatus as "cancelled"
+          const cancelledOrders = data.filter((order) => order.orderStatus === "Cancelled");
+          setOrders(cancelledOrders);
         } else {
           console.error("Error fetching orders");
         }
@@ -36,27 +36,11 @@ const PendingOrders = () => {
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: "Yes, confirm it!",
-      cancelButtonText: "No, cancel!",
+      cancelButtonText: "No, cancelled!",
       reverseButtons: true,
     }).then((result) => {
       if (result.isConfirmed) {
         updateOrderStatus(id, "Confirmed");
-      }
-    });
-  };
-
-  const handleCancelled = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Yes, cancel it!",
-      cancelButtonText: "No, keep it!",
-      reverseButtons: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        updateOrderStatus(id, "Cancelled");
       }
     });
   };
@@ -85,6 +69,39 @@ const PendingOrders = () => {
       });
   };
 
+  const handleDeleteOrder = async (id) => {
+    setIsLoading(true);
+    try {
+      const response = await axios.delete(`https://server.shekshops.com/deleteOrder/${id}`);
+
+      if (response.status === 200) {
+        const filterOrders = (prevOrders) => prevOrders.filter((order) => order._id !== id);
+        setOrders(filterOrders);
+        Swal.fire({
+          title: "Success!",
+          text: "Order deleted successfully.",
+          icon: "success",
+        });
+      } else {
+        console.error("Error deleting order");
+        Swal.fire({
+          title: "Error!",
+          text: "Error deleting order. Please try again later.",
+          icon: "error",
+        });
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      Swal.fire({
+        title: "Error!",
+        text: "An unexpected error occurred. Please try again later.",
+        icon: "error",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="">
       <div className="p-5 bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50">
@@ -100,7 +117,7 @@ const PendingOrders = () => {
           </div>
           <div className="lg:col-span-6 xl:col-span-6 order-1 lg:order-2">
             <h1 className="bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50 text-base font-semibold font-secondary text-center p-5">
-              View All Pending Orders
+              View All Cancelled Orders
             </h1>
           </div>
         </div>
@@ -136,8 +153,25 @@ const PendingOrders = () => {
                       <MdOutlineDoneOutline className="w-4 md:w-5 h-5 md:h-7 text-green-500 hover:text-green-700"></MdOutlineDoneOutline>
                     </button>
 
-                    <button onClick={() => handleCancelled(order?._id)} disabled={isLoading}>
-                      <FcCancel className="w-4 md:w-5 h-5 md:h-7 text-red-500 hover:text-red-700"></FcCancel>
+                    <button
+                      disabled={isLoading}
+                      onClick={() => {
+                        Swal.fire({
+                          title: "Are you sure?",
+                          text: "You won't be able to revert this!",
+                          icon: "warning",
+                          showCancelButton: true,
+                          confirmButtonColor: "#3085d6",
+                          cancelButtonColor: "#d33",
+                          confirmButtonText: "Yes, delete it!",
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            handleDeleteOrder(order?._id);
+                          }
+                        });
+                      }}
+                    >
+                      <RiDeleteBin6Line className="w-4 md:w-5 h-5 md:h-7 text-red-500 hover:text-red-700"></RiDeleteBin6Line>
                     </button>
 
                     <button>
@@ -154,4 +188,4 @@ const PendingOrders = () => {
   );
 };
 
-export default PendingOrders;
+export default CancelledOrders;

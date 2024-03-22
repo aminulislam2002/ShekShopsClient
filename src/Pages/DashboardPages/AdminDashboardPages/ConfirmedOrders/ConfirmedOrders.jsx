@@ -1,11 +1,12 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { GrView } from "react-icons/gr";
-import Swal from "sweetalert2";
-import { MdOutlineDoneOutline } from "react-icons/md";
+import { useEffect, useState } from "react";
 import { FcCancel } from "react-icons/fc";
+import { GrView } from "react-icons/gr";
+import { FcShipped } from "react-icons/fc";
+import { FaShippingFast } from "react-icons/fa";
+import Swal from "sweetalert2";
 
-const PendingOrders = () => {
+const ConfirmedOrders = () => {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -15,9 +16,11 @@ const PendingOrders = () => {
         const response = await fetch("https://server.shekshops.com/orders");
         if (response.ok) {
           const data = await response.json();
-          // Filter orders with orderStatus as "pending"
-          const pendingOrders = data.filter((order) => order?.orderStatus === "Pending");
-          setOrders(pendingOrders);
+          // Filter orders with orderStatus as "confirmed"
+          const confirmedOrders = data.filter(
+            (order) => order.orderStatus === "Confirmed" || order.orderStatus === "Shipping"
+          );
+          setOrders(confirmedOrders);
         } else {
           console.error("Error fetching orders");
         }
@@ -28,22 +31,6 @@ const PendingOrders = () => {
 
     fetchOrders();
   }, []);
-
-  const handleConfirmed = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Yes, confirm it!",
-      cancelButtonText: "No, cancel!",
-      reverseButtons: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        updateOrderStatus(id, "Confirmed");
-      }
-    });
-  };
 
   const handleCancelled = (id) => {
     Swal.fire({
@@ -57,6 +44,38 @@ const PendingOrders = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         updateOrderStatus(id, "Cancelled");
+      }
+    });
+  };
+
+  const handleShipping = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "This action will mark the order as shipping.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, mark as Shipping",
+      cancelButtonText: "No, cancel",
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        updateOrderStatus(id, "Shipping");
+      }
+    });
+  };
+
+  const handleDelivered = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Have customer delivered the product in good condition?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Delivered it",
+      cancelButtonText: "Not yet",
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        updateOrderStatus(id, "Delivered");
       }
     });
   };
@@ -100,7 +119,7 @@ const PendingOrders = () => {
           </div>
           <div className="lg:col-span-6 xl:col-span-6 order-1 lg:order-2">
             <h1 className="bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50 text-base font-semibold font-secondary text-center p-5">
-              View All Pending Orders
+              View All Confirmed Orders
             </h1>
           </div>
         </div>
@@ -132,12 +151,19 @@ const PendingOrders = () => {
                 <td className="px-4 py-2 text-center">{order?.orderStatus}</td>
                 <td className="px-4 py-2 text-center w-1/12">
                   <div className="flex gap-2">
-                    <button onClick={() => handleConfirmed(order?._id)} disabled={isLoading}>
-                      <MdOutlineDoneOutline className="w-4 md:w-5 h-5 md:h-7 text-green-500 hover:text-green-700"></MdOutlineDoneOutline>
+                    <button onClick={() => handleCancelled(order?._id)} disabled={isLoading}>
+                      <FcCancel className="w-4 md:w-5 h-5 md:h-7 text-green-500 hover:text-green-700"></FcCancel>
                     </button>
 
-                    <button onClick={() => handleCancelled(order?._id)} disabled={isLoading}>
-                      <FcCancel className="w-4 md:w-5 h-5 md:h-7 text-red-500 hover:text-red-700"></FcCancel>
+                    <button
+                      onClick={() => handleShipping(order?._id)}
+                      disabled={isLoading || order?.orderStatus === "Shipping"}
+                    >
+                      <FaShippingFast className="w-4 md:w-5 h-5 md:h-7 text-pink-500 hover:text-pink-700"></FaShippingFast>
+                    </button>
+
+                    <button onClick={() => handleDelivered(order?._id)} disabled={isLoading}>
+                      <FcShipped className="w-4 md:w-5 h-5 md:h-7 text-green-500 hover:text-green-700"></FcShipped>
                     </button>
 
                     <button>
@@ -154,4 +180,4 @@ const PendingOrders = () => {
   );
 };
 
-export default PendingOrders;
+export default ConfirmedOrders;

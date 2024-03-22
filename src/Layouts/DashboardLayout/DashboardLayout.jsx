@@ -45,15 +45,15 @@ const DashboardLayout = () => {
         className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
       <ActiveLink
-        to="/dashboard/confirmOrders"
+        to="/dashboard/confirmedOrders"
         label="Confirm Orders"
         icon={GiConfirmed}
         activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
         className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
       <ActiveLink
-        to="/dashboard/cancelOrders"
-        label="Cancel Orders"
+        to="/dashboard/cancelledOrders"
+        label="Cancelled Orders"
         icon={FcCancel}
         activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
         className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"

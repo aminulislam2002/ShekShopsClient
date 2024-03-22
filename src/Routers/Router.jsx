@@ -21,10 +21,10 @@ import MyShopping from "../Pages/DashboardPages/CustomerDashboardPages/MyShoppin
 import PendingOrders from "../Pages/DashboardPages/AdminDashboardPages/PendingOrders/PendingOrders";
 import AllProducts from "../Pages/DashboardPages/AdminDashboardPages/AllProducts/AllProducts";
 import AllUsers from "../Pages/DashboardPages/AdminDashboardPages/AllUsers/AllUsers";
-import ConfirmOrders from "../Pages/DashboardPages/AdminDashboardPages/ConfirmOrders/ConfirmOrders";
-import CancelOrders from "../Pages/DashboardPages/AdminDashboardPages/CancelOrders/CancelOrders";
 import SellingProducts from "../Pages/DashboardPages/AdminDashboardPages/SellingProducts/SellingProducts";
 import CartPage from "../Pages/CartPage/CartPage";
+import CancelledOrders from "../Pages/DashboardPages/AdminDashboardPages/CancelledOrders/CancelledOrders";
+import ConfirmedOrders from "../Pages/DashboardPages/AdminDashboardPages/ConfirmedOrders/ConfirmedOrders";
 
 const router = createBrowserRouter([
   {
@@ -89,12 +89,12 @@ const router = createBrowserRouter([
         element: <PendingOrders></PendingOrders>,
       },
       {
-        path: "/dashboard/confirmOrders",
-        element: <ConfirmOrders></ConfirmOrders>,
+        path: "/dashboard/confirmedOrders",
+        element: <ConfirmedOrders></ConfirmedOrders>,
       },
       {
-        path: "/dashboard/cancelOrders",
-        element: <CancelOrders></CancelOrders>,
+        path: "/dashboard/cancelledOrders",
+        element: <CancelledOrders></CancelledOrders>,
       },
       {
         path: "/dashboard/sellingProducts",
