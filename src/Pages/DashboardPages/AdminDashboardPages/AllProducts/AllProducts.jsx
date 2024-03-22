@@ -95,8 +95,9 @@ const AllProducts = () => {
           </div>
         </div>
       </div>
+
       <div className="bg-white shadow-md overflow-x-auto">
-        <table className="w-full table-auto">
+        <table className="w-full whitespace-nowrap table-auto">
           {/* head */}
           <thead className="bg-slate-100 dark:bg-[#1C2E45] text-slate-800 dark:text-slate-50 text-base">
             <tr>
@@ -124,7 +125,7 @@ const AllProducts = () => {
                 <td className="px-4 py-2 text-center">৳{product?.offerPrice}</td>
                 <td className="px-4 py-2 text-center">{product?.reviews}</td>
                 <td className="px-4 py-2 text-center">
-                  <img src={product?.images[0]} alt={`Product ${product?.name}`} className="w-16 h-16" />
+                  <img src={product?.images[0]} alt={`Product ${product?.name}`} className="w-10 h-10" />
                 </td>
                 <td className="px-4 py-2 text-center w-1/12">
                   <div className="flex gap-1">
