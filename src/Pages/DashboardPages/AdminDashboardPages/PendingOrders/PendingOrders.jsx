@@ -4,6 +4,7 @@ import { GrView } from "react-icons/gr";
 import Swal from "sweetalert2";
 import { MdOutlineDoneOutline } from "react-icons/md";
 import { FcCancel } from "react-icons/fc";
+import { Link } from "react-router-dom";
 
 const PendingOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -142,9 +143,9 @@ const PendingOrders = () => {
                       <FcCancel className="w-4 md:w-5 h-5 md:h-7 text-red-500 hover:text-red-700"></FcCancel>
                     </button>
 
-                    <button>
+                    <Link to={`/dashboard/order-overview/${order?._id}`} state={{ order: order }}>
                       <GrView className="w-4 md:w-5 h-5 md:h-7 text-blue-500 hover:text-blue-700"></GrView>
-                    </button>
+                    </Link>
                   </div>
                 </td>
               </tr>

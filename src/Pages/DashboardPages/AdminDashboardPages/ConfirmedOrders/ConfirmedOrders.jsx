@@ -5,6 +5,7 @@ import { GrView } from "react-icons/gr";
 import { FcShipped } from "react-icons/fc";
 import { FaShippingFast } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const ConfirmedOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -166,9 +167,9 @@ const ConfirmedOrders = () => {
                       <FcShipped className="w-4 md:w-5 h-5 md:h-7 text-green-500 hover:text-green-700"></FcShipped>
                     </button>
 
-                    <button>
+                    <Link to={`/dashboard/order-overview/${order?._id}`} state={{ order: order }}>
                       <GrView className="w-4 md:w-5 h-5 md:h-7 text-blue-500 hover:text-blue-700"></GrView>
-                    </button>
+                    </Link>
                   </div>
                 </td>
               </tr>

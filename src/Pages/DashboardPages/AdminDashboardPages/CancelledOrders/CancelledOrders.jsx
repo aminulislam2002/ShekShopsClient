@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { GrView } from "react-icons/gr";
 import { MdOutlineDoneOutline } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const CancelledOrders = () => {
@@ -174,9 +175,9 @@ const CancelledOrders = () => {
                       <RiDeleteBin6Line className="w-4 md:w-5 h-5 md:h-7 text-red-500 hover:text-red-700"></RiDeleteBin6Line>
                     </button>
 
-                    <button>
+                    <Link to={`/dashboard/order-overview/${order?._id}`} state={{ order: order }}>
                       <GrView className="w-4 md:w-5 h-5 md:h-7 text-blue-500 hover:text-blue-700"></GrView>
-                    </button>
+                    </Link>
                   </div>
                 </td>
               </tr>

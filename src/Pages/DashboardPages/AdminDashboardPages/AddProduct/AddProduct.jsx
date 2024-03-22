@@ -46,6 +46,7 @@ const AddProduct = () => {
         reviews: data.reviews || "",
         description: data.description || "",
         productType: data.productType || "",
+        createdAt: new Date().toISOString(), // Add current date and time
       };
 
       // Product added to database
@@ -81,7 +82,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="py-5 px-5 bg-gradient-to-b from-yellow-300 via-pink-300 to-blue-300 text-gray-800">
+    <div className="py-5 px-5 bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50">
       <div className="text-center mb-8">
         <h1 className="text-2xl font-semibold">ADD A PRODUCT</h1>
         <div className="h-1 bg-white mt-2 w-20 mx-auto"></div>
@@ -89,7 +90,7 @@ const AddProduct = () => {
 
       <form onSubmit={handleSubmit(handleRegistration)} className="">
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+          <label className="block text-sm font-bold mb-2" htmlFor="name">
             Product Title
           </label>
           <input
@@ -98,12 +99,12 @@ const AddProduct = () => {
             placeholder="Write product title"
             type="text"
             {...register("name")}
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className="w-full bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
           />
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">
+          <label className="block text-sm font-bold mb-2" htmlFor="description">
             Product Description
           </label>
           <textarea
@@ -113,20 +114,20 @@ const AddProduct = () => {
             type="text"
             rows="5"
             {...register("description")}
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            className="w-full bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
           />
         </div>
 
         <div className="flex justify-center items-center gap-10">
           <div className="w-full mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="category">
+            <label className="block text-sm font-bold mb-2" htmlFor="category">
               Product Category
             </label>
             <select
               id="category"
               name="category"
               {...register("category")}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="w-full bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             >
               <option value="">Select Product Category</option>
               <option value="bag">Bag</option>
@@ -140,14 +141,14 @@ const AddProduct = () => {
           </div>
 
           <div className="w-full mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="productType">
+            <label className="block text-sm font-bold mb-2" htmlFor="productType">
               Product Type
             </label>
             <select
               id="productType"
               name="productType"
               {...register("productType")}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="w-full bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             >
               <option value="">Select Product Type</option>
               <option value="New Arrivals">New Arrivals</option>
@@ -161,7 +162,7 @@ const AddProduct = () => {
 
         {/* Sizes checkbox */}
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="sizes">
+          <label className="block text-sm font-bold mb-2" htmlFor="sizes">
             Product Size
           </label>
           {/* Use checkboxes for multiple selections */}
@@ -184,7 +185,7 @@ const AddProduct = () => {
 
         {/* Colors checkbox */}
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="colors">
+          <label className="block text-sm font-bold mb-2" htmlFor="colors">
             Product Colors
           </label>
           {/* Use checkboxes for multiple selections */}
@@ -208,7 +209,7 @@ const AddProduct = () => {
         {/* Original price input field */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-10">
           <div className="w-full lg:mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="originalPrice">
+            <label className="block text-sm font-bold mb-2" htmlFor="originalPrice">
               Original Price
             </label>
             <input
@@ -218,13 +219,13 @@ const AddProduct = () => {
               type="number"
               min="1"
               {...register("originalPrice")}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="w-full bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             />
           </div>
 
           {/* Offer price input field */}
           <div className="w-full lg:mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="offerPrice">
+            <label className="block text-sm font-bold mb-2" htmlFor="offerPrice">
               Offer Price
             </label>
             <input
@@ -234,13 +235,13 @@ const AddProduct = () => {
               type="number"
               min="1"
               {...register("offerPrice")}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="w-full bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             />
           </div>
 
           {/* Ratings input field */}
           <div className="w-full mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="ratings">
+            <label className="block text-sm font-bold mb-2" htmlFor="ratings">
               Ratings
             </label>
             <input
@@ -252,13 +253,13 @@ const AddProduct = () => {
               max="5"
               step="0.1"
               {...register("ratings")}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="w-full bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             />
           </div>
 
           {/* Reviews input field */}
           <div className="w-full mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="reviews">
+            <label className="block text-sm font-bold mb-2" htmlFor="reviews">
               Reviews
             </label>
             <input
@@ -268,7 +269,7 @@ const AddProduct = () => {
               type="number"
               min="1"
               {...register("reviews")}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="w-full bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             />
           </div>
         </div>
