@@ -4,52 +4,73 @@ import useAdmin from "../../Hooks/useAdmin";
 import useCustomer from "../../Hooks/useCustomer";
 import ActiveLink from "../../Components/ActiveLink/ActiveLink";
 import useTheme from "../../Hooks/useTheme";
+import { MdDashboard, MdOutlinePendingActions } from "react-icons/md";
+import { FaHome, FaProductHunt, FaShoppingBasket } from "react-icons/fa";
+import { FcConferenceCall, FcOk, FcCancel } from "react-icons/fc";
+import { GiConfirmed } from "react-icons/gi";
+import { IoCloudDone } from "react-icons/io5";
 
 const DashboardLayout = () => {
   const adminOptions = (
     <>
       <ActiveLink
+        to="/dashboard"
+        label="Dashboards"
+        icon={MdDashboard}
+        activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
+        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+      ></ActiveLink>
+
+      <ActiveLink
         to="/dashboard/allUsers"
         label="All Users"
-        activeClassName="text-slate-800 bg-slate-50"
-        className="my-3 py-2 ps-5 rounded bg-gray-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center"
+        icon={FcConferenceCall}
+        activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
+        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
+
       <ActiveLink
         to="/dashboard/allProducts"
         label="All Products"
-        activeClassName="text-slate-800 bg-slate-50"
-        className="my-3 py-2 ps-5 rounded bg-teal-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center"
+        icon={FaProductHunt}
+        activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
+        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
       <ActiveLink
         to="/dashboard/pendingOrders"
         label="Pending Orders"
-        activeClassName="text-slate-800 bg-slate-50"
-        className="my-3 py-2 ps-5 rounded bg-amber-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center"
+        icon={MdOutlinePendingActions}
+        activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
+        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
       <ActiveLink
         to="/dashboard/confirmOrders"
         label="Confirm Orders"
-        activeClassName="text-slate-800 bg-slate-50"
-        className="my-3 py-2 ps-5 rounded bg-blue-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center"
+        icon={GiConfirmed}
+        activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
+        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
       <ActiveLink
         to="/dashboard/cancelOrders"
         label="Cancel Orders"
-        activeClassName="text-slate-800 bg-slate-50"
-        className="my-3 py-2 ps-5 rounded bg-red-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center"
+        icon={FcCancel}
+        activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
+        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
       <ActiveLink
         to="/dashboard/sellingProducts"
         label="Selling Products"
-        activeClassName="text-slate-800 bg-slate-50"
-        className="my-3 py-2 ps-5 rounded bg-green-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center"
+        icon={IoCloudDone}
+        activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
+        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
-      <ActiveLink
+      {/* <ActiveLink
         to="/dashboard/addProduct"
         label="Add Product"
-        activeClassName="text-slate-800 bg-slate-50"
-        className="my-3 py-2 ps-5 rounded bg-sky-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center"
-      />
+         icon={}
+        activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
+        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+      /> */}
     </>
   );
 
@@ -58,20 +79,24 @@ const DashboardLayout = () => {
       <ActiveLink
         to="/dashboard/myOrder"
         label="Active Order"
-        activeClassName="text-slate-800 bg-slate-50"
-        className="my-3 py-2 ps-5 rounded bg-blue-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center"
+        icon={FcOk}
+        activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
+        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
       <ActiveLink
         to="/dashboard/myShopping"
         label="My Shopping"
-        activeClassName="text-slate-800 bg-slate-50"
-        className="my-3 py-2 ps-5 rounded bg-teal-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center"
+        icon={FaShoppingBasket}
+        activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
+        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
+
       <ActiveLink
         to="/dashboard/myCancellations"
         label="My Cancellations"
-        activeClassName="text-slate-800 bg-slate-50"
-        className="my-3 py-2 ps-5 rounded bg-red-500 text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center"
+        icon={FcCancel}
+        activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
+        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
     </>
   );
@@ -86,7 +111,7 @@ const DashboardLayout = () => {
       <div className="drawer">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content lg:flex">
-          <div className="w-full lg:w-2/12 bg-neutral-100 dark:bg-neutral-900 overflow-y-auto max-h-[100vh] lg:h-screen">
+          <div className="w-full lg:w-2/12 bg-slate-50 dark:bg-[#132337] overflow-y-auto max-h-[100vh] lg:h-screen">
             <div className="flex justify-start">
               <div className="flex-none lg:hidden">
                 <label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">
@@ -96,8 +121,8 @@ const DashboardLayout = () => {
 
               <div className="w-full py-2">
                 <Link to="/dashboard" className="text-center block">
-                  <h1 className="text-lg md:text-xl lg:text-3xl text-slate-800 font-bold font-serif tracking-wider uppercase">
-                    Shek<span className="text-blue-200">Shops</span>
+                  <h1 className="text-lg md:text-xl px-5 py-3 text-slate-800 dark:text-slate-50 font-bold font-secondary tracking-wider uppercase">
+                    ShekShops
                   </h1>
                 </Link>
               </div>
@@ -106,15 +131,17 @@ const DashboardLayout = () => {
               <ul className="menu-vertical">
                 {isAdmin ? <> {adminOptions} </> : <></>}
                 {isCustomer ? <> {customerOptions} </> : <></>}
-                <Link to="/">
-                  <li className="my-3 py-2 ps-5 rounded bg-black text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center">
-                    Back To Home
-                  </li>
-                </Link>
+                <ActiveLink
+                  to="/"
+                  label="Go To Home"
+                  icon={FaHome}
+                  activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
+                  className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+                ></ActiveLink>
               </ul>
             </div>
           </div>
-          <div className="lg:w-10/12">
+          <div className="lg:w-10/12 bg-slate-100 dark:bg-[#0F1824]">
             <div className="overflow-y-auto max-h-[100vh]">
               <Outlet />
             </div>
@@ -122,14 +149,16 @@ const DashboardLayout = () => {
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-3" className="drawer-overlay overflow-x-auto max-h-[100vh]"></label>
-          <ul className="p-4 w-2/3 md:w-1/3 min-h-screen grid grid-cols-1  overflow-y-auto">
+          <ul className="p-4 w-2/3 md:w-1/3 min-h-screen bg-slate-50 dark:bg-[#132337] grid grid-cols-1  overflow-y-auto">
             {isAdmin ? <> {adminOptions} </> : <></>}
             {isCustomer ? <> {customerOptions} </> : <></>}
-            <Link to="/">
-              <li className="my-3 py-2 ps-5 rounded bg-black text-slate-50 hover:text-slate-800 hover:bg-slate-50 text-base lg:text-lg font-semibold font-primary uppercase text-center">
-                Back To Home
-              </li>
-            </Link>
+            <ActiveLink
+              to="/"
+              label="Go To Home"
+              icon={FaHome}
+              activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
+              className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+            ></ActiveLink>
           </ul>
         </div>
       </div>
