@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 * {
-  @apply transition-colors duration-200;
+  @apply transition-colors duration-100;
 }
 
 /* Google Font Family link url:------- Poppins */

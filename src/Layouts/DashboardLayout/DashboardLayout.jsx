@@ -159,7 +159,7 @@ const DashboardLayout = () => {
               </ul>
             </div>
           </div>
-          <div className="lg:w-10/12 bg-slate-100 dark:bg-[#0F1824]">
+          <div className="lg:w-10/12 bg-slate-100 text-slate-800 dark:bg-[#0F1824] dark:text-slate-50">
             <div className="overflow-y-auto max-h-[100vh] p-3 md:p-4 lg:p-5">
               <Outlet />
             </div>

@@ -25,6 +25,7 @@ import CartPage from "../Pages/CartPage/CartPage";
 import CancelledOrders from "../Pages/DashboardPages/AdminDashboardPages/CancelledOrders/CancelledOrders";
 import ConfirmedOrders from "../Pages/DashboardPages/AdminDashboardPages/ConfirmedOrders/ConfirmedOrders";
 import DeliveredOrders from "../Pages/DashboardPages/AdminDashboardPages/DeliveredOrders/DeliveredOrders";
+import OrderOverview from "../Pages/DashboardPages/AdminDashboardPages/OrderOverview/OrderOverview";
 
 const router = createBrowserRouter([
   {
@@ -111,6 +112,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/deliveredOrders",
         element: <DeliveredOrders></DeliveredOrders>,
+      },
+      {
+        path: "/dashboard/order-overview/:id",
+        element: <OrderOverview></OrderOverview>,
       },
     ],
   },

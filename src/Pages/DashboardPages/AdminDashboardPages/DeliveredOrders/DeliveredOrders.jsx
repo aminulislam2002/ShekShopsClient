@@ -131,9 +131,9 @@ const DeliveredOrders = () => {
                       <RiDeleteBin6Line className="w-4 md:w-5 h-5 md:h-7 text-red-500 hover:text-red-700"></RiDeleteBin6Line>
                     </button>
 
-                    <button>
+                    <Link to={`/dashboard/order-overview/${order?._id}`} state={{ order: order }}>
                       <GrView className="w-4 md:w-5 h-5 md:h-7 text-blue-500 hover:text-blue-700"></GrView>
-                    </button>
+                    </Link>
                   </div>
                 </td>
               </tr>
