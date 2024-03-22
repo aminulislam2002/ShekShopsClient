@@ -17,14 +17,14 @@ import UpdateProduct from "../Pages/DashboardPages/AdminDashboardPages/UpdatePro
 import WelcomeDashboard from "../Pages/DashboardPages/WelcomeDashboard/WelcomeDashboard";
 import MyOrder from "../Pages/DashboardPages/CustomerDashboardPages/MyOrder/MyOrder";
 import MyCancelOrders from "../Pages/DashboardPages/CustomerDashboardPages/MyCancellations/MyCancellations";
-import MyShopping from "../Pages/DashboardPages/CustomerDashboardPages/MyShopping/MyShopping";
 import PendingOrders from "../Pages/DashboardPages/AdminDashboardPages/PendingOrders/PendingOrders";
 import AllProducts from "../Pages/DashboardPages/AdminDashboardPages/AllProducts/AllProducts";
 import AllUsers from "../Pages/DashboardPages/AdminDashboardPages/AllUsers/AllUsers";
-import SellingProducts from "../Pages/DashboardPages/AdminDashboardPages/SellingProducts/SellingProducts";
+import SellingProducts from "../Pages/DashboardPages/AdminDashboardPages/DeliveredOrders/DeliveredOrders";
 import CartPage from "../Pages/CartPage/CartPage";
 import CancelledOrders from "../Pages/DashboardPages/AdminDashboardPages/CancelledOrders/CancelledOrders";
 import ConfirmedOrders from "../Pages/DashboardPages/AdminDashboardPages/ConfirmedOrders/ConfirmedOrders";
+import DeliveredOrders from "../Pages/DashboardPages/AdminDashboardPages/DeliveredOrders/DeliveredOrders";
 
 const router = createBrowserRouter([
   {
@@ -109,8 +109,8 @@ const router = createBrowserRouter([
         element: <MyCancelOrders></MyCancelOrders>,
       },
       {
-        path: "/dashboard/myShopping",
-        element: <MyShopping></MyShopping>,
+        path: "/dashboard/deliveredOrders",
+        element: <DeliveredOrders></DeliveredOrders>,
       },
     ],
   },
