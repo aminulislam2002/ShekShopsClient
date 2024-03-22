@@ -2,6 +2,8 @@ import { Link, useLocation } from "react-router-dom";
 import { MdMenu, MdOutlineClose } from "react-icons/md";
 import { IoCartOutline } from "react-icons/io5";
 import { LuUser2, LuSearch } from "react-icons/lu";
+import { CiLight } from "react-icons/ci";
+import { MdDarkMode } from "react-icons/md";
 
 import swift_mart_logo from "../../../assets/Logo/Logo Without Bg.png";
 import { useContext, useEffect, useState } from "react";
@@ -284,12 +286,16 @@ const NavBar = () => {
                     </div>
                     <ul
                       tabIndex={0}
-                      className="dropdown-content bg-green-700 dark:bg-slate-900 z-[1] menu p-2 shadow rounded-box w-52"
+                      className="dropdown-content bg-green-700 dark:bg-slate-900 z-[1] grid grid-cols-1 gap-3 p-3 shadow rounded-md w-52"
                     >
                       <li>
                         {user ? (
                           <>
-                            <Link to="/dashboard">Dashboard</Link>
+                            <Link to="/dashboard">
+                              <button className="w-full py-2 px-3 rounded-md text-start dark:bg-slate-800 text-sm">
+                                Dashboard
+                              </button>
+                            </Link>
                           </>
                         ) : (
                           <></>
@@ -298,20 +304,43 @@ const NavBar = () => {
                       <li>
                         {user ? (
                           <>
-                            <button onClick={handleLogout}>Logout</button>
+                            <button
+                              className="w-full py-2 px-3 rounded-md text-start dark:bg-slate-800 text-sm"
+                              onClick={handleLogout}
+                            >
+                              Logout
+                            </button>
                           </>
                         ) : (
                           <>
-                            <Link to="authentication/register">Register / Login</Link>
+                            <Link to="authentication/register">
+                              <button className="w-full py-2 px-3 rounded-md text-start dark:bg-slate-800 text-sm">
+                                Register / Login
+                              </button>
+                            </Link>
                           </>
                         )}
                       </li>
                       <li>
                         <button
                           onClick={toggleDarkMode}
-                          className="rounded-full bg-green-700 dark:bg-slate-100 text-slate-50 dark:text-slate-800 font-secondary font-semibold"
+                          className="w-full py-2 px-3 rounded-md text-start dark:bg-slate-100 bg-green-700 text-sm text-slate-50 dark:text-slate-800 font-secondary font-semibold"
                         >
-                          {isDarkMode ? "Light" : "Dark"}
+                          {isDarkMode ? (
+                            <>
+                              <div className="flex justify-start items-center">
+                                <CiLight className="w-5 h-5 mr-2 inline" />
+                                <span>Light Mode</span>
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <div className="flex justify-start items-center">
+                                <MdDarkMode className="w-5 h-5 mr-2 inline" />
+                                <span>Dark Mode</span>
+                              </div>
+                            </>
+                          )}
                         </button>
                       </li>
                     </ul>
