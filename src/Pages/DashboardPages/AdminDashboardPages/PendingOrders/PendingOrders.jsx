@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { GrView } from "react-icons/gr";
 import Swal from "sweetalert2";
+import { MdOutlineDoneOutline } from "react-icons/md";
+import { FcCancel } from "react-icons/fc";
 
 const PendingOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -84,89 +86,62 @@ const PendingOrders = () => {
   };
 
   return (
-    <div className="container mx-auto">
-      <h1 className="bg-green-700 text-3xl font-semibold font-primary text-slate-50 text-center py-5">View All Orders</h1>
-      <div className="overflow-x-auto">
-        <table className="min-w-full">
-          <thead>
+    <div className="">
+      <div className="p-5 bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
+          <div className="xl:col-span-3 lg:col-span-12 order-2 lg:order-1">
+            <div className="relative">
+              <input
+                type="text"
+                className="w-full bg-white dark:bg-[#132337] border border-slate-200 px-3 py-2 rounded-md"
+                placeholder="Search for ..."
+              />
+            </div>
+          </div>
+          <div className="lg:col-span-6 xl:col-span-6 order-1 lg:order-2">
+            <h1 className="bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50 text-base font-semibold font-secondary text-center p-5">
+              View All Pending Orders
+            </h1>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-white shadow-md overflow-x-auto">
+        <table className="w-full whitespace-nowrap table-auto">
+          {/* head */}
+          <thead className="bg-slate-100 dark:bg-[#1C2E45] text-slate-800 dark:text-slate-50 text-base">
             <tr>
-              <th className="text-start">#</th>
-              <th className="text-start">Image</th>
-              <th className="text-start">Product Information</th>
-              <th className="text-start">Customer Information</th>
-              <th className="text-start">Actions</th>
+              <th className="px-4 py-2 text-center">Order ID</th>
+              <th className="px-4 py-2 text-center">Order Date</th>
+              <th className="px-4 py-2 text-center">Amount</th>
+              <th className="px-4 py-2 text-center">Customer Name</th>
+              <th className="px-4 py-2 text-center">Customer Number</th>
+              <th className="px-4 py-2 text-center">Order Status</th>
+              <th className="px-4 py-2 text-center">Actions</th>
             </tr>
           </thead>
-          <tbody>
-            {orders.map((orderInfo, index) => (
-              <tr key={orderInfo?._id} className={index % 2 === 0 ? "bg-blue-100" : "bg-green-200"}>
-                <td>{index + 1}</td>
-                <td>
-                  <Link to={`/product-details/${orderInfo?.productData?.id}`}>
-                    <img
-                      src={orderInfo?.productData?.imageUrl}
-                      alt={orderInfo?.productData?.name}
-                      className="w-24 h-auto object-cover"
-                    />
-                  </Link>
-                </td>
-                <td>
-                  <div className="p-4">
-                    <h2 className="text-lg font-primary font-semibold mb-2">
-                      <Link to={`/product-details/${orderInfo?.productData?.id}`}>
-                        {orderInfo?.productData?.name.slice(0, 50)}...
-                      </Link>
-                    </h2>
-                    <p className="text-slate-800">{`Color: ${orderInfo?.productData?.color}`}</p>
-                    <p className="text-slate-800">{`Size: ${orderInfo?.productData?.size}`}</p>
-                    <p className="text-slate-800">{`Quantity: ${orderInfo?.productData?.quantity}`}</p>
-                    <p className="text-slate-800">{`Original Price: ${orderInfo?.productData?.originalPrice}`}</p>
-                    <p className="text-slate-800">{`Delivery Charge: ${orderInfo?.customerData?.deliveryCharge}`}</p>
-                    <p className="text-slate-800">{`Total: ${
-                      parseFloat(orderInfo?.productData?.originalPrice * orderInfo?.productData?.quantity) +
-                      parseFloat(orderInfo?.customerData?.deliveryCharge)
-                    }`}</p>
-                  </div>
-                </td>
-
-                <td>
-                  <div className="p-4">
-                    <p>{`Data: ${orderInfo?.date} / ${orderInfo?.time}`}</p>
-                    <p className="text-slate-800">{`Name: ${orderInfo?.customerData?.name}`}</p>
-                    <p className="text-slate-800">
-                      Email:{" "}
-                      <a href={`mailto:${orderInfo?.customerData?.email}`} className="text-blue-500 hover:underline">
-                        {orderInfo?.customerData?.email}
-                      </a>
-                    </p>
-                    <p className="text-slate-800">
-                      Mobile:{" "}
-                      <a href={`tel:${orderInfo?.customerData?.mobileNumber}`} className="text-blue-500 hover:underline">
-                        {orderInfo?.customerData?.mobileNumber}
-                      </a>
-                    </p>
-                    <p className="text-slate-800">{`Delivery Area: ${orderInfo?.customerData?.deliveryArea}`}</p>
-                    <p className="text-slate-800">{`Address: ${orderInfo?.customerData?.address}, ${orderInfo?.customerData?.district}`}</p>
-                    <p className="text-slate-800">{`Comment: ${orderInfo?.customerData?.comment}`}</p>
-                  </div>
-                </td>
-
-                <td className="p-4">
-                  <div className="grid grid-cols-1 gap-2">
-                    <button
-                      onClick={() => handleConfirm(orderInfo?._id)}
-                      disabled={isLoading}
-                      className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
-                    >
-                      Confirm
+          <tbody className="bg-white dark:bg-[#132337] text-slate-800 dark:text-slate-50 text-base">
+            {orders.map((order) => (
+              <tr key={order?._id} className="border-t border-slate-400">
+                {console.log(order)}
+                <td className="px-4 py-2 text-center text-blue-500 hover:underline">#{order?._id}</td>
+                <td className="px-4 py-2 text-center">{order?.date}</td>
+                <td className="px-4 py-2 text-center">৳{order?.total}</td>
+                <td className="px-4 py-2 text-center">{order?.customerData?.name}</td>
+                <td className="px-4 py-2 text-center">{order?.customerData?.mobileNumber}</td>
+                <td className="px-4 py-2 text-center">{order?.orderStatus}</td>
+                <td className="px-4 py-2 text-center w-1/12">
+                  <div className="flex gap-2">
+                    <button onClick={() => handleConfirm(order?._id)} disabled={isLoading}>
+                      <MdOutlineDoneOutline className="w-4 md:w-5 h-5 md:h-7 text-green-500 hover:text-green-700"></MdOutlineDoneOutline>
                     </button>
 
-                    <button
-                      onClick={() => handleCancel(orderInfo?._id)}
-                      disabled={isLoading}
-                      className="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded-md"
-                    >
-                      Cancel
+                    <button onClick={() => handleCancel(order?._id)} disabled={isLoading}>
+                      <FcCancel className="w-4 md:w-5 h-5 md:h-7 text-red-500 hover:text-red-700"></FcCancel>
+                    </button>
+
+                    <button>
+                      <GrView className="w-4 md:w-5 h-5 md:h-7 text-blue-500 hover:text-blue-700"></GrView>
                     </button>
                   </div>
                 </td>

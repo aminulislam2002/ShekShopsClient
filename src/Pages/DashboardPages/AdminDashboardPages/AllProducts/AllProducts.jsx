@@ -67,7 +67,7 @@ const AllProducts = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="">
       <div className="p-5 bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
           <div className="xl:col-span-3 lg:col-span-12 order-2 lg:order-1">
