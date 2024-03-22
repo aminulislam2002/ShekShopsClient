@@ -4,11 +4,12 @@ import useAdmin from "../../Hooks/useAdmin";
 import useCustomer from "../../Hooks/useCustomer";
 import ActiveLink from "../../Components/ActiveLink/ActiveLink";
 import useTheme from "../../Hooks/useTheme";
-import { MdDashboard, MdOutlinePendingActions } from "react-icons/md";
+import { MdDarkMode, MdDashboard, MdOutlinePendingActions } from "react-icons/md";
 import { FaHome, FaProductHunt, FaShoppingBasket } from "react-icons/fa";
 import { FcConferenceCall, FcOk, FcCancel } from "react-icons/fc";
 import { GiConfirmed } from "react-icons/gi";
 import { IoCloudDone } from "react-icons/io5";
+import { CiLight } from "react-icons/ci";
 
 const DashboardLayout = () => {
   const adminOptions = (
@@ -103,7 +104,7 @@ const DashboardLayout = () => {
 
   const [isAdmin] = useAdmin();
   const [isCustomer] = useCustomer();
-  const { isDarkMode } = useTheme();
+  const { isDarkMode, toggleDarkMode } = useTheme();
 
   return (
     <div className={` font-secondary min-h-screen ${isDarkMode && "dark"}`}>
@@ -131,18 +132,42 @@ const DashboardLayout = () => {
               <ul className="menu-vertical">
                 {isAdmin ? <> {adminOptions} </> : <></>}
                 {isCustomer ? <> {customerOptions} </> : <></>}
-                <ActiveLink
-                  to="/"
-                  label="Go To Home"
-                  icon={FaHome}
-                  activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
-                  className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
-                ></ActiveLink>
+                <li>
+                  <ActiveLink
+                    to="/"
+                    label="Go To Home"
+                    icon={FaHome}
+                    activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
+                    className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+                  ></ActiveLink>
+                </li>
+                <li>
+                  <button
+                    onClick={toggleDarkMode}
+                    className="w-full my-1 py-2.5 px-3 ps-8 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+                  >
+                    {isDarkMode ? (
+                      <>
+                        <div className="flex justify-start items-center">
+                          <CiLight className="w-5 h-5 mr-2 inline" />
+                          <span>Light Mode</span>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="flex justify-start items-center">
+                          <MdDarkMode className="w-5 h-5 mr-2 inline" />
+                          <span>Dark Mode</span>
+                        </div>
+                      </>
+                    )}
+                  </button>
+                </li>
               </ul>
             </div>
           </div>
           <div className="lg:w-10/12 bg-slate-100 dark:bg-[#0F1824]">
-            <div className="overflow-y-auto max-h-[100vh]">
+            <div className="overflow-y-auto max-h-[100vh] p-3 md:p-4 lg:p-5">
               <Outlet />
             </div>
           </div>
@@ -152,13 +177,37 @@ const DashboardLayout = () => {
           <ul className="p-4 w-2/3 md:w-1/3 min-h-screen bg-slate-50 dark:bg-[#132337] grid grid-cols-1  overflow-y-auto">
             {isAdmin ? <> {adminOptions} </> : <></>}
             {isCustomer ? <> {customerOptions} </> : <></>}
-            <ActiveLink
-              to="/"
-              label="Go To Home"
-              icon={FaHome}
-              activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
-              className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
-            ></ActiveLink>
+            <li>
+              <ActiveLink
+                to="/"
+                label="Go To Home"
+                icon={FaHome}
+                activeClassName="text-slate-800 bg-slate-200 dark:hover:bg-[#1C2E45] dark:bg-[#1C2E45] text-blue-500"
+                className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+              ></ActiveLink>
+            </li>
+            <li>
+              <button
+                onClick={toggleDarkMode}
+                className="w-full my-1 py-2.5 px-3 ps-8 rounded bg-slate-50 text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+              >
+                {isDarkMode ? (
+                  <>
+                    <div className="flex justify-start items-center">
+                      <CiLight className="w-5 h-5 mr-2 inline" />
+                      <span>Light Mode</span>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="flex justify-start items-center">
+                      <MdDarkMode className="w-5 h-5 mr-2 inline" />
+                      <span>Dark Mode</span>
+                    </div>
+                  </>
+                )}
+              </button>
+            </li>
           </ul>
         </div>
       </div>
