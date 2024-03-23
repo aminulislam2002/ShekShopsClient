@@ -19,7 +19,7 @@ const DashboardLayout = () => {
         label="All Users"
         icon={FcConferenceCall}
         activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
-        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+        className="my-1 mx-2 lg:mx-2.5 lg:py-2.5 px-3 ps-3 lg:ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
 
       <ActiveLink
@@ -27,35 +27,35 @@ const DashboardLayout = () => {
         label="All Products"
         icon={FaProductHunt}
         activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
-        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+        className="my-1 mx-2 lg:mx-2.5 lg:py-2.5 px-3 ps-3 lg:ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
       <ActiveLink
         to="/dashboard/pendingOrders"
         label="Pending Orders"
         icon={MdOutlinePendingActions}
         activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
-        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+        className="my-1 mx-2 lg:mx-2.5 lg:py-2.5 px-3 ps-3 lg:ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
       <ActiveLink
         to="/dashboard/confirmedOrders"
         label="Confirmed Orders"
         icon={GiConfirmed}
         activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
-        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+        className="my-1 mx-2 lg:mx-2.5 lg:py-2.5 px-3 ps-3 lg:ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
       <ActiveLink
         to="/dashboard/cancelledOrders"
         label="Cancelled Orders"
         icon={FcCancel}
         activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
-        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+        className="my-1 mx-2 lg:mx-2.5 lg:py-2.5 px-3 ps-3 lg:ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
       <ActiveLink
         to="/dashboard/deliveredOrders"
         label="Delivered Orders"
         icon={IoCloudDone}
         activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
-        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+        className="my-1 mx-2 lg:mx-2.5 lg:py-2.5 px-3 ps-3 lg:ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
     </>
   );
@@ -67,14 +67,14 @@ const DashboardLayout = () => {
         label="Active Order"
         icon={FcOk}
         activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
-        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+        className="my-1 mx-2 lg:mx-2.5 lg:py-2.5 px-3 ps-3 lg:ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
       <ActiveLink
         to="/dashboard/myShopping"
         label="My Shopping"
         icon={FaShoppingBasket}
         activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
-        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+        className="my-1 mx-2 lg:mx-2.5 lg:py-2.5 px-3 ps-3 lg:ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
 
       <ActiveLink
@@ -82,7 +82,7 @@ const DashboardLayout = () => {
         label="My Cancellations"
         icon={FcCancel}
         activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
-        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+        className="my-1 mx-2 lg:mx-2.5 lg:py-2.5 px-3 ps-3 lg:ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />
     </>
   );
@@ -115,48 +115,45 @@ const DashboardLayout = () => {
             </div>
             <div className="flex-none hidden lg:block mt-4">
               <ul className="menu-vertical">
-                <li>
-                  <ActiveLink
-                    to="/dashboard"
-                    label="Dashboards"
-                    icon={MdDashboard}
-                    activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
-                    className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
-                  ></ActiveLink>
-                </li>
+                <ActiveLink
+                  to="/dashboard"
+                  label="Dashboards"
+                  icon={MdDashboard}
+                  activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
+                  className="my-1 mx-2 lg:mx-2.5 lg:py-2.5 px-3 ps-3 lg:ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+                ></ActiveLink>
+
                 {isAdmin ? <> {adminOptions} </> : <></>}
                 {isCustomer ? <> {customerOptions} </> : <></>}
-                <li>
-                  <ActiveLink
-                    to="/"
-                    label="Go To Home"
-                    icon={FaHome}
-                    activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
-                    className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
-                  ></ActiveLink>
-                </li>
-                <li>
-                  <button
-                    onClick={toggleDarkMode}
-                    className="w-full my-1 py-2.5 px-3 ps-8 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
-                  >
-                    {isDarkMode ? (
-                      <>
-                        <div className="flex justify-start items-center">
-                          <CiLight className="w-5 h-5 mr-2 inline" />
-                          <span>Light Mode</span>
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <div className="flex justify-start items-center">
-                          <MdDarkMode className="w-5 h-5 mr-2 inline" />
-                          <span>Dark Mode</span>
-                        </div>
-                      </>
-                    )}
-                  </button>
-                </li>
+
+                <ActiveLink
+                  to="/"
+                  label="Go To Home"
+                  icon={FaHome}
+                  activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
+                  className="my-1 mx-2 lg:mx-2.5 lg:py-2.5 px-3 ps-3 lg:ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+                ></ActiveLink>
+
+                <button
+                  onClick={toggleDarkMode}
+                  className="my-1 mx-2 lg:mx-2.5 lg:py-2.5 px-3 ps-3 lg:ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+                >
+                  {isDarkMode ? (
+                    <>
+                      <div className="flex justify-start items-center">
+                        <CiLight className="w-5 h-5 mr-2 inline" />
+                        <span>Light Mode</span>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex justify-start items-center">
+                        <MdDarkMode className="w-5 h-5 mr-2 inline" />
+                        <span>Dark Mode</span>
+                      </div>
+                    </>
+                  )}
+                </button>
               </ul>
             </div>
           </div>
@@ -166,51 +163,50 @@ const DashboardLayout = () => {
             </div>
           </div>
         </div>
+
+        {/* Side Drawer */}
         <div className="drawer-side">
           <label htmlFor="my-drawer-3" className="drawer-overlay overflow-x-auto max-h-[100vh]"></label>
           <ul className="p-4 w-2/3 md:w-1/3 min-h-screen bg-white dark:bg-[#132337] grid grid-cols-1  overflow-y-auto">
-            <li>
-              <ActiveLink
-                to="/dashboard"
-                label="Dashboards"
-                icon={MdDashboard}
-                activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
-                className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
-              ></ActiveLink>
-            </li>
+            <ActiveLink
+              to="/dashboard"
+              label="Dashboards"
+              icon={MdDashboard}
+              activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
+              className="my-1 mx-2 lg:mx-2.5 lg:py-2.5 px-3 ps-3 lg:ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+            ></ActiveLink>
+
             {isAdmin ? <> {adminOptions} </> : <></>}
             {isCustomer ? <> {customerOptions} </> : <></>}
-            <li>
-              <ActiveLink
-                to="/"
-                label="Go To Home"
-                icon={FaHome}
-                activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
-                className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
-              ></ActiveLink>
-            </li>
-            <li>
-              <button
-                onClick={toggleDarkMode}
-                className="w-full my-1 py-2.5 px-3 ps-8 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
-              >
-                {isDarkMode ? (
-                  <>
-                    <div className="flex justify-start items-center">
-                      <CiLight className="w-5 h-5 mr-2 inline" />
-                      <span>Light Mode</span>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="flex justify-start items-center">
-                      <MdDarkMode className="w-5 h-5 mr-2 inline" />
-                      <span>Dark Mode</span>
-                    </div>
-                  </>
-                )}
-              </button>
-            </li>
+
+            <ActiveLink
+              to="/"
+              label="Go To Home"
+              icon={FaHome}
+              activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
+              className="my-1 mx-2 lg:mx-2.5 lg:py-2.5 px-3 ps-3 lg:ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+            ></ActiveLink>
+
+            <button
+              onClick={toggleDarkMode}
+              className="my-1 mx-2 lg:mx-2.5 lg:py-2.5 px-3 ps-3 lg:ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+            >
+              {isDarkMode ? (
+                <>
+                  <button className="flex justify-start items-center">
+                    <CiLight className="w-5 h-5 mr-2 inline" />
+                    <span>Light Mode</span>
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button className="flex justify-start items-center">
+                    <MdDarkMode className="w-5 h-5 mr-2 inline" />
+                    <span>Dark Mode</span>
+                  </button>
+                </>
+              )}
+            </button>
           </ul>
         </div>
       </div>
