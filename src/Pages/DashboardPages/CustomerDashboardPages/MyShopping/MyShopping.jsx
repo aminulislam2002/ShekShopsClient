@@ -30,22 +30,22 @@ const MyShopping = () => {
     fetchOrders();
   }, [user]);
 
-  const handleReturns = (id) => {
+  const handleReturn = (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You wants to return the order?",
       icon: "question",
       showCancelButton: true,
-      confirmButtonText: "Yes, Returns it",
+      confirmButtonText: "Yes, Return it",
       cancelButtonText: "Not yet",
       reverseButtons: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        updateOrderStatus(id, "Returns");
+        updateOrderStatus(id, "Return");
       }
     });
   };
-  
+
   const updateOrderStatus = (id, status) => {
     setIsLoading(true);
     axios
@@ -117,11 +117,11 @@ const MyShopping = () => {
                       View Details
                     </Link>
                     <button
-                      onClick={() => handleReturns(order?._id)}
+                      onClick={() => handleReturn(order?._id)}
                       disabled={isLoading}
                       className="bg-amber-600 hover:bg-amber-700 text-white font-semibold text-sm py-1 px-2 rounded"
                     >
-                      Returns
+                      Return
                     </button>
                   </div>
                 </td>

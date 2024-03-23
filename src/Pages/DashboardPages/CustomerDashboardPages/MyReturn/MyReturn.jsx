@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
-const MyReturns = () => {
+const MyReturn = () => {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -16,9 +16,9 @@ const MyReturns = () => {
         const response = await fetch("https://server.shekshops.com/orders");
         if (response.ok) {
           const data = await response.json();
-          // Filter orders with orderStatus as "returns"
-          const returnsOrders = data.filter((order) => order.orderStatus === "Returns");
-          setOrders(returnsOrders);
+          // Filter orders with orderStatus as "return"
+          const returnOrders = data.filter((order) => order.orderStatus === "Return");
+          setOrders(returnOrders);
         } else {
           console.error("Error fetching orders");
         }
@@ -148,4 +148,4 @@ const MyReturns = () => {
   );
 };
 
-export default MyReturns;
+export default MyReturn;
