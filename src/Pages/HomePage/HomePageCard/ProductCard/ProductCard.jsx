@@ -45,11 +45,11 @@ const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
     const windowWidth = window.innerWidth;
 
     if (windowWidth <= 400) {
-      return 27; // Adjust the length for small screens
+      return 38; // Adjust the length for small screens
     } else if (windowWidth <= 768) {
       return 55; // Adjust the length for medium screens
     } else {
-      return 55; // Default length for large screens
+      return 48; // Default length for large screens
     }
   };
 
