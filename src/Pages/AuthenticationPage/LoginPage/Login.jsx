@@ -136,9 +136,9 @@ const Login = () => {
             <label className="block">
               <span className="flex justify-between items-center text-neutral-800 dark:text-neutral-200">
                 Password
-                <a className="text-sm text-green-600" href="/forgot-pass">
+                <Link className="text-sm text-green-600" to="/authentication/forgot-password">
                   Forgot password?
-                </a>
+                </Link>
               </span>
               <input
                 {...register("password", { required: true })}

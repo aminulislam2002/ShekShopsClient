@@ -28,6 +28,7 @@ import MyShopping from "../Pages/DashboardPages/CustomerDashboardPages/MyShoppin
 import MyReturn from "../Pages/DashboardPages/CustomerDashboardPages/MyReturn/MyReturn";
 import MyCancellations from "../Pages/DashboardPages/CustomerDashboardPages/MyCancellations/MyCancellations";
 import ReturnOrders from "../Pages/DashboardPages/AdminDashboardPages/ReturnOrders/ReturnOrders";
+import ForgotPassword from "../Pages/AuthenticationPage/ForgotPassword/ForgotPassword";
 
 const router = createBrowserRouter([
   {
@@ -154,6 +155,10 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login></Login>,
+      },
+      {
+        path: "forgot-password",
+        element: <ForgotPassword></ForgotPassword>,
       },
     ],
   },
