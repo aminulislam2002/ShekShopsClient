@@ -27,6 +27,7 @@ import ActiveOrders from "../Pages/DashboardPages/CustomerDashboardPages/ActiveO
 import MyShopping from "../Pages/DashboardPages/CustomerDashboardPages/MyShopping/MyShopping";
 import MyReturn from "../Pages/DashboardPages/CustomerDashboardPages/MyReturn/MyReturn";
 import MyCancellations from "../Pages/DashboardPages/CustomerDashboardPages/MyCancellations/MyCancellations";
+import ReturnOrders from "../Pages/DashboardPages/AdminDashboardPages/ReturnOrders/ReturnOrders";
 
 const router = createBrowserRouter([
   {
@@ -101,6 +102,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/deliveredOrders",
         element: <DeliveredOrders></DeliveredOrders>,
+      },
+      {
+        path: "/dashboard/returnOrders",
+        element: <ReturnOrders></ReturnOrders>,
       },
       {
         path: "/dashboard/activeOrders",
