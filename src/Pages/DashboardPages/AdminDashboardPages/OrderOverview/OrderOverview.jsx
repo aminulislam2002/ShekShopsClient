@@ -7,6 +7,7 @@ import { HiCurrencyBangladeshi } from "react-icons/hi";
 import { BsQrCode } from "react-icons/bs";
 import { GrStatusGoodSmall } from "react-icons/gr";
 import { FaShippingFast } from "react-icons/fa";
+import useAdmin from "../../../../Hooks/useAdmin";
 
 const OrderOverview = () => {
   // Get the product id from the URL
@@ -14,6 +15,9 @@ const OrderOverview = () => {
 
   const [order, setOrder] = useState(null);
   //   const [isLoading, setIsLoading] = useState(false);
+
+  const [isAdmin] = useAdmin();
+  // const [isCustomer] = useCustomer();
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -174,17 +178,19 @@ const OrderOverview = () => {
             <div className="grow flex justify-start items-center">
               <h5 className="text-base text-slate-800 dark:text-slate-50">Order Summary</h5>
             </div>
-            <div className="flex justify-center items-center gap-3 shrink-0">
-              <div className="shrink-0">
-                <Link
-                  to="/dashboard/addProduct"
-                  className="text-white btn btn-sm bg-blue-500 border-blue-500 hover:text-white hover:bg-blue-600 hover:border-blue-600 focus:text-white focus:bg-blue-600 focus:border-blue-600 focus:ring focus:ring-blue-100 active:text-white active:bg-blue-600 active:border-blue-600 active:ring active:ring-blue-100 dark:ring-blue-400/20"
-                >
-                  <MdOutlineFileDownload className="w-5 h-5"></MdOutlineFileDownload>
-                  <span className="align-middle">Invoice</span>
-                </Link>
-              </div>
+          {
+            isAdmin ? <>  <div className="flex justify-center items-center gap-3 shrink-0">
+            <div className="shrink-0">
+              <Link
+                to="/dashboard/addProduct"
+                className="text-white btn btn-sm bg-blue-500 border-blue-500 hover:text-white hover:bg-blue-600 hover:border-blue-600 focus:text-white focus:bg-blue-600 focus:border-blue-600 focus:ring focus:ring-blue-100 active:text-white active:bg-blue-600 active:border-blue-600 active:ring active:ring-blue-100 dark:ring-blue-400/20"
+              >
+                <MdOutlineFileDownload className="w-5 h-5"></MdOutlineFileDownload>
+                <span className="align-middle">Invoice</span>
+              </Link>
             </div>
+          </div></> : <></>
+          }
           </div>
 
           <div className="overflow-x-auto">
