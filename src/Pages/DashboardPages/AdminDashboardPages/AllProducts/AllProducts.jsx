@@ -8,6 +8,7 @@ import { GrView } from "react-icons/gr";
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     // Fetch products from the API endpoint
@@ -67,6 +68,9 @@ const AllProducts = () => {
     }
   };
 
+  // Filter products based on search query
+  const filteredProducts = products.filter((product) => product.name.toLowerCase().includes(searchQuery.toLowerCase()));
+
   return (
     <div className="">
       <div className="p-5 bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50">
@@ -77,6 +81,8 @@ const AllProducts = () => {
                 type="text"
                 className="w-full bg-white dark:bg-[#132337] border border-slate-200 px-3 py-2 rounded-md"
                 placeholder="Search for ..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
           </div>
@@ -113,7 +119,7 @@ const AllProducts = () => {
             </tr>
           </thead>
           <tbody className="bg-white dark:bg-[#132337] text-slate-800 dark:text-slate-50 text-base">
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <tr key={product?._id} className="border-t border-slate-400">
                 <td className="px-4 py-2" title={product?.name}>
                   <Link className="hover:text-blue-600 hover:underline" to={`/product-details/${product?._id}`}>

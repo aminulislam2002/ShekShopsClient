@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 const ConfirmedOrders = () => {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -105,6 +106,9 @@ const ConfirmedOrders = () => {
       });
   };
 
+  // Filter orders based on search query
+  const filteredOrders = orders.filter((product) => product?._id.includes(searchQuery));
+
   return (
     <div className="">
       <div className="p-5 bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50">
@@ -115,6 +119,8 @@ const ConfirmedOrders = () => {
                 type="text"
                 className="w-full bg-white dark:bg-[#132337] border border-slate-200 px-3 py-2 rounded-md"
                 placeholder="Search for ..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
           </div>
@@ -141,11 +147,13 @@ const ConfirmedOrders = () => {
             </tr>
           </thead>
           <tbody className="bg-white dark:bg-[#132337] text-slate-800 dark:text-slate-50 text-base">
-            {orders.map((order) => (
+            {filteredOrders.map((order) => (
               <tr key={order?._id} className="border-t border-slate-400">
                 {console.log(order)}
                 <td className="px-4 py-2 text-center text-blue-500 hover:underline">#{order?._id}</td>
-                <td className="px-4 py-2 text-center">{order?.date}</td>
+                <td className="px-4 py-2 text-center">
+                  {order?.date} <br /> {order?.time}
+                </td>
                 <td className="px-4 py-2 text-center">৳{order?.total}</td>
                 <td className="px-4 py-2 text-center">{order?.customerData?.name}</td>
                 <td className="px-4 py-2 text-center">{order?.customerData?.mobileNumber}</td>
