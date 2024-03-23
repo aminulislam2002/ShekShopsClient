@@ -84,7 +84,7 @@ const UpdateProduct = () => {
         reviews: data.reviews || "",
         description: data.description || "",
         productType: data.productType || "",
-        updatedAt: new Date().toISOString(), // Add current date and time
+        // createdAt: new Date().toISOString(), // Add current date and time
       };
 
       // Product updated to database

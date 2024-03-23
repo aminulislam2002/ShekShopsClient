@@ -37,9 +37,10 @@ const MostPopularItem = () => {
 
   const filteredProducts =
     selectedCategory === "all"
-      ? products.filter((product, index) => index < displayedProductsCount)
+      ? products.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, displayedProductsCount)
       : products
           .filter((product) => product?.category.toLowerCase() === selectedCategory.toLowerCase())
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .slice(0, displayedProductsCount);
 
   const handleShowMoreClick = () => {

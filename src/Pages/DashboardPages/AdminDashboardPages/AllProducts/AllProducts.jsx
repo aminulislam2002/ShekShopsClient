@@ -16,7 +16,8 @@ const AllProducts = () => {
         const response = await fetch("https://server.shekshops.com/products");
         if (response.ok) {
           const data = await response.json();
-          setProducts(data);
+          const sortData = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+          setProducts(sortData);
         } else {
           console.error("Error fetching products");
         }

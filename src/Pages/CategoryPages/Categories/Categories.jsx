@@ -33,8 +33,10 @@ const Categories = () => {
 
   const filteredProducts =
     category.toLowerCase() === "all"
-      ? products
-      : products.filter((product) => product.category.toLowerCase() === category.toLowerCase());
+      ? products.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+      : products
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+          .filter((product) => product.category.toLowerCase() === category.toLowerCase());
 
   return (
     <div className="lg:w-[1200px] lg:mx-auto px-2.5 md:px-5 lg:px-0 my-10 md:my-14 lg:my-16">

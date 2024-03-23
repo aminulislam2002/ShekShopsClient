@@ -58,7 +58,9 @@ const BestSellingProducts = () => {
     );
   };
 
-  const filteredProducts = products.filter((product) => product?.productType === "Best Selling");
+  const filteredProducts = products
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .filter((product) => product?.productType === "Best Selling");
 
   return (
     <div className="lg:w-[1200px] lg:mx-auto px-2.5 md:px-5 lg:px-0 my-10 md:my-14 lg:my-16">

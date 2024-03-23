@@ -143,7 +143,7 @@ const NavBar = () => {
   const { isDarkMode, toggleDarkMode } = useTheme();
 
   return (
-    <div className={`${isDarkMode && "dark"}`}>
+    <div className={` sticky top-0 w-full z-[1000] ${isDarkMode && "dark"}`}>
       <div className="sticky top-0 w-full z-[1000] bg-green-700 dark:bg-[#132337] text-slate-50">
         <div className="lg:w-[1200px] mx-auto">
           <div className="relative z-10">
