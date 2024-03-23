@@ -49,7 +49,7 @@ const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
     } else if (windowWidth <= 768) {
       return 55; // Adjust the length for medium screens
     } else {
-      return 48; // Default length for large screens
+      return 47; // Default length for large screens
     }
   };
 
@@ -63,7 +63,7 @@ const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
         className="h-[365px] md:h-[430px] lg:h-[430px] flex flex-col justify-start items-center hover:shadow-md bg-slate-50 dark:bg-[#132337]"
       >
         {/* Render filtered product details here */}
-        <div className="w-[184px] md:w-[234.67px] lg:w-[224px]">
+        <div className="w-full">
           <div className="flex flex-col bg-transparent">
             <div className="relative flex-shrink-0 overflow-hidden z-[55] group">
               <Link to={`/product-details/${product?._id}`}>
@@ -71,7 +71,7 @@ const ProductCard = ({ id, product, handleFavoriteClick, favorites }) => {
                   <img
                     alt="product"
                     src={product?.images[0]}
-                    className="w-[184px] h-[176px] md:w-[234.67px] md:h-[234.67px] lg:w-[224px] lg:h-[224px] object-cover"
+                    className="w-full h-[176px] md:h-[234.67px] lg:h-[224px] object-cover"
                   />
                 </div>
               </Link>

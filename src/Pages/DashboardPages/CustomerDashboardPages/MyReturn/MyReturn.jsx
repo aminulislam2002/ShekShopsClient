@@ -8,7 +8,6 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 const MyReturn = () => {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -68,19 +67,8 @@ const MyReturn = () => {
       <div className="p-5 bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
           <div className="xl:col-span-3 lg:col-span-12 order-2 lg:order-1">
-            <div className="relative">
-              <input
-                type="text"
-                className="w-full bg-white dark:bg-[#132337] border border-slate-200 px-3 py-2 rounded-md"
-                placeholder="Search for ..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div>
-          </div>
-          <div className="lg:col-span-6 xl:col-span-6 order-1 lg:order-2">
-            <h1 className="bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50 text-base font-semibold font-secondary text-center p-5">
-              View All Confirmed Orders
+            <h1 className="bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50 text-base font-semibold font-secondary">
+              My Return
             </h1>
           </div>
         </div>

@@ -183,7 +183,7 @@ const DashboardLayout = () => {
         {/* Side Drawer */}
         <div className="drawer-side">
           <label htmlFor="my-drawer-3" className="drawer-overlay overflow-x-auto max-h-[100vh]"></label>
-          <ul className="p-4 w-2/3 md:w-1/3 min-h-screen bg-white dark:bg-[#132337] grid grid-cols-1  overflow-y-auto">
+          <ul className="p-4 w-2/3 md:w-1/3 max-h-screen bg-white dark:bg-[#132337] grid grid-cols-1 overflow-y-auto">
             <ActiveLink
               to="/dashboard"
               label="Dashboards"

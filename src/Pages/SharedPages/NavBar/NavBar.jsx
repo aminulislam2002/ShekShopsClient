@@ -144,21 +144,21 @@ const NavBar = () => {
 
   return (
     <div className={` sticky top-0 w-full z-[1000] ${isDarkMode && "dark"}`}>
-      <div className="sticky top-0 w-full z-[1000] bg-green-700 dark:bg-[#132337] text-slate-50">
+      <div className="bg-green-700 dark:bg-[#132337] text-slate-50">
         <div className="lg:w-[1200px] mx-auto">
           <div className="relative z-10">
             <div className="container mx-auto">
               <div className={`grid grid-cols-12 ${isAtTop && isSearchOpen ? "h-28" : "h-20"} md:h-28  lg:h-20`}>
                 {/* Dropdown icon and navbar icon for small and medium devices */}
                 <div className="col-span-2 lg:hidden order-1 flex lg:justify-start items-center">
-                  <div className="dropdown">
+                  <div className="dropdown w-full">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden" onClick={toggleDropdown}>
                       {isDropdownOpen ? <MdOutlineClose className="w-6 h-6" /> : <MdMenu className="w-6 h-6" />}
                     </div>
                     {isDropdownOpen && (
                       <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-green-700 mt-3 z-[1] p-2 shadow rounded-box w-52"
+                        className="menu menu-sm dropdown-content bg-green-700 dark:bg-[#132337] mt-3 z-[1] p-2 shadow rounded-md w-52"
                       >
                         <li>
                           {navItems.map((item, index) => (
