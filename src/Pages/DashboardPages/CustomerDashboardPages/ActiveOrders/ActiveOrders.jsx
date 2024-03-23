@@ -41,7 +41,7 @@ const ActiveOrders = () => {
       reverseButtons: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        updateOrderStatus(id, "Cancel");
+        updateOrderStatus(id, "Cancelled");
       }
     });
   };

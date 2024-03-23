@@ -16,7 +16,7 @@ const MyCancellations = () => {
           const response = await fetch(`https://server.shekshops.com/order?email=${user.email}`);
           if (response.ok) {
             const data = await response.json();
-            const ordersData = data.filter((order) => order?.orderStatus === "Cancel");
+            const ordersData = data.filter((order) => order?.orderStatus === "Cancelled");
             setOrders(ordersData);
           } else {
             console.error("Error fetching user orders");
@@ -76,7 +76,7 @@ const MyCancellations = () => {
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
           <div className="xl:col-span-3 lg:col-span-12 order-2 lg:order-1">
             <h1 className="bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50 text-base font-semibold font-secondary">
-              My Active Orders
+              My Cancellations
             </h1>
           </div>
         </div>

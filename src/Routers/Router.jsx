@@ -26,6 +26,7 @@ import ConfirmedOrders from "../Pages/DashboardPages/AdminDashboardPages/Confirm
 import DeliveredOrders from "../Pages/DashboardPages/AdminDashboardPages/DeliveredOrders/DeliveredOrders";
 import OrderOverview from "../Pages/DashboardPages/AdminDashboardPages/OrderOverview/OrderOverview";
 import ActiveOrders from "../Pages/DashboardPages/CustomerDashboardPages/ActiveOrders/ActiveOrders";
+import MyShopping from "../Pages/DashboardPages/CustomerDashboardPages/MyShopping/MyShopping";
 
 const router = createBrowserRouter([
   {
@@ -104,6 +105,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/activeOrders",
         element: <ActiveOrders></ActiveOrders>,
+      },
+      {
+        path: "/dashboard/myShopping",
+        element: <MyShopping></MyShopping>,
       },
       {
         path: "/dashboard/myCancellations",
