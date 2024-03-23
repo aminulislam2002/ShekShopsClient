@@ -10,6 +10,7 @@ import { FcConferenceCall, FcOk, FcCancel } from "react-icons/fc";
 import { GiConfirmed } from "react-icons/gi";
 import { IoCloudDone } from "react-icons/io5";
 import { CiLight } from "react-icons/ci";
+import { TbTruckReturn } from "react-icons/tb";
 
 const DashboardLayout = () => {
   const adminOptions = (
@@ -81,6 +82,14 @@ const DashboardLayout = () => {
         to="/dashboard/myCancellations"
         label="My Cancellations"
         icon={FcCancel}
+        activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
+        className="my-1 mx-2 lg:mx-2.5 lg:py-2.5 px-3 ps-3 lg:ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+      />
+
+      <ActiveLink
+        to="/dashboard/myReturns"
+        label="My Returns"
+        icon={TbTruckReturn}
         activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
         className="my-1 mx-2 lg:mx-2.5 lg:py-2.5 px-3 ps-3 lg:ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
       />

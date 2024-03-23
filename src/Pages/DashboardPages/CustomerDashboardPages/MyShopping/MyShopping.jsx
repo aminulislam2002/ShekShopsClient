@@ -1,9 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../../Providers/AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const MyShopping = () => {
   const { user } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(false);
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
@@ -26,6 +29,46 @@ const MyShopping = () => {
 
     fetchOrders();
   }, [user]);
+
+  const handleReturns = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You wants to return the order?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Returns it",
+      cancelButtonText: "Not yet",
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        updateOrderStatus(id, "Returns");
+      }
+    });
+  };
+  
+  const updateOrderStatus = (id, status) => {
+    setIsLoading(true);
+    axios
+      .put(`https://server.shekshops.com/orderStatus/${id}`, { status })
+      .then((response) => {
+        if (response.status === 200) {
+          // Filter out the updated order from the orders state
+          const updatedOrders = orders.filter((order) => order._id !== id);
+          setOrders(updatedOrders);
+          // Handle success response
+          Swal.fire("Updated!", "Order status has been updated.", "success");
+        }
+        // Update UI accordingly, you may fetch orders again to update the list
+      })
+      .catch((error) => {
+        console.log(error);
+        // Handle error
+        Swal.fire("Error!", "Failed to update order status.", "error");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   return (
     <div className="">
@@ -74,11 +117,11 @@ const MyShopping = () => {
                       View Details
                     </Link>
                     <button
-                      // onClick={() => handleConfirmed(order?._id)}
-                      // disabled={isLoading}
+                      onClick={() => handleReturns(order?._id)}
+                      disabled={isLoading}
                       className="bg-amber-600 hover:bg-amber-700 text-white font-semibold text-sm py-1 px-2 rounded"
                     >
-                     Returns
+                      Returns
                     </button>
                   </div>
                 </td>

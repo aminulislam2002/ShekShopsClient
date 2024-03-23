@@ -19,7 +19,6 @@ import MyCancelOrders from "../Pages/DashboardPages/CustomerDashboardPages/MyCan
 import PendingOrders from "../Pages/DashboardPages/AdminDashboardPages/PendingOrders/PendingOrders";
 import AllProducts from "../Pages/DashboardPages/AdminDashboardPages/AllProducts/AllProducts";
 import AllUsers from "../Pages/DashboardPages/AdminDashboardPages/AllUsers/AllUsers";
-import SellingProducts from "../Pages/DashboardPages/AdminDashboardPages/DeliveredOrders/DeliveredOrders";
 import CartPage from "../Pages/CartPage/CartPage";
 import CancelledOrders from "../Pages/DashboardPages/AdminDashboardPages/CancelledOrders/CancelledOrders";
 import ConfirmedOrders from "../Pages/DashboardPages/AdminDashboardPages/ConfirmedOrders/ConfirmedOrders";
@@ -27,6 +26,7 @@ import DeliveredOrders from "../Pages/DashboardPages/AdminDashboardPages/Deliver
 import OrderOverview from "../Pages/DashboardPages/AdminDashboardPages/OrderOverview/OrderOverview";
 import ActiveOrders from "../Pages/DashboardPages/CustomerDashboardPages/ActiveOrders/ActiveOrders";
 import MyShopping from "../Pages/DashboardPages/CustomerDashboardPages/MyShopping/MyShopping";
+import MyReturns from "../Pages/DashboardPages/CustomerDashboardPages/MyReturns/MyReturns";
 
 const router = createBrowserRouter([
   {
@@ -99,8 +99,8 @@ const router = createBrowserRouter([
         element: <CancelledOrders></CancelledOrders>,
       },
       {
-        path: "/dashboard/sellingProducts",
-        element: <SellingProducts></SellingProducts>,
+        path: "/dashboard/deliveredOrders",
+        element: <DeliveredOrders></DeliveredOrders>,
       },
       {
         path: "/dashboard/activeOrders",
@@ -115,8 +115,8 @@ const router = createBrowserRouter([
         element: <MyCancelOrders></MyCancelOrders>,
       },
       {
-        path: "/dashboard/deliveredOrders",
-        element: <DeliveredOrders></DeliveredOrders>,
+        path: "/dashboard/myReturns",
+        element: <MyReturns></MyReturns>,
       },
       {
         path: "/dashboard/order-overview/:id",
