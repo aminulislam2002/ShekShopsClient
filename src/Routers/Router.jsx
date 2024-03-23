@@ -15,7 +15,6 @@ import Login from "../Pages/AuthenticationPage/LoginPage/Login";
 import AuthenticationLayout from "../Layouts/AuthenticationLayout/AuthenticationLayout";
 import UpdateProduct from "../Pages/DashboardPages/AdminDashboardPages/UpdateProduct/UpdateProduct";
 import WelcomeDashboard from "../Pages/DashboardPages/WelcomeDashboard/WelcomeDashboard";
-import MyOrder from "../Pages/DashboardPages/CustomerDashboardPages/MyOrder/MyOrder";
 import MyCancelOrders from "../Pages/DashboardPages/CustomerDashboardPages/MyCancellations/MyCancellations";
 import PendingOrders from "../Pages/DashboardPages/AdminDashboardPages/PendingOrders/PendingOrders";
 import AllProducts from "../Pages/DashboardPages/AdminDashboardPages/AllProducts/AllProducts";
@@ -26,6 +25,7 @@ import CancelledOrders from "../Pages/DashboardPages/AdminDashboardPages/Cancell
 import ConfirmedOrders from "../Pages/DashboardPages/AdminDashboardPages/ConfirmedOrders/ConfirmedOrders";
 import DeliveredOrders from "../Pages/DashboardPages/AdminDashboardPages/DeliveredOrders/DeliveredOrders";
 import OrderOverview from "../Pages/DashboardPages/AdminDashboardPages/OrderOverview/OrderOverview";
+import ActiveOrders from "../Pages/DashboardPages/CustomerDashboardPages/ActiveOrders/ActiveOrders";
 
 const router = createBrowserRouter([
   {
@@ -102,8 +102,8 @@ const router = createBrowserRouter([
         element: <SellingProducts></SellingProducts>,
       },
       {
-        path: "/dashboard/myOrder",
-        element: <MyOrder></MyOrder>,
+        path: "/dashboard/activeOrders",
+        element: <ActiveOrders></ActiveOrders>,
       },
       {
         path: "/dashboard/myCancellations",

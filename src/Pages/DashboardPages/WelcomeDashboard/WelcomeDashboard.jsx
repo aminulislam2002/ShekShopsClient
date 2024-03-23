@@ -153,7 +153,6 @@ const WelcomeDashboard = () => {
           <div>
             <div className="grid grid-cols-12 gap-5">
               {/* Active Orders */}
-
               <div className="col-span-12 md:col-span-6 lg:col-span-3 2xl:col-span-2 bg-white dark:bg-[#132337] rounded-md">
                 <div className="text-center p-5">
                   <div className="flex items-center justify-center mx-auto rounded-full size-14 bg-[#1A365D] text-[#1A365D] dark:bg-[#1A365D]">

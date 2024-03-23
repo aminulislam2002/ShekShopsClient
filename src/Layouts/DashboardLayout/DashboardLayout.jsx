@@ -63,7 +63,7 @@ const DashboardLayout = () => {
   const customerOptions = (
     <>
       <ActiveLink
-        to="/dashboard/myOrder"
+        to="/dashboard/activeOrders"
         label="Active Order"
         icon={FcOk}
         activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
