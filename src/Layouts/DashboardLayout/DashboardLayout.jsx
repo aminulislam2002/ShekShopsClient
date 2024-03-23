@@ -15,14 +15,6 @@ const DashboardLayout = () => {
   const adminOptions = (
     <>
       <ActiveLink
-        to="/dashboard"
-        label="Dashboards"
-        icon={MdDashboard}
-        activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
-        className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
-      ></ActiveLink>
-
-      <ActiveLink
         to="/dashboard/allUsers"
         label="All Users"
         icon={FcConferenceCall}
@@ -123,6 +115,15 @@ const DashboardLayout = () => {
             </div>
             <div className="flex-none hidden lg:block mt-4">
               <ul className="menu-vertical">
+                <li>
+                  <ActiveLink
+                    to="/dashboard"
+                    label="Dashboards"
+                    icon={MdDashboard}
+                    activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
+                    className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+                  ></ActiveLink>
+                </li>
                 {isAdmin ? <> {adminOptions} </> : <></>}
                 {isCustomer ? <> {customerOptions} </> : <></>}
                 <li>
@@ -168,6 +169,15 @@ const DashboardLayout = () => {
         <div className="drawer-side">
           <label htmlFor="my-drawer-3" className="drawer-overlay overflow-x-auto max-h-[100vh]"></label>
           <ul className="p-4 w-2/3 md:w-1/3 min-h-screen bg-white dark:bg-[#132337] grid grid-cols-1  overflow-y-auto">
+            <li>
+              <ActiveLink
+                to="/dashboard"
+                label="Dashboards"
+                icon={MdDashboard}
+                activeClassName="bg-slate-200 dark:bg-[#1C2E45] dark:text-blue-500"
+                className="my-1 mx-3 py-2.5 px-3 ps-5 rounded bg-white text-slate-600  hover:bg-slate-200 hover:text-blue-500 dark:hover:text-blue-500 dark:bg-[#132337] dark:text-slate-50 text-start flex justify-start items-center gap-2"
+              ></ActiveLink>
+            </li>
             {isAdmin ? <> {adminOptions} </> : <></>}
             {isCustomer ? <> {customerOptions} </> : <></>}
             <li>

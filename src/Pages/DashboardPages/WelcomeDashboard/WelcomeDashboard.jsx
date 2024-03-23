@@ -1,13 +1,53 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider/AuthProvider";
 import image_one from "../../../assets/Section/dashboard_welcome_page.png";
 import { FaProductHunt } from "react-icons/fa";
 import { FcCancel } from "react-icons/fc";
-import { TbTruckDelivery } from "react-icons/tb";
-import { TbCubePlus } from "react-icons/tb";
+import { TbTruckDelivery, TbTruckReturn, TbCubePlus } from "react-icons/tb";
+import { MdShoppingCartCheckout } from "react-icons/md";
+import useAdmin from "../../../Hooks/useAdmin";
+import useCustomer from "../../../Hooks/useCustomer";
 
 const WelcomeDashboard = () => {
   const { user } = useContext(AuthContext);
+
+  const [productCount, setProductCount] = useState(0);
+  const [activeOrdersCount, setActiveOrdersCount] = useState(0);
+  const [cancelledOrdersCount, setCancelledOrdersCount] = useState(0);
+  const [deliveredOrdersCount, setDeliveredOrdersCount] = useState(0);
+  const [isAdmin] = useAdmin();
+  const [isCustomer] = useCustomer();
+
+  useEffect(() => {
+    const fetchProductAndOrdersCount = async () => {
+      try {
+        // Fetch products count
+        const productsResponse = await fetch("https://server.shekshops.com/products");
+        if (productsResponse.ok) {
+          const productsData = await productsResponse.json();
+          setProductCount(productsData.length);
+        }
+
+        // Fetch orders and count orders with different statuses
+        const ordersResponse = await fetch("https://server.shekshops.com/orders");
+        if (ordersResponse.ok) {
+          const ordersData = await ordersResponse.json();
+          const activeOrders = ordersData.filter(
+            (order) => order.orderStatus === "Pending" || order.orderStatus === "Confirmed"
+          );
+          setActiveOrdersCount(activeOrders.length);
+          const cancelledOrders = ordersData.filter((order) => order.orderStatus === "Cancelled");
+          setCancelledOrdersCount(cancelledOrders.length);
+          const deliveredOrders = ordersData.filter((order) => order.orderStatus === "Delivered");
+          setDeliveredOrdersCount(deliveredOrders.length);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchProductAndOrdersCount();
+  }, []);
 
   return (
     <div className="">
@@ -46,57 +86,130 @@ const WelcomeDashboard = () => {
         </div>
       </div>
 
-      <div>
-        <div className="grid grid-cols-12 gap-5">
-          <div className="col-span-12 md:col-span-6 lg:col-span-3 2xl:col-span-2 bg-white dark:bg-[#132337] rounded-md">
-            <div className="text-center p-5">
-              <div className="flex items-center justify-center mx-auto rounded-full size-14 bg-[#1A365D] text-[#1A365D] dark:bg-[#1A365D]">
-                <FaProductHunt className="w-6 h-6 text-blue-600 rounded-full"></FaProductHunt>
+      {isAdmin ? (
+        <>
+          <div>
+            <div className="grid grid-cols-12 gap-5">
+              {/* Total Prodcuts */}
+              <div className="col-span-12 md:col-span-6 lg:col-span-3 2xl:col-span-2 bg-white dark:bg-[#132337] rounded-md">
+                <div className="text-center p-5">
+                  <div className="flex items-center justify-center mx-auto rounded-full size-14 bg-[#1A365D] text-[#1A365D] dark:bg-[#1A365D]">
+                    <FaProductHunt className="w-6 h-6 text-blue-600 rounded-full"></FaProductHunt>
+                  </div>
+                  <h5 className="mt-4 mb-2 dark:text-slate-50 text-lg md:text-xl lg:text-2xl font-secondary font-semibold">
+                    {productCount}
+                  </h5>
+                  <p className="text-slate-400 dark:text-zink-200">Total Products</p>
+                </div>
               </div>
-              <h5 className="mt-4 mb-2 dark:text-slate-50 text-lg md:text-xl lg:text-2xl font-secondary font-semibold">
-                236
-              </h5>
-              <p className="text-slate-400 dark:text-zink-200">Total Products</p>
-            </div>
-          </div>
 
-          <div className="col-span-12 md:col-span-6 lg:col-span-3 2xl:col-span-2 bg-white dark:bg-[#132337] rounded-md">
-            <div className="text-center p-5">
-              <div className="flex items-center justify-center mx-auto rounded-full size-14 bg-[#312D5E] text-[#312D5E] dark:bg-[#312D5E]">
-                <TbCubePlus className="w-6 h-6 text-pink-600 rounded-full"></TbCubePlus>
+              {/* Active Orders */}
+              <div className="col-span-12 md:col-span-6 lg:col-span-3 2xl:col-span-2 bg-white dark:bg-[#132337] rounded-md">
+                <div className="text-center p-5">
+                  <div className="flex items-center justify-center mx-auto rounded-full size-14 bg-[#312D5E] text-[#312D5E] dark:bg-[#312D5E]">
+                    <TbCubePlus className="w-6 h-6 text-pink-600 rounded-full"></TbCubePlus>
+                  </div>
+                  <h5 className="mt-4 mb-2 dark:text-slate-50 text-lg md:text-xl lg:text-2xl font-secondary font-semibold">
+                    {activeOrdersCount}
+                  </h5>
+                  <p className="text-slate-400 dark:text-zink-200">Active Orders</p>
+                </div>
               </div>
-              <h5 className="mt-4 mb-2 dark:text-slate-50 text-lg md:text-xl lg:text-2xl font-secondary font-semibold">
-                20
-              </h5>
-              <p className="text-slate-400 dark:text-zink-200">Active Orders</p>
-            </div>
-          </div>
 
-          <div className="col-span-12 md:col-span-6 lg:col-span-3 2xl:col-span-2 bg-white dark:bg-[#132337] rounded-md">
-            <div className="text-center p-5">
-              <div className="flex items-center justify-center mx-auto rounded-full size-14 bg-[#163A46] text-[#163A46] dark:bg-[#163A46]">
-                <TbTruckDelivery className="w-6 h-6 text-green-600 rounded-full"></TbTruckDelivery>
+              {/* Delivered */}
+              <div className="col-span-12 md:col-span-6 lg:col-span-3 2xl:col-span-2 bg-white dark:bg-[#132337] rounded-md">
+                <div className="text-center p-5">
+                  <div className="flex items-center justify-center mx-auto rounded-full size-14 bg-[#163A46] text-[#163A46] dark:bg-[#163A46]">
+                    <TbTruckDelivery className="w-6 h-6 text-green-600 rounded-full"></TbTruckDelivery>
+                  </div>
+                  <h5 className="mt-4 mb-2 dark:text-slate-50 text-lg md:text-xl lg:text-2xl font-secondary font-semibold">
+                    {deliveredOrdersCount}
+                  </h5>
+                  <p className="text-slate-400 dark:text-zink-200">Delivered</p>
+                </div>
               </div>
-              <h5 className="mt-4 mb-2 dark:text-slate-50 text-lg md:text-xl lg:text-2xl font-secondary font-semibold">
-                236
-              </h5>
-              <p className="text-slate-400 dark:text-zink-200">Delivered</p>
-            </div>
-          </div>
 
-          <div className="col-span-12 md:col-span-6 lg:col-span-3 2xl:col-span-2 bg-white dark:bg-[#132337] rounded-md">
-            <div className="text-center p-5">
-              <div className="flex items-center justify-center mx-auto rounded-full size-14 bg-[#3F2939] text-[#3F2939] dark:bg-[#3F2939]">
-                <FcCancel className="w-6 h-6 text-red-600 rounded-full"></FcCancel>
+              {/* Cancelled */}
+              <div className="col-span-12 md:col-span-6 lg:col-span-3 2xl:col-span-2 bg-white dark:bg-[#132337] rounded-md">
+                <div className="text-center p-5">
+                  <div className="flex items-center justify-center mx-auto rounded-full size-14 bg-[#3F2939] text-[#3F2939] dark:bg-[#3F2939]">
+                    <FcCancel className="w-6 h-6 text-red-600 rounded-full"></FcCancel>
+                  </div>
+                  <h5 className="mt-4 mb-2 dark:text-slate-50 text-lg md:text-xl lg:text-2xl font-secondary font-semibold">
+                    {cancelledOrdersCount}
+                  </h5>
+                  <p className="text-slate-400 dark:text-zink-200">Cancelled</p>
+                </div>
               </div>
-              <h5 className="mt-4 mb-2 dark:text-slate-50 text-lg md:text-xl lg:text-2xl font-secondary font-semibold">
-                236
-              </h5>
-              <p className="text-slate-400 dark:text-zink-200">Cancelled</p>
             </div>
           </div>
-        </div>
-      </div>
+        </>
+      ) : (
+        <></>
+      )}
+
+      {isCustomer ? (
+        <>
+          <div>
+            <div className="grid grid-cols-12 gap-5">
+              {/* Active Orders */}
+
+              <div className="col-span-12 md:col-span-6 lg:col-span-3 2xl:col-span-2 bg-white dark:bg-[#132337] rounded-md">
+                <div className="text-center p-5">
+                  <div className="flex items-center justify-center mx-auto rounded-full size-14 bg-[#1A365D] text-[#1A365D] dark:bg-[#1A365D]">
+                    <MdShoppingCartCheckout className="w-6 h-6 text-blue-600 rounded-full"></MdShoppingCartCheckout>
+                  </div>
+                  <h5 className="mt-4 mb-2 dark:text-slate-50 text-lg md:text-xl lg:text-2xl font-secondary font-semibold">
+                    0
+                  </h5>
+                  <p className="text-slate-400 dark:text-zink-200">Active Orders</p>
+                </div>
+              </div>
+
+              {/* Delivered */}
+              <div className="col-span-12 md:col-span-6 lg:col-span-3 2xl:col-span-2 bg-white dark:bg-[#132337] rounded-md">
+                <div className="text-center p-5">
+                  <div className="flex items-center justify-center mx-auto rounded-full size-14 bg-[#163A46] text-[#163A46] dark:bg-[#163A46]">
+                    <TbTruckDelivery className="w-6 h-6 text-green-600 rounded-full"></TbTruckDelivery>
+                  </div>
+                  <h5 className="mt-4 mb-2 dark:text-slate-50 text-lg md:text-xl lg:text-2xl font-secondary font-semibold">
+                    0
+                  </h5>
+                  <p className="text-slate-400 dark:text-zink-200">Delivered</p>
+                </div>
+              </div>
+
+              {/* My Cancellations */}
+              <div className="col-span-12 md:col-span-6 lg:col-span-3 2xl:col-span-2 bg-white dark:bg-[#132337] rounded-md">
+                <div className="text-center p-5">
+                  <div className="flex items-center justify-center mx-auto rounded-full size-14 bg-[#3F2939] text-[#3F2939] dark:bg-[#3F2939]">
+                    <FcCancel className="w-6 h-6 text-red-600 rounded-full"></FcCancel>
+                  </div>
+                  <h5 className="mt-4 mb-2 dark:text-slate-50 text-lg md:text-xl lg:text-2xl font-secondary font-semibold">
+                    0
+                  </h5>
+                  <p className="text-slate-400 dark:text-zink-200">My Cancellations</p>
+                </div>
+              </div>
+
+              {/* My Returns */}
+              <div className="col-span-12 md:col-span-6 lg:col-span-3 2xl:col-span-2 bg-white dark:bg-[#132337] rounded-md">
+                <div className="text-center p-5">
+                  <div className="flex items-center justify-center mx-auto rounded-full size-14 bg-[#312D5E] text-[#312D5E] dark:bg-[#312D5E]">
+                    <TbTruckReturn className="w-6 h-6 text-pink-600 rounded-full"></TbTruckReturn>
+                  </div>
+                  <h5 className="mt-4 mb-2 dark:text-slate-50 text-lg md:text-xl lg:text-2xl font-secondary font-semibold">
+                    0
+                  </h5>
+                  <p className="text-slate-400 dark:text-zink-200">My Returns</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
