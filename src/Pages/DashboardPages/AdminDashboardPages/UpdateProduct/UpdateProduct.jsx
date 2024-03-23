@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const UpdateProduct = () => {
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
   // Get the product id from the URL
   const { id } = useParams();
   const { register, handleSubmit, setValue } = useForm();
@@ -102,6 +103,7 @@ const UpdateProduct = () => {
           title: "Product Updated!",
           text: "Your product has been successfully updated.",
         });
+        navigate("/dashboard/allProducts");
       } else {
         // Handle error case
         console.error("Error adding product");

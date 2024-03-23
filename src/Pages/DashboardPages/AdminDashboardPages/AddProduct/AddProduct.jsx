@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const AddProduct = () => {
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const image_hosting_api_key = import.meta.env.VITE_image_hosting_api_key;
   const expiration_seconds = 157680000;
@@ -59,12 +61,12 @@ const AddProduct = () => {
       });
       if (response.ok) {
         // Product successfully added
-        console.log("Product added successfully");
         Swal.fire({
           icon: "success",
           title: "Product Added!",
           text: "Your product has been successfully added.",
         });
+        navigate("/dashboard/allProducts");
       } else {
         // Handle error case
         console.error("Error adding product");

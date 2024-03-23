@@ -175,7 +175,6 @@ const OrderOverview = () => {
               <h5 className="text-base text-slate-800 dark:text-slate-50">Order Summary</h5>
             </div>
             <div className="flex justify-center items-center gap-3 shrink-0">
-              <button className="inline-block text-red-500 underline ltr:mr-2 rtl:ml-2">Cancelled Order</button>
               <div className="shrink-0">
                 <Link
                   to="/dashboard/addProduct"
