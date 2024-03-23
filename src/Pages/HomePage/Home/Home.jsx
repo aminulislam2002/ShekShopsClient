@@ -13,7 +13,7 @@ const Home = () => {
 
   return (
     <div className={`${isDarkMode && "dark"}`}>
-      <div className="bg-white dark:bg-[#0F1824]">
+      <div className="bg-white text-slate-800 dark:bg-[#0F1824] dark:text-slate-50">
         <TopBanner></TopBanner>
         <NewArrivals></NewArrivals>
         <HowItWorks></HowItWorks>
