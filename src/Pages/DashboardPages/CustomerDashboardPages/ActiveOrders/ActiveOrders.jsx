@@ -16,7 +16,10 @@ const ActiveOrders = () => {
           const response = await fetch(`https://server.shekshops.com/order?email=${user.email}`);
           if (response.ok) {
             const data = await response.json();
-            const ordersData = data.filter((order) => order?.orderStatus === "Confirm" || order?.orderStatus === "Pending");
+            const ordersData = data.filter(
+              (order) =>
+                order?.orderStatus === "Confirmed" || order?.orderStatus === "Pending" || order?.orderStatus === "Shipping"
+            );
             setOrders(ordersData);
           } else {
             console.error("Error fetching user orders");

@@ -10,11 +10,14 @@ import useCustomer from "../../../Hooks/useCustomer";
 
 const WelcomeDashboard = () => {
   const { user } = useContext(AuthContext);
-
   const [productCount, setProductCount] = useState(0);
   const [activeOrdersCount, setActiveOrdersCount] = useState(0);
   const [cancelledOrdersCount, setCancelledOrdersCount] = useState(0);
   const [deliveredOrdersCount, setDeliveredOrdersCount] = useState(0);
+  const [myActiveOrdersCount, setMyActiveOrdersCount] = useState(0);
+  const [myDeliveredOrdersCount, setMyDeliveredOrdersCount] = useState(0);
+  const [myCancellationsOrdersCount, setMyCancellationsOrdersCount] = useState(0);
+  const [myReturnsOrdersCount, setMyReturnsOrdersCount] = useState(0);
   const [isAdmin] = useAdmin();
   const [isCustomer] = useCustomer();
 
@@ -36,10 +39,32 @@ const WelcomeDashboard = () => {
             (order) => order.orderStatus === "Pending" || order.orderStatus === "Confirmed"
           );
           setActiveOrdersCount(activeOrders.length);
+
           const cancelledOrders = ordersData.filter((order) => order.orderStatus === "Cancelled");
           setCancelledOrdersCount(cancelledOrders.length);
+
           const deliveredOrders = ordersData.filter((order) => order.orderStatus === "Delivered");
           setDeliveredOrdersCount(deliveredOrders.length);
+        }
+
+        // Fetch customer orders and count different types of active orders
+        const customerOrdersResponse = await fetch(`https://server.shekshops.com/order?email=${user?.email}`);
+        if (customerOrdersResponse.ok) {
+          const customerOrdersData = await customerOrdersResponse.json();
+          const customerActiveOrders = customerOrdersData.filter(
+            (order) =>
+              order.orderStatus === "Pending" || order.orderStatus === "Confirmed" || order.orderStatus === "Shipping"
+          );
+          setMyActiveOrdersCount(customerActiveOrders.length);
+
+          const customerCancellationsOrders = customerOrdersData.filter((order) => order.orderStatus === "Cancelled");
+          setMyCancellationsOrdersCount(customerCancellationsOrders.length);
+
+          const customerDeliveredOrders = customerOrdersData.filter((order) => order.orderStatus === "Delivered");
+          setMyDeliveredOrdersCount(customerDeliveredOrders.length);
+
+          const customerReturnsOrders = customerOrdersData.filter((order) => order.orderStatus === "Returns");
+          setMyReturnsOrdersCount(customerReturnsOrders.length);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -47,13 +72,13 @@ const WelcomeDashboard = () => {
     };
 
     fetchProductAndOrdersCount();
-  }, []);
+  }, [user?.email]);
 
   return (
     <div className="">
       <div className="flex  md:flex-row md:items-center print:hidden gap-2 pb-3 md:pb-4 lg:pb-5">
         <div className="grow">
-          <h5 className="text-base text-slate-800 dark:text-slate-50">Ecommerce</h5>
+          <h5 className="text-base text-slate-800 dark:text-slate-50">E-Commerce</h5>
         </div>
         <ul className="flex items-center gap-2 text-sm font-normal shrink-0">
           <li className="relative before:content-['\ea54'] before:font-remix ltr:before:-right-1 rtl:before:-left-1  before:absolute before:text-[18px] before:-top-[3px] ltr:pr-4 rtl:pl-4 before:text-slate-400 dark:text-slate-700">
@@ -159,7 +184,7 @@ const WelcomeDashboard = () => {
                     <MdShoppingCartCheckout className="w-6 h-6 text-blue-600 rounded-full"></MdShoppingCartCheckout>
                   </div>
                   <h5 className="mt-4 mb-2 dark:text-slate-50 text-lg md:text-xl lg:text-2xl font-secondary font-semibold">
-                    0
+                    {myActiveOrdersCount}
                   </h5>
                   <p className="text-slate-400 dark:text-zink-200">Active Orders</p>
                 </div>
@@ -172,7 +197,7 @@ const WelcomeDashboard = () => {
                     <TbTruckDelivery className="w-6 h-6 text-green-600 rounded-full"></TbTruckDelivery>
                   </div>
                   <h5 className="mt-4 mb-2 dark:text-slate-50 text-lg md:text-xl lg:text-2xl font-secondary font-semibold">
-                    0
+                    {myDeliveredOrdersCount}
                   </h5>
                   <p className="text-slate-400 dark:text-zink-200">Delivered</p>
                 </div>
@@ -185,7 +210,7 @@ const WelcomeDashboard = () => {
                     <FcCancel className="w-6 h-6 text-red-600 rounded-full"></FcCancel>
                   </div>
                   <h5 className="mt-4 mb-2 dark:text-slate-50 text-lg md:text-xl lg:text-2xl font-secondary font-semibold">
-                    0
+                    {myCancellationsOrdersCount}
                   </h5>
                   <p className="text-slate-400 dark:text-zink-200">My Cancellations</p>
                 </div>
@@ -198,7 +223,7 @@ const WelcomeDashboard = () => {
                     <TbTruckReturn className="w-6 h-6 text-pink-600 rounded-full"></TbTruckReturn>
                   </div>
                   <h5 className="mt-4 mb-2 dark:text-slate-50 text-lg md:text-xl lg:text-2xl font-secondary font-semibold">
-                    0
+                    {myReturnsOrdersCount}
                   </h5>
                   <p className="text-slate-400 dark:text-zink-200">My Returns</p>
                 </div>

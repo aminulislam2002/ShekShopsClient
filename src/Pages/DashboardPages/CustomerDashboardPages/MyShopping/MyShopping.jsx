@@ -13,7 +13,7 @@ const MyShopping = () => {
           const response = await fetch(`https://server.shekshops.com/order?email=${user.email}`);
           if (response.ok) {
             const data = await response.json();
-            const ordersData = data.filter((order) => order?.orderStatus === "Received");
+            const ordersData = data.filter((order) => order?.orderStatus === "Delivered");
             setOrders(ordersData);
           } else {
             console.error("Error fetching user orders");
@@ -73,6 +73,13 @@ const MyShopping = () => {
                     >
                       View Details
                     </Link>
+                    <button
+                      // onClick={() => handleConfirmed(order?._id)}
+                      // disabled={isLoading}
+                      className="bg-amber-600 hover:bg-amber-700 text-white font-semibold text-sm py-1 px-2 rounded"
+                    >
+                     Returns
+                    </button>
                   </div>
                 </td>
               </tr>
