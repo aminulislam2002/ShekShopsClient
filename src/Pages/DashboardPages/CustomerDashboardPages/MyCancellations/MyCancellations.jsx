@@ -2,21 +2,22 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../../Providers/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const MyCancellations = () => {
   const { user } = useContext(AuthContext);
-  const [myOrders, setMyOrders] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const fetchMyOrders = async () => {
+    const fetchOrders = async () => {
       try {
         if (user && user.email) {
           const response = await fetch(`https://server.shekshops.com/order?email=${user.email}`);
           if (response.ok) {
             const data = await response.json();
-            const orders = data.filter((order) => order?.orderStatus === "Cancel");
-            setMyOrders(orders);
+            const ordersData = data.filter((order) => order?.orderStatus === "Cancel");
+            setOrders(ordersData);
           } else {
             console.error("Error fetching user orders");
           }
@@ -26,21 +27,21 @@ const MyCancellations = () => {
       }
     };
 
-    fetchMyOrders();
+    fetchOrders();
   }, [user]);
 
-  const handleCancel = (id) => {
+  const handleConfirmed = (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Yes, cancel it!",
-      cancelButtonText: "No, keep it!",
+      confirmButtonText: "Yes, confirm it!",
+      cancelButtonText: "No, cancelled!",
       reverseButtons: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        updateOrderStatus(id, "Cancel");
+        updateOrderStatus(id, "Confirmed");
       }
     });
   };
@@ -52,8 +53,8 @@ const MyCancellations = () => {
       .then((response) => {
         if (response.status === 200) {
           // Filter out the updated order from the orders state
-          const updatedOrders = myOrders.filter((order) => order._id !== id);
-          setMyOrders(updatedOrders);
+          const updatedOrders = orders.filter((order) => order._id !== id);
+          setOrders(updatedOrders);
           // Handle success response
           Swal.fire("Updated!", "Order status has been updated.", "success");
         }
@@ -70,155 +71,64 @@ const MyCancellations = () => {
   };
 
   return (
-    <div className="container mx-auto bg-slate-100">
-      <h1 className="text-2xl py-2 ps-2 font-semibold font-primary">My Cancellations</h1>
-      <div>
-        <div className="mb-4">
-          {myOrders.map((order) => (
-            <div key={order?._id}></div>
-          ))}
+    <div className="">
+      <div className="p-5 bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
+          <div className="xl:col-span-3 lg:col-span-12 order-2 lg:order-1">
+            <h1 className="bg-white text-slate-800 dark:bg-[#132337] dark:text-slate-50 text-base font-semibold font-secondary">
+              My Active Orders
+            </h1>
+          </div>
         </div>
       </div>
 
-      <div className="">
-        {myOrders.map((order) => (
-          <div key={order?._id}>
-            <div className="bg-white p-3">
-              <div className="md:flex justify-between items-center mb-2">
-                <div>
-                  <p>
-                    Order <span>#{order?._id}</span>
-                  </p>
-                  <p>
-                    Placed on {order?.date} {order?.time}
-                  </p>
-                </div>
-                <div>
-                  <p>
-                    <span className="text-slate-600 text-base font-bold me-1">Qty:</span>
-                    <span>{order?.productData?.quantity}</span>
-                  </p>
-                </div>
-                <div>
-                  <span className="text-purple-600 text-base font-bold me-1">Total:</span>
-                  <span className="text-lg font-bold text-purple-600">
-                    <span className="text-2xl">৳</span>
-                    {order?.productData?.originalPrice * order?.productData?.quantity + order?.customerData?.deliveryCharge}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white shadow-md rounded-lg p-3 grid grid-cols-12 lg:gap-10">
-              <div className="mb-5 lg:mb-0 col-span-12 md:border border-slate-400 rounded-md">
-                <div className="md:flex md:justify-start md:items-start">
-                  <div className="flex justify-center items-center">
-                    <img
-                      src={order?.productData?.imageUrl}
-                      alt={order?.productData?.name}
-                      className="w-[100px] h-[100px] object-cover rounded-l-md"
-                    />
+      <div className="bg-white shadow-md overflow-x-auto">
+        <table className="w-full whitespace-nowrap table-auto">
+          {/* head */}
+          <thead className="bg-slate-100 dark:bg-[#1C2E45] text-slate-800 dark:text-slate-50 text-base">
+            <tr>
+              <th className="px-4 py-2 text-center">Order ID</th>
+              <th className="px-4 py-2 text-center">Order Date</th>
+              <th className="px-4 py-2 text-center">Amount</th>
+              <th className="px-4 py-2 text-center">Customer Name</th>
+              <th className="px-4 py-2 text-center">Customer Number</th>
+              <th className="px-4 py-2 text-center">Order Status</th>
+              <th className="px-4 py-2 text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody className="bg-white dark:bg-[#132337] text-slate-800 dark:text-slate-50 text-base">
+            {orders.map((order) => (
+              <tr key={order?._id} className="border-t border-slate-400">
+                <td className="px-4 py-2 text-center text-blue-500 hover:underline">#{order?._id}</td>
+                <td className="px-4 py-2 text-center">
+                  {order?.date} <br /> {order?.time}
+                </td>
+                <td className="px-4 py-2 text-center">৳{order?.total}</td>
+                <td className="px-4 py-2 text-center">{order?.customerData?.name}</td>
+                <td className="px-4 py-2 text-center">{order?.customerData?.mobileNumber}</td>
+                <td className="px-4 py-2 text-center">{order?.orderStatus}</td>
+                <td className="px-4 py-2 text-center w-1/12">
+                  <div className="flex flex-col gap-2">
+                    <Link
+                      to={`/dashboard/order-overview/${order?._id}`}
+                      state={{ order: order }}
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-semibold text-sm py-1 px-2 rounded"
+                    >
+                      View Details
+                    </Link>
+                    <button
+                      onClick={() => handleConfirmed(order?._id)}
+                      disabled={isLoading}
+                      className="bg-green-500 hover:bg-green-700 text-white font-semibold text-sm py-1 px-2 rounded"
+                    >
+                      Confirm Order
+                    </button>
                   </div>
-
-                  <div className="p-3">
-                    <h3 className="text-lg font-semibold mb-1">{order?.productData?.name.slice(0, 50)}...</h3>
-
-                    <div className="flex text-slate-600 dark:text-slate-300 mb-4">
-                      <div className="flex items-center space-x-1.5">
-                        <span className="text-gray-700">Color: {order?.productData?.color}</span>
-                      </div>
-                      <span className="mx-4 border-l border-slate-200 dark:border-slate-700 "></span>
-                      <div className="flex items-center space-x-1.5">
-                        <span>Size: {order?.productData?.size}</span>
-                      </div>
-                      <span className="mx-4 border-l border-slate-200 dark:border-slate-700 "></span>
-                      <div className="flex items-center space-x-1.5">
-                        <span>Quantity: {order?.productData?.quantity}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mb-5 lg:mb-0 col-span-12 lg:col-span-6 p-3 border border-slate-400 rounded-md">
-                <div className="mb-2">
-                  <span className="text-slate-800 text-base font-bold">Shipping Address</span>
-                </div>
-
-                <div className="mb-2">
-                  <span className="text-purple-600 text-lg font-semibold font-primary">{order?.customerData.name}</span>
-                </div>
-
-                <div className="mb-2">
-                  <span className="bg-blue-800 px-2 py-1 rounded-full text-center text-lg font-semibold font-primary text-slate-50">
-                    Home
-                  </span>
-                  <span className="ms-1">
-                    {order?.customerData.district}, {order?.customerData.address}
-                  </span>
-                </div>
-
-                <div className="mb-2">
-                  <span>Number:</span>
-                  <span className="ms-1">{order?.customerData.mobileNumber}</span>
-                </div>
-                <div className="mb-2">
-                  <span>Email:</span>
-                  <span className="ms-1">{order?.customerData.email}</span>
-                </div>
-              </div>
-
-              <div className="mb-5 lg:mb-0 col-span-12 lg:col-span-6 p-3 border border-slate-400 rounded-md">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-slate-800 text-base font-bold">Order Summary</span>
-                  <span className="text-blue-500 text-base font-medium">{order?.orderStatus}</span>
-                </div>
-
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-purple-600 text-base font-bold">Product Price:</span>
-                  <span className="text-lg font-bold text-purple-600">
-                    <span className="text-2xl">৳</span>
-                    {order?.productData?.originalPrice}
-                  </span>
-                </div>
-
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-purple-600 text-base font-bold">Delivery Charge:</span>
-                  <span className="text-lg font-bold text-purple-600">
-                    <span className="text-2xl">৳</span>
-                    {order?.customerData.deliveryCharge}
-                  </span>
-                </div>
-
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-purple-600 text-base font-bold">Total:</span>
-                  <span className="text-lg font-bold text-purple-600">
-                    <span className="text-2xl">৳</span>
-                    {order?.productData?.originalPrice * order?.productData?.quantity + order?.customerData?.deliveryCharge}
-                  </span>
-                </div>
-
-                <div className="flex justify-between items-center mb-2">
-                  <button
-                    onClick={() => handleCancel(order?._id)}
-                    disabled={isLoading || order?.orderStatus === "Cancel"}
-                    className={`${
-                      order?.orderStatus === "Cancel"
-                        ? "bg-slate-500 text-slate-50 dark:text-slate-50 px-2 md:px-2 lg:px-4 py-2 w-1/2 rounded-md text-sm"
-                        : "bg-red-500 hover:bg-red-700 text-slate-50 dark:text-slate-50 px-2 md:px-2 lg:px-4 py-2 w-1/2 rounded-md text-sm"
-                    }
-        `}
-                  >
-                    Cancel Order
-                  </button>
-                  <button className="text-fuchsia-500 text-sm dark:text-slate-50 px-4 py-2 w-1/2 rounded-md">
-                    Download Invoice
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
