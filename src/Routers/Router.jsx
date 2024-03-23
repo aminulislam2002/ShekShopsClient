@@ -29,6 +29,7 @@ import MyReturn from "../Pages/DashboardPages/CustomerDashboardPages/MyReturn/My
 import MyCancellations from "../Pages/DashboardPages/CustomerDashboardPages/MyCancellations/MyCancellations";
 import ReturnOrders from "../Pages/DashboardPages/AdminDashboardPages/ReturnOrders/ReturnOrders";
 import ForgotPassword from "../Pages/AuthenticationPage/ForgotPassword/ForgotPassword";
+import ContactUs from "../Pages/ContactUs/ContactUs.JSX";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "/shop",
         element: <Shop></Shop>,
+      },
+      {
+        path: "/contact-us",
+        element: <ContactUs></ContactUs>,
       },
       {
         path: "/cart",
