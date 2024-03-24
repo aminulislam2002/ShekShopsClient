@@ -137,7 +137,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/category",
+    path: "/category/:category",
     element: <CategoryLayout></CategoryLayout>,
     errorElement: <PageNotFound></PageNotFound>,
     children: [

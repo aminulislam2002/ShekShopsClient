@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ProductCard from "../../HomePage/HomePageCard/ProductCard/ProductCard";
 
 const Categories = () => {
-  const { state } = useLocation();
-  const category = state?.category || "all";
+  const { category } = useParams();
   const [products, setProducts] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);

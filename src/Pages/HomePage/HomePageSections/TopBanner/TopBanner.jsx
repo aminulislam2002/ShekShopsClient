@@ -92,9 +92,9 @@ const TopBanner = () => {
             <marquee direction="left" behavior="scroll" scrollamount="5">
               {/* Adjust the content and styling as needed */}
               <p className="mb-0 text-lg font-semibold">
-                বাংলাদেশের অন্যতম বৃহত্তম শপিং প্লাটফর্ম ShekShops.com এ আপনাকে স্বাগতম!!! কেনাকাটায় থাকছে বিশেষ মূল্যছাড়!!!
-                সারাদেশের সকল জেলা,উপজেলা এবং ইউনিয়ন পর্যায়ে থাকছে হোম ডেলিভারি সুবিধা। প্রয়োজনীয় প্রোডাক্ট পেতে আমাদের
-                সাথেই থাকুন। হেল্পলাইন ☎ +880 1704-268005
+                বাংলাদেশের অন্যতম বৃহত্তম শপিং প্লাটফর্ম ShekShops.com এ আপনাকে স্বাগতম!!! কেনাকাটায় থাকছে বিশেষ
+                মূল্যছাড়!!! সারাদেশের সকল জেলা,উপজেলা এবং ইউনিয়ন পর্যায়ে থাকছে হোম ডেলিভারি সুবিধা। প্রয়োজনীয় প্রোডাক্ট
+                পেতে আমাদের সাথেই থাকুন। হেল্পলাইন ☎ +880 1704-268005
               </p>
             </marquee>
           </div>
@@ -111,7 +111,7 @@ const TopBanner = () => {
                   className="lg:mb-2 md:mb-1.5 lg:py-2 md:py-1.5 lg:ps-5 md:ps-3 transition-transform transform duration-300 hover:translate-x-2 group"
                 >
                   <Link
-                    to="/category"
+                    to={`/category/${option?.category.toLowerCase()}`}
                     state={{ category: option?.category.toLowerCase() }}
                     className={`text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]`}
                   >
@@ -142,7 +142,7 @@ const TopBanner = () => {
                         className="py-2 ps-5 transition-transform transform duration-300 hover:translate-x-2 group"
                       >
                         <Link
-                          to="/category"
+                          to={`/category/${option?.category.toLowerCase()}`}
                           state={{ category: option?.category.toLowerCase() }}
                           className={`text-slate-900 dark:text-slate-50 group-hover:text-[#0099ff]`}
                         >
@@ -216,21 +216,9 @@ const TopBanner = () => {
         {/* Right side image part */}
         <div className="hidden lg:block md:col-span-12 lg:col-span-2">
           <div className="">
-            <img
-              src={right_image_1}
-              alt="right_image_1"
-              className="mb-5 lg:h-[119px] w-full"
-            />
-            <img
-              src={right_image_2}
-              alt="right_image_2"
-              className="mb-5 lg:h-[119px] w-full"
-            />
-            <img
-              src={right_image_3}
-              alt="right_image_3"
-              className="mb-5 lg:h-[119px] w-full"
-            />
+            <img src={right_image_1} alt="right_image_1" className="mb-5 lg:h-[119px] w-full" />
+            <img src={right_image_2} alt="right_image_2" className="mb-5 lg:h-[119px] w-full" />
+            <img src={right_image_3} alt="right_image_3" className="mb-5 lg:h-[119px] w-full" />
           </div>
         </div>
       </div>
