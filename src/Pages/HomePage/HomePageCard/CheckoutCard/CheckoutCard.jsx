@@ -23,15 +23,6 @@ const CheckoutCard = () => {
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [myCartProducts, setMyCartProducts] = useState(productData);
 
-  const currentDate = new Date();
-  const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
-    .toString()
-    .padStart(2, "0")}-${currentDate.getDate().toString().padStart(2, "0")}`;
-  const formattedTime = `${currentDate.getHours().toString().padStart(2, "0")}:${currentDate
-    .getMinutes()
-    .toString()
-    .padStart(2, "0")}:${currentDate.getSeconds().toString().padStart(2, "0")}`;
-
   const [customerData, setCustomerData] = useState({
     name: "",
     email: user?.email,
@@ -204,6 +195,24 @@ const CheckoutCard = () => {
   }, 0);
 
   const total = subTotal + customerData.deliveryCharge;
+
+  // Time and date set part
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+  const currentDate = new Date();
+  const formattedDate = `${currentDate.getDate().toString().padStart(2, "0")} ${
+    months[currentDate.getMonth()]
+  }, ${currentDate.getFullYear()}`;
+
+  let hours = currentDate.getHours();
+  const meridiem = hours >= 12 ? "pm" : "am";
+  hours = hours % 12;
+  hours = hours ? hours : 12; // Handle midnight (0 hours)
+
+  const formattedTime = `${hours.toString().padStart(2, "0")}:${currentDate
+    .getMinutes()
+    .toString()
+    .padStart(2, "0")} ${meridiem}`;
 
   const handleSaveAndConfirmOrder = () => {
     const orderInfo = {
