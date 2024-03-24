@@ -1,7 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { AuthContext } from "../../Providers/AuthProvider/AuthProvider";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useTheme from "../../Hooks/useTheme";
@@ -10,27 +9,12 @@ const CartPage = () => {
   const [myCartProducts, setMyCartProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectedQuantity, setSelectedQuantity] = useState(1);
-  const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    const fetchMyCartProducts = async () => {
-      try {
-        if (user && user.email) {
-          const response = await fetch(`https://server.shekshops.com/cartProducts?email=${user.email}`);
-          if (response.ok) {
-            const data = await response.json();
-            setMyCartProducts(data);
-          } else {
-            console.error("Error fetching cart products");
-          }
-        }
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    };
-
-    fetchMyCartProducts();
-  }, [user]);
+    // Retrieve cart products from local storage
+    const cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
+    setMyCartProducts(cartProducts);
+  }, []);
 
   const handleCheckboxChange = (productId) => {
     const selectedIndex = selectedProducts.indexOf(productId);
@@ -43,8 +27,9 @@ const CartPage = () => {
     }
   };
 
-  const handleDeleteProduct = async (productId) => {
-    const confirmDelete = await Swal.fire({
+  const handleDeleteProduct = (productId) => {
+    // Show confirmation dialog
+    Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
@@ -52,53 +37,33 @@ const CartPage = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    });
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Remove product from myCartProducts state
+        const updatedProducts = myCartProducts.filter((product) => product?.id !== productId);
+        setMyCartProducts(updatedProducts);
 
-    if (confirmDelete.isConfirmed) {
-      try {
-        const response = await fetch(`https://server.shekshops.com/deleteProductFromCart/${productId}`, {
-          method: "DELETE",
-        });
+        // Remove product from local storage
+        const updatedCartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
+        console.log(updatedCartProducts);
+        const filteredProducts = updatedCartProducts.filter((product) => product?.id !== productId);
+        localStorage.setItem("cartProducts", JSON.stringify(filteredProducts));
 
-        if (response.ok) {
-          // Update the products state without the deleted product
-          const filterProducts = (prevProducts) => prevProducts.filter((product) => product._id !== productId);
-          setMyCartProducts(filterProducts);
-
-          // Show success alert
-          Swal.fire({
-            title: "Success!",
-            text: "Product deleted successfully.",
-            icon: "success",
-          });
-        } else {
-          console.error("Error deleting product");
-
-          // Show error alert
-          Swal.fire({
-            title: "Error!",
-            text: "Error deleting product. Please try again later.",
-            icon: "error",
-          });
-        }
-      } catch (error) {
-        console.error("Error:", error);
-
-        // Show error alert
+        // Show success alert
         Swal.fire({
-          title: "Error!",
-          text: "An unexpected error occurred. Please try again later.",
-          icon: "error",
+          title: "Deleted!",
+          text: "Your product has been deleted.",
+          icon: "success",
         });
       }
-    }
+    });
   };
 
-  const selectedProductsDetails = myCartProducts.filter((product) => selectedProducts.includes(product._id));
+  const selectedProductsDetails = myCartProducts.filter((product) => selectedProducts.includes(product?.id));
 
   const handleQuantityChange = (productId, newQuantity) => {
     const updatedProducts = myCartProducts.map((product) => {
-      if (product._id === productId) {
+      if (product?.id === productId) {
         return {
           ...product,
           quantity: newQuantity,
@@ -110,12 +75,12 @@ const CartPage = () => {
   };
 
   const handleIncreaseQuantity = (productId) => {
-    const updatedQuantity = myCartProducts.find((product) => product._id === productId).quantity + 1;
+    const updatedQuantity = myCartProducts.find((product) => product?.id === productId).quantity + 1;
     handleQuantityChange(productId, updatedQuantity);
   };
 
   const handleDecreaseQuantity = (productId) => {
-    const currentQuantity = myCartProducts.find((product) => product._id === productId).quantity;
+    const currentQuantity = myCartProducts.find((product) => product?.id === productId).quantity;
     if (currentQuantity > 1) {
       const updatedQuantity = currentQuantity - 1;
       setSelectedQuantity(updatedQuantity);
@@ -160,11 +125,11 @@ const CartPage = () => {
           <div className="grid grid-cols-12">
             <div className="col-span-12 lg:col-span-8 mb-5 lg:mb-0 lg:me-5 rounded-md border">
               {myCartProducts.map((product) => (
-                <div key={product?._id} className="rounded-lg p-2.5 lg:p-4 flex items-center mb-4">
+                <div key={product?.id} className="rounded-lg p-2.5 lg:p-4 flex items-center mb-4">
                   <input
                     type="checkbox"
-                    onChange={() => handleCheckboxChange(product._id)}
-                    checked={selectedProducts.includes(product._id)}
+                    onChange={() => handleCheckboxChange(product?.id)}
+                    checked={selectedProducts.includes(product?.id)}
                     className="mr-4"
                   />
                   <div className="flex-shrink-0 w-20 lg:w-24">
@@ -224,7 +189,7 @@ const CartPage = () => {
                               <button
                                 className="w-5 md:w-7 h-5 md:h-7 rounded-full flex items-center justify-center border border-slate-400 dark:border-slate-500 bg-white dark:bg-slate-900 focus:outline-none hover:border-slate-700 dark:hover:border-slate-400 disabled:hover:border-slate-400 dark:disabled:hover:border-slate-500 disabled:opacity-50 disabled:cursor-default"
                                 type="button"
-                                onClick={() => handleDecreaseQuantity(product._id)}
+                                onClick={() => handleDecreaseQuantity(product?.id)}
                                 disabled={selectedQuantity === "1"}
                               >
                                 <FaMinus className="w-2 md:w-3 h-2 md:h-3 font-normal"></FaMinus>
@@ -235,7 +200,7 @@ const CartPage = () => {
                               <button
                                 className="w-5 md:w-7 h-5 md:h-7 rounded-full flex items-center justify-center border border-slate-400 dark:border-slate-500 bg-white dark:bg-slate-900 focus:outline-none hover:border-slate-700 dark:hover:border-slate-400 disabled:hover:border-slate-400 dark:disabled:hover:border-slate-500 disabled:opacity-50 disabled:cursor-default"
                                 type="button"
-                                onClick={() => handleIncreaseQuantity(product._id)}
+                                onClick={() => handleIncreaseQuantity(product?.id)}
                               >
                                 <FaPlus className="w-2 md:w-3 h-2 md:h-3 font-normal"></FaPlus>
                               </button>
@@ -245,7 +210,7 @@ const CartPage = () => {
 
                         {/* Delete button */}
                         <div className="flex justify-center items-center">
-                          <button onClick={() => handleDeleteProduct(product._id)} className="text-red-600 mt-2">
+                          <button onClick={() => handleDeleteProduct(product?.id)} className="text-red-600 mt-2">
                             <RiDeleteBin6Line className="w-4 md:w-6 h-6 md:h-8"></RiDeleteBin6Line>
                           </button>
                         </div>
@@ -265,9 +230,9 @@ const CartPage = () => {
                   <div>
                     <ul className="p-3">
                       {myCartProducts
-                        .filter((product) => selectedProducts.includes(product._id))
+                        .filter((product) => selectedProducts.includes(product?.id))
                         .map((product) => (
-                          <li key={product?._id} className="mb-2 font-primary">
+                          <li key={product?.id} className="mb-2 font-primary">
                             <span className="font-semibold text-sm md:text-base">
                               {product?.name?.length >= getCartSliceLength()
                                 ? product?.name.slice(0, getCartSliceLength()) + "..."
@@ -285,7 +250,7 @@ const CartPage = () => {
                       <span className="text-blue-500">
                         ৳
                         {myCartProducts
-                          .filter((product) => selectedProducts.includes(product?._id))
+                          .filter((product) => selectedProducts.includes(product?.id))
                           .reduce((total, product) => total + product?.originalPrice * product?.quantity, 0)}
                       </span>
                     </div>

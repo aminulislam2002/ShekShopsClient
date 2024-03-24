@@ -19,6 +19,7 @@ const NavBar = () => {
   const [products, setProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [totalCartProducts, setTotalCartProducts] = useState(0);
   const { user, logOut } = useContext(AuthContext);
 
   useEffect(() => {
@@ -37,6 +38,15 @@ const NavBar = () => {
     };
 
     fetchProducts();
+  }, []);
+
+  useEffect(() => {
+    // Retrieve cart products from local storage
+    const cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
+    const countTotalCartProducts = cartProducts.length;
+
+    // Set the total cart products state
+    setTotalCartProducts(countTotalCartProducts);
   }, []);
 
   const handleSearch = (e) => {
@@ -270,7 +280,7 @@ const NavBar = () => {
                       type="button"
                     >
                       <div className="w-3.5 h-3.5 flex items-center justify-center bg-primary-500 absolute top-1.5 right-1.5 rounded-full text-[10px] leading-none text-white font-medium">
-                        <span className="mt-[1px] bg-blue-500 p-1 rounded-full">0</span>
+                        <span className="mt-[1px] bg-blue-500 p-1 rounded-full">{totalCartProducts}</span>
                       </div>
                       <Link to="/cart">
                         <IoCartOutline className="w-6 h-6" />

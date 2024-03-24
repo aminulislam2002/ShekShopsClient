@@ -9,7 +9,6 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import ProductCard from "../ProductCard/ProductCard";
 import { AuthContext } from "../../../../Providers/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
-import axios from "axios";
 import useTheme from "../../../../Hooks/useTheme";
 
 // Add this function outside the component to calculate discounted price
@@ -114,39 +113,17 @@ const ProductDetailsCard = () => {
       customerEmail: customerEmail,
     };
 
-    // Product added to carts database
-    axios
-      .post("https://server.shekshops.com/postCartProduct", updatedBuyingProductInfo, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          // Product successfully added
-          Swal.fire({
-            icon: "success",
-            title: "Product Added!",
-            text: "Your product has been successfully added.",
-          });
-        } else {
-          console.error("Error adding product?. Status code: ", response.status);
-          Swal.fire({
-            icon: "error",
-            title: "Error!",
-            text: "Something went wrong while adding the product?.",
-          });
-        }
-      })
-      .catch((error) => {
-        // Handle error case
-        console.error("Error adding product", error);
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Something went wrong while adding the product?.",
-        });
-      });
+    // Save product information to local storage
+    const cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
+    cartProducts.push(updatedBuyingProductInfo);
+    localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+
+    // Notify user that product has been added
+    Swal.fire({
+      icon: "success",
+      title: "Product Added!",
+      text: "Your product has been successfully added to the cart.",
+    });
   };
 
   if (!product) {
