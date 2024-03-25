@@ -1,4 +1,5 @@
 import useTheme from "../../Hooks/useTheme";
+import { FaFacebook, FaTwitterSquare, FaTelegram, FaYoutubeSquare } from "react-icons/fa";
 
 const ContactUs = () => {
   const { isDarkMode } = useTheme();
@@ -15,73 +16,37 @@ const ContactUs = () => {
                 <div>
                   <h3 className="uppercase font-semibold text-sm dark:text-slate-200 tracking-wider">🗺 ADDRESS</h3>
                   <span className="block mt-2 text-slate-500 dark:text-slate-400">
-                    Photo booth tattooed prism, portland taiyaki hoodie neutra typewriter
+                    Shewrapara, Mirpur. Dhaka, Bangladesh
                   </span>
                 </div>
                 <div>
                   <h3 className="uppercase font-semibold text-sm dark:text-slate-200 tracking-wider">💌 EMAIL</h3>
-                  <span className="block mt-2 text-slate-500 dark:text-slate-400">nc.example@example.com</span>
+                  <span className="block mt-2 text-slate-500 dark:text-slate-400">forhadreza7872@gmail.com</span>
                 </div>
                 <div>
                   <h3 className="uppercase font-semibold text-sm dark:text-slate-200 tracking-wider">☎ PHONE</h3>
-                  <span className="block mt-2 text-slate-500 dark:text-slate-400">000-123-456-7890</span>
+                  <span className="block mt-2 text-slate-500 dark:text-slate-400"> +880 1704-268005</span>
                 </div>
                 <div>
                   <h3 className="uppercase font-semibold text-sm dark:text-slate-200 tracking-wider">🌏 SOCIALS</h3>
                   <nav className="nc-SocialsList flex space-x-2.5 text-2xl text-slate-6000 dark:text-slate-300 mt-2">
                     <a className="block w-6 h-6" href="#" target="_blank" rel="noopener noreferrer" title="Facebook">
-                      {/* <img
-                      alt=""
-                      loading="lazy"
-                      width="136"
-                      height="136"
-                      decoding="async"
-                      data-nimg="1"
-                      src="/_next/static/media/facebook.b22e79d5.svg"
-                      style="color: transparent;"
-                    /> */}
+                      <FaFacebook></FaFacebook>
                     </a>
                     <a className="block w-6 h-6" href="#" target="_blank" rel="noopener noreferrer" title="Twitter">
-                      {/* <img
-                      alt=""
-                      loading="lazy"
-                      width="136"
-                      height="136"
-                      decoding="async"
-                      data-nimg="1"
-                      src="/_next/static/media/twitter.d12eec73.svg"
-                      style="color: transparent;"
-                    /> */}
+                      <FaTwitterSquare></FaTwitterSquare>
                     </a>
                     <a className="block w-6 h-6" href="#" target="_blank" rel="noopener noreferrer" title="Youtube">
-                      {/* <img
-                      alt=""
-                      loading="lazy"
-                      width="136"
-                      height="135"
-                      decoding="async"
-                      data-nimg="1"
-                      src="/_next/static/media/youtube.bcae2a7a.svg"
-                      style="color: transparent;"
-                    /> */}
+                      <FaTelegram></FaTelegram>
                     </a>
                     <a className="block w-6 h-6" href="#" target="_blank" rel="noopener noreferrer" title="Telegram">
-                      {/* <img
-                      alt=""
-                      loading="lazy"
-                      width="136"
-                      height="136"
-                      decoding="async"
-                      data-nimg="1"
-                      src="/_next/static/media/telegram.a3c75624.svg"
-                      style="color: transparent;"
-                    /> */}
+                      <FaYoutubeSquare></FaYoutubeSquare>
                     </a>
                   </nav>
                 </div>
               </div>
               <div>
-                <form className="grid grid-cols-1 gap-6" action="#" method="post">
+                <form className="grid grid-cols-1 gap-6">
                   <label className="block">
                     <label className="nc-Label text-base font-medium text-slate-900 dark:text-slate-200 " data-nc-id="Label">
                       Full name
@@ -112,10 +77,7 @@ const ContactUs = () => {
                     ></textarea>
                   </label>
                   <div>
-                    <button
-                      className="relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 disabled:bg-opacity-90 bg-green-700 text-slate-50 hover:bg-slate-100 hover:text-slate-800 dark:bg-[#132337]  dark:text-slate-50 dark:hover:bg-slate-900 shadow-xl flex-1 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
-                      type="submit"
-                    >
+                    <button className="relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 disabled:bg-opacity-90 bg-green-700 text-slate-50 hover:bg-slate-100 hover:text-slate-800 dark:bg-[#132337]  dark:text-slate-50 dark:hover:bg-slate-900 shadow-xl flex-1 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0">
                       Send Message
                     </button>
                   </div>

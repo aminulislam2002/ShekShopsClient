@@ -53,7 +53,7 @@ const Invoice = () => {
             <div>
               <h3 className="font-semibold text-lg text-end">Pay To:</h3>
               <p className="text-sm text-end">ShekShops</p>
-              <p className="text-sm text-end">Mirpur-10</p>
+              <p className="text-sm text-end">Shewrapara, Mirpur</p>
               <p className="text-sm text-end">Dhaka, Bangladesh</p>
               <p className="text-sm text-end">+880 1719-006757</p>
             </div>
