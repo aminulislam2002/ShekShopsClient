@@ -30,6 +30,7 @@ import MyCancellations from "../Pages/DashboardPages/CustomerDashboardPages/MyCa
 import ReturnOrders from "../Pages/DashboardPages/AdminDashboardPages/ReturnOrders/ReturnOrders";
 import ForgotPassword from "../Pages/AuthenticationPage/ForgotPassword/ForgotPassword";
 import ContactUs from "../Pages/ContactUs/ContactUs.JSX";
+import Invoice from "../Pages/DashboardPages/AdminDashboardPages/Invoice/Invoice";
 
 const router = createBrowserRouter([
   {
@@ -132,6 +133,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/order-overview/:id",
         element: <OrderOverview></OrderOverview>,
+      },
+      {
+        path: "/dashboard/order-overview/:id/invoice/:id",
+        element: <Invoice></Invoice>,
       },
     ],
   },

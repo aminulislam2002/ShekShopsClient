@@ -19,7 +19,6 @@ const CheckoutCard = () => {
   const { user } = useContext(AuthContext);
   const location = useLocation();
   const productData = location?.state?.data;
-  console.log(productData);
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [myCartProducts, setMyCartProducts] = useState(productData);
 

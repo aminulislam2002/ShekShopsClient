@@ -178,19 +178,25 @@ const OrderOverview = () => {
             <div className="grow flex justify-start items-center">
               <h5 className="text-base text-slate-800 dark:text-slate-50">Order Summary</h5>
             </div>
-          {
-            isAdmin ? <>  <div className="flex justify-center items-center gap-3 shrink-0">
-            <div className="shrink-0">
-              <Link
-                to="/dashboard/addProduct"
-                className="text-white btn btn-sm bg-blue-500 border-blue-500 hover:text-white hover:bg-blue-600 hover:border-blue-600 focus:text-white focus:bg-blue-600 focus:border-blue-600 focus:ring focus:ring-blue-100 active:text-white active:bg-blue-600 active:border-blue-600 active:ring active:ring-blue-100 dark:ring-blue-400/20"
-              >
-                <MdOutlineFileDownload className="w-5 h-5"></MdOutlineFileDownload>
-                <span className="align-middle">Invoice</span>
-              </Link>
-            </div>
-          </div></> : <></>
-          }
+            {isAdmin ? (
+              <>
+                {console.log(order)}
+                <div className="flex justify-center items-center gap-3 shrink-0">
+                  <div className="shrink-0">
+                    <Link
+                      to={`/dashboard/order-overview/${order?._id}/invoice/${order?._id}`}
+                      state={{ data: order }}
+                      className="text-white btn btn-sm bg-blue-500 border-blue-500 hover:text-white hover:bg-blue-600 hover:border-blue-600 focus:text-white focus:bg-blue-600 focus:border-blue-600 focus:ring focus:ring-blue-100 active:text-white active:bg-blue-600 active:border-blue-600 active:ring active:ring-blue-100 dark:ring-blue-400/20"
+                    >
+                      <MdOutlineFileDownload className="w-5 h-5"></MdOutlineFileDownload>
+                      <span className="align-middle">Invoice</span>
+                    </Link>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
           </div>
 
           <div className="overflow-x-auto">
@@ -199,7 +205,6 @@ const OrderOverview = () => {
                 {/* Iterate over each product in the order */}
                 {order?.products.map((product) => (
                   <tr key={product?.id}>
-                    {console.log(product)}
                     <td className="px-3.5 py-4 border-b border-dashed first:pl-0 last:pr-0 border-slate-200 dark:border-zink-500">
                       <div className="flex justify-start items-start gap-3">
                         {/* Render product image */}
